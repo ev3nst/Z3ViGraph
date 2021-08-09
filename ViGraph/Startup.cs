@@ -4,12 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.AspNetCore.Identity;
+
+using ViGraph.Database;
+using ViGraph.Models;
 
 namespace ViGraph
 {
+
 	public class Startup
 	{
 		public Startup(IConfiguration configuration)
@@ -23,7 +31,38 @@ namespace ViGraph
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews();
+            ConfigureEntityFramework(services);
+
+            // Not Working ENUM implementation
+            // services.AddSingleton<IRelationalTypeMappingSourcePlugin, EnumTypeMappingSourcePlugin>();
+
+            services.AddIdentity<AppUser,IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddHttpContextAccessor();
+            services.AddSession(Options =>
+            {
+                Options.IdleTimeout = TimeSpan.FromMinutes(10);
+                Options.Cookie.HttpOnly = true;
+                Options.Cookie.IsEssential = true;
+            });
 		}
+
+        public void ConfigureEntityFramework(IServiceCollection services)
+        {
+            services.AddDbContextPool<ApplicationDbContext>(
+                options => options.UseMySql(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection")),
+                    mysqlOptions => {
+                        mysqlOptions.MaxBatchSize(int.Parse(Configuration.GetSection("MaxBatchSize").Value));
+                        int retryOnFail = int.Parse(Configuration.GetSection("RetryOnFail").Value);
+                        if (retryOnFail > 0) {
+                            mysqlOptions.EnableRetryOnFailure(retryOnFail, TimeSpan.FromSeconds(5), null);
+                        }
+                    }
+            ));
+        }
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -32,12 +71,17 @@ namespace ViGraph
 				app.UseDeveloperExceptionPage();
 			} else {
 				app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
 			}
+
+            app.UseHttpsRedirection();
 			app.UseStaticFiles();
 
 			app.UseRouting();
-
+            app.UseAuthentication();
 			app.UseAuthorization();
+            app.UseSession();
 
 			app.UseEndpoints(endpoints => {
 				endpoints.MapControllerRoute(
