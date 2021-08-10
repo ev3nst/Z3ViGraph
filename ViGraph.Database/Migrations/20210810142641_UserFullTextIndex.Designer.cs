@@ -9,8 +9,8 @@ using ViGraph.Database;
 namespace ViGraph.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210810132755_IdentityMigration")]
-    partial class IdentityMigration
+    [Migration("20210810142641_UserFullTextIndex")]
+    partial class UserFullTextIndex
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,7 +83,9 @@ namespace ViGraph.Database.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetime(6)");
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
+                        .HasColumnName("LockoutEnd");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("longtext");
@@ -92,6 +94,9 @@ namespace ViGraph.Database.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Users");
 
@@ -213,21 +218,21 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "b84c0ad7-ca32-4838-9b01-de39081b8b2d",
+                            ConcurrencyStamp = "ceb055f8-9be7-40fd-974e-699611050794",
                             Name = "Super Admin",
                             Sef = "super-admin"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "14fd2343-784a-4ec3-8e1d-e14221cb7411",
+                            ConcurrencyStamp = "ed698610-cf95-4bee-8a0b-88d3f81dfea5",
                             Name = "Admin",
                             Sef = "admin"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "e1fe01d7-5cee-4939-b273-ee4bfa9f64c0",
+                            ConcurrencyStamp = "03033900-2b3d-4f5b-85ef-8898cf9394b1",
                             Name = "Editor",
                             Sef = "editor"
                         });
@@ -243,7 +248,9 @@ namespace ViGraph.Database.Migrations
                         .HasColumnName("CreatedAt");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
+                        .HasColumnName("DeletedAt");
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -255,16 +262,22 @@ namespace ViGraph.Database.Migrations
                         .HasColumnType("enum('TR','EN')");
 
                     b.Property<DateTime?>("LastLogin")
-                        .HasColumnType("datetime(6)");
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
+                        .HasColumnName("LastLogin");
 
                     b.Property<string>("LastLoginIP")
                         .HasColumnType("longtext");
 
                     b.Property<DateTime?>("LastLogout")
-                        .HasColumnType("datetime(6)");
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
+                        .HasColumnName("LastLogout");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
+                        .HasColumnName("UpdatedAt");
 
                     b.HasDiscriminator().HasValue("AppUser");
 
@@ -274,9 +287,9 @@ namespace ViGraph.Database.Migrations
                             Id = "1",
                             Email = "z3@vigraph.com",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEG14KMwN089P+ahozbiKMEHYITfM6saHed0c2CZFk0EdirStkJ8UVODlQxtdA9YRqA==",
-                            SecurityStamp = "c253430e-4962-4b74-b349-738bcb5dbc7d",
-                            CreatedAt = new DateTime(2021, 8, 10, 16, 27, 55, 162, DateTimeKind.Local).AddTicks(4410),
+                            PasswordHash = "AQAAAAEAACcQAAAAEBMC4cM4XZLTLwKBwok/AOqujwcQVY4c69NGJaTegabFtfRdy8KAot/0Pg9VefsxJg==",
+                            SecurityStamp = "9bb61f2b-6b14-4cec-99da-e81b9e0258b0",
+                            CreatedAt = new DateTime(2021, 8, 10, 17, 26, 40, 387, DateTimeKind.Local).AddTicks(7960),
                             FullName = "Z3 Root",
                             Language = "TR"
                         },
@@ -285,9 +298,9 @@ namespace ViGraph.Database.Migrations
                             Id = "2",
                             Email = "test@admin.com",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEMH/qqVCl/8zBysu7p247qlqga2MwvHEv5VdpUfI7YURdFtVY6XYdMVp2vRz1Nf3Ww==",
-                            SecurityStamp = "e5417f36-08f4-4d5a-968e-20c09fcfcee3",
-                            CreatedAt = new DateTime(2021, 8, 10, 16, 27, 55, 185, DateTimeKind.Local).AddTicks(6710),
+                            PasswordHash = "AQAAAAEAACcQAAAAEI8NLhLAjZt8eNZV1MRGeR+9cn72O26czASEMf2cb0M6nldZBhGW8kVWCw22lTFBZw==",
+                            SecurityStamp = "0a88ce07-d453-4d3b-944c-00e5b34c0f04",
+                            CreatedAt = new DateTime(2021, 8, 10, 17, 26, 40, 402, DateTimeKind.Local).AddTicks(350),
                             FullName = "Test Admin",
                             Language = "TR"
                         },
@@ -296,9 +309,9 @@ namespace ViGraph.Database.Migrations
                             Id = "3",
                             Email = "test@editor.com",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEFipVKqu70czrIZYiq+0ivoqkqTm+7rghBte54L/ghp51pYCDZLEb5JpYWSps/hMFA==",
-                            SecurityStamp = "6ff13ead-910b-443b-8706-cc2e8559626e",
-                            CreatedAt = new DateTime(2021, 8, 10, 16, 27, 55, 197, DateTimeKind.Local).AddTicks(8100),
+                            PasswordHash = "AQAAAAEAACcQAAAAEF5AM+ZD1dXl2BXHiZA2AbZlvHeFDUT+lMyqFLoErNB3bQbemEA9CF0D7U8oanP40g==",
+                            SecurityStamp = "633d0dd7-97fd-4113-a4c7-0d81960d5777",
+                            CreatedAt = new DateTime(2021, 8, 10, 17, 26, 40, 414, DateTimeKind.Local).AddTicks(7800),
                             FullName = "Test Editor",
                             Language = "TR"
                         });

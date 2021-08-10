@@ -1,16 +1,24 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using ViGraph.Models;
 
-namespace ViGraph.Database.Seeds
+namespace ViGraph.Database.Schema
 {
-	public static class RoleSeeder
+	public static class RoleSchema
 	{
 		public static void Seed(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<AppRole>().HasData(GetData());
 		}
+
+        public static void Structure(ModelBuilder modelBuilder)
+        {
+			modelBuilder.Entity<IdentityRole>().ToTable("Roles");
+			modelBuilder.Entity<IdentityRole>()
+				.Ignore(c => c.NormalizedName);
+        }
 
 		public static List<AppRole> GetData()
 		{

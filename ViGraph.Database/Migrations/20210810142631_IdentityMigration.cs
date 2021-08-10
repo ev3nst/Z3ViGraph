@@ -46,20 +46,20 @@ namespace ViGraph.Database.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Language = table.Column<string>(type: "enum('TR','EN')", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    LastLogin = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastLogin = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: true),
                     LastLoginIP = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    LastLogout = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastLogout = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: true),
                     Email = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PasswordHash = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     SecurityStamp = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetime(0)", precision: 0, nullable: true),
                     LockoutEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
@@ -200,9 +200,9 @@ namespace ViGraph.Database.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Discriminator", "Name", "Sef" },
                 values: new object[,]
                 {
-                    { "1", "b84c0ad7-ca32-4838-9b01-de39081b8b2d", null, "AppRole", "Super Admin", "super-admin" },
-                    { "2", "14fd2343-784a-4ec3-8e1d-e14221cb7411", null, "AppRole", "Admin", "admin" },
-                    { "3", "e1fe01d7-5cee-4939-b273-ee4bfa9f64c0", null, "AppRole", "Editor", "editor" }
+                    { "1", "30a0b28d-0a4c-4af1-bddb-4da8388ae7d9", null, "AppRole", "Super Admin", "super-admin" },
+                    { "2", "8f18cc64-983d-45a8-a1ba-f9f6e5898733", null, "AppRole", "Admin", "admin" },
+                    { "3", "ea922a2a-36f2-4ccc-ae8b-6c1402553d06", null, "AppRole", "Editor", "editor" }
                 });
 
             migrationBuilder.InsertData(
@@ -210,9 +210,9 @@ namespace ViGraph.Database.Migrations
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "Discriminator", "Email", "FullName", "Language", "LastLogin", "LastLoginIP", "LastLogout", "LockoutEnabled", "LockoutEnd", "PasswordHash", "SecurityStamp", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { "1", new DateTime(2021, 8, 10, 16, 27, 55, 162, DateTimeKind.Local).AddTicks(4410), null, "AppUser", "z3@vigraph.com", "Z3 Root", "TR", null, null, null, false, null, "AQAAAAEAACcQAAAAEG14KMwN089P+ahozbiKMEHYITfM6saHed0c2CZFk0EdirStkJ8UVODlQxtdA9YRqA==", "c253430e-4962-4b74-b349-738bcb5dbc7d", null },
-                    { "2", new DateTime(2021, 8, 10, 16, 27, 55, 185, DateTimeKind.Local).AddTicks(6710), null, "AppUser", "test@admin.com", "Test Admin", "TR", null, null, null, false, null, "AQAAAAEAACcQAAAAEMH/qqVCl/8zBysu7p247qlqga2MwvHEv5VdpUfI7YURdFtVY6XYdMVp2vRz1Nf3Ww==", "e5417f36-08f4-4d5a-968e-20c09fcfcee3", null },
-                    { "3", new DateTime(2021, 8, 10, 16, 27, 55, 197, DateTimeKind.Local).AddTicks(8100), null, "AppUser", "test@editor.com", "Test Editor", "TR", null, null, null, false, null, "AQAAAAEAACcQAAAAEFipVKqu70czrIZYiq+0ivoqkqTm+7rghBte54L/ghp51pYCDZLEb5JpYWSps/hMFA==", "6ff13ead-910b-443b-8706-cc2e8559626e", null }
+                    { "1", new DateTime(2021, 8, 10, 17, 26, 30, 803, DateTimeKind.Local).AddTicks(7160), null, "AppUser", "z3@vigraph.com", "Z3 Root", "TR", null, null, null, false, null, "AQAAAAEAACcQAAAAEC7590PY/JARBE314tHCoES8/6DZQ/nKrIL2blOkqOCHlgyjkb7O5yBS9f7hyK/2gQ==", "54ccc661-e9de-4303-97ad-f4384dded987", null },
+                    { "2", new DateTime(2021, 8, 10, 17, 26, 30, 816, DateTimeKind.Local).AddTicks(9050), null, "AppUser", "test@admin.com", "Test Admin", "TR", null, null, null, false, null, "AQAAAAEAACcQAAAAEDBg+xtubxSznZD+punaHsOTgg2th8NFaD+5QoMQiDarfy6M7vYCl7LJQFC6xlNuVw==", "f7766633-3c3a-4094-9d15-99049d27f082", null },
+                    { "3", new DateTime(2021, 8, 10, 17, 26, 30, 828, DateTimeKind.Local).AddTicks(680), null, "AppUser", "test@editor.com", "Test Editor", "TR", null, null, null, false, null, "AQAAAAEAACcQAAAAEBT6DZp/FbZRZ73ziv4dRpRmYicArZJyflHdVfSaYXQh/a/RclxcgPalAz3o/QGdwg==", "087cdd31-07ec-41f7-9c74-939ec6ff6289", null }
                 });
 
             migrationBuilder.InsertData(
@@ -249,6 +249,12 @@ namespace ViGraph.Database.Migrations
                 name: "IX_UserRoles_RoleId",
                 table: "UserRoles",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Email",
+                table: "Users",
+                column: "Email",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -2,15 +2,19 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace ViGraph.Database.Seeds
+namespace ViGraph.Database.Schema
 {
-	public static class UserRoleSeeder
+	public static class UserRoleSchema
 	{
 		public static void Seed(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<IdentityUserRole<string>>().HasData(GetData());
 		}
 
+        public static void Structure(ModelBuilder modelBuilder)
+        {
+			modelBuilder.Entity<IdentityUserRole<string>>().ToTable("UserRoles");
+        }
 		public static List<IdentityUserRole<string>> GetData()
 		{
 			var userRoleList = new List<IdentityUserRole<string>>();

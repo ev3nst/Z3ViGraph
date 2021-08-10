@@ -9,7 +9,7 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure.Internal;
 using Pomelo.EntityFrameworkCore.MySql.Storage.Internal;
 
 using ViGraph.Models;
-using ViGraph.Database.Seeds;
+using ViGraph.Database.Schema;
 
 namespace ViGraph.Database
 {
@@ -27,33 +27,19 @@ namespace ViGraph.Database
 		{
             // Migration Modifications
 			base.OnModelCreating(modelBuilder);
-			modelBuilder.Entity<IdentityUser>().ToTable("Users");
-			modelBuilder.Entity<IdentityUser>()
-				.Ignore(c => c.UserName)
-				.Ignore(c => c.NormalizedUserName)
-				.Ignore(c => c.NormalizedEmail)
-				.Ignore(c => c.EmailConfirmed)
-				.Ignore(c => c.ConcurrencyStamp)
-				.Ignore(c => c.PhoneNumber)
-				.Ignore(c => c.PhoneNumberConfirmed)
-				.Ignore(c => c.TwoFactorEnabled)
-				.Ignore(c => c.AccessFailedCount);
-            modelBuilder.Entity<AppUser>().Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
+			UserSchema.Structure(modelBuilder);
+			RoleSchema.Structure(modelBuilder);
+			UserRoleSchema.Structure(modelBuilder);
 
-			modelBuilder.Entity<IdentityRole>().ToTable("Roles");
-			modelBuilder.Entity<IdentityRole>()
-				.Ignore(c => c.NormalizedName);
-
-			modelBuilder.Entity<IdentityUserRole<string>>().ToTable("UserRoles");
 			modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims");
 			modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
 			modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
 			modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
 
             // Seeds
-			RoleSeeder.Seed(modelBuilder);
-			UserSeeder.Seed(modelBuilder);
-			UserRoleSeeder.Seed(modelBuilder);
+			RoleSchema.Seed(modelBuilder);
+			UserSchema.Seed(modelBuilder);
+			UserRoleSchema.Seed(modelBuilder);
 		}
 	}
 

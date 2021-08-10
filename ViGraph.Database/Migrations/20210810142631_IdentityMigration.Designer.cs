@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ViGraph.Database;
 
 namespace ViGraph.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210810142631_IdentityMigration")]
+    partial class IdentityMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,21 +218,21 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "ceb055f8-9be7-40fd-974e-699611050794",
+                            ConcurrencyStamp = "30a0b28d-0a4c-4af1-bddb-4da8388ae7d9",
                             Name = "Super Admin",
                             Sef = "super-admin"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "ed698610-cf95-4bee-8a0b-88d3f81dfea5",
+                            ConcurrencyStamp = "8f18cc64-983d-45a8-a1ba-f9f6e5898733",
                             Name = "Admin",
                             Sef = "admin"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "03033900-2b3d-4f5b-85ef-8898cf9394b1",
+                            ConcurrencyStamp = "ea922a2a-36f2-4ccc-ae8b-6c1402553d06",
                             Name = "Editor",
                             Sef = "editor"
                         });
@@ -285,9 +287,9 @@ namespace ViGraph.Database.Migrations
                             Id = "1",
                             Email = "z3@vigraph.com",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEBMC4cM4XZLTLwKBwok/AOqujwcQVY4c69NGJaTegabFtfRdy8KAot/0Pg9VefsxJg==",
-                            SecurityStamp = "9bb61f2b-6b14-4cec-99da-e81b9e0258b0",
-                            CreatedAt = new DateTime(2021, 8, 10, 17, 26, 40, 387, DateTimeKind.Local).AddTicks(7960),
+                            PasswordHash = "AQAAAAEAACcQAAAAEC7590PY/JARBE314tHCoES8/6DZQ/nKrIL2blOkqOCHlgyjkb7O5yBS9f7hyK/2gQ==",
+                            SecurityStamp = "54ccc661-e9de-4303-97ad-f4384dded987",
+                            CreatedAt = new DateTime(2021, 8, 10, 17, 26, 30, 803, DateTimeKind.Local).AddTicks(7160),
                             FullName = "Z3 Root",
                             Language = "TR"
                         },
@@ -296,9 +298,9 @@ namespace ViGraph.Database.Migrations
                             Id = "2",
                             Email = "test@admin.com",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEI8NLhLAjZt8eNZV1MRGeR+9cn72O26czASEMf2cb0M6nldZBhGW8kVWCw22lTFBZw==",
-                            SecurityStamp = "0a88ce07-d453-4d3b-944c-00e5b34c0f04",
-                            CreatedAt = new DateTime(2021, 8, 10, 17, 26, 40, 402, DateTimeKind.Local).AddTicks(350),
+                            PasswordHash = "AQAAAAEAACcQAAAAEDBg+xtubxSznZD+punaHsOTgg2th8NFaD+5QoMQiDarfy6M7vYCl7LJQFC6xlNuVw==",
+                            SecurityStamp = "f7766633-3c3a-4094-9d15-99049d27f082",
+                            CreatedAt = new DateTime(2021, 8, 10, 17, 26, 30, 816, DateTimeKind.Local).AddTicks(9050),
                             FullName = "Test Admin",
                             Language = "TR"
                         },
@@ -307,9 +309,9 @@ namespace ViGraph.Database.Migrations
                             Id = "3",
                             Email = "test@editor.com",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEF5AM+ZD1dXl2BXHiZA2AbZlvHeFDUT+lMyqFLoErNB3bQbemEA9CF0D7U8oanP40g==",
-                            SecurityStamp = "633d0dd7-97fd-4113-a4c7-0d81960d5777",
-                            CreatedAt = new DateTime(2021, 8, 10, 17, 26, 40, 414, DateTimeKind.Local).AddTicks(7800),
+                            PasswordHash = "AQAAAAEAACcQAAAAEBT6DZp/FbZRZ73ziv4dRpRmYicArZJyflHdVfSaYXQh/a/RclxcgPalAz3o/QGdwg==",
+                            SecurityStamp = "087cdd31-07ec-41f7-9c74-939ec6ff6289",
+                            CreatedAt = new DateTime(2021, 8, 10, 17, 26, 30, 828, DateTimeKind.Local).AddTicks(680),
                             FullName = "Test Editor",
                             Language = "TR"
                         });
