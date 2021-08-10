@@ -34,7 +34,39 @@
                 "run",
                 "${workspaceFolder}/ViGraph/ViGraph.csproj",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary",
+                "--project",
+                "${workspaceFolder}/ViGraph/ViGraph.csproj",
+                "-s",
+                "${workspaceFolder}/ViGraph/ViGraph.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "dbrollback",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "ef",
+                "migrations",
+                "remove",
+                "--project",
+                "${workspaceFolder}/ViGraph.Database/ViGraph.Database.csproj",
+                "-s",
+                "${workspaceFolder}/ViGraph/ViGraph.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "dbupdate",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "ef",
+                "database",
+                "update",
+                "-s",
+                "${workspaceFolder}/ViGraph/ViGraph.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
