@@ -1,17 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>0767fbba-5349-4c6f-8c1c-3976949de7ea</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.8"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.8"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8"/>
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ViGraph.Database\ViGraph.Database.csproj"/>
-    <ProjectReference Include="..\ViGraph.Models\ViGraph.Models.csproj"/>
-    <ProjectReference Include="..\ViGraph.Utility\ViGraph.Utility.csproj"/>
+    <ProjectReference Include="..\ViGraph.Database\ViGraph.Database.csproj" />
+    <ProjectReference Include="..\ViGraph.Models\ViGraph.Models.csproj" />
+    <ProjectReference Include="..\ViGraph.Utility\ViGraph.Utility.csproj" />
   </ItemGroup>
 </Project>

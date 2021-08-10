@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
+using ViGraph.Utility.Config;
 using ViGraph.Database;
 using ViGraph.Models;
 
@@ -29,6 +30,9 @@ namespace ViGraph
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+            Configuration.GetSection("MySQLSettings").Bind(AppConfig.MySQLSettings);
+            Configuration.GetSection("RootCredentials").Bind(AppConfig.RootCredentials);
+
 			services.AddControllersWithViews();
 			services.AddResponseCompression(options => {
 				options.Providers.Add<BrotliCompressionProvider>();
@@ -60,10 +64,9 @@ namespace ViGraph
 					Configuration.GetConnectionString("DefaultConnection"),
 					ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection")),
 					mysqlOptions => {
-						mysqlOptions.MaxBatchSize(int.Parse(Configuration.GetSection("MaxBatchSize").Value));
-						int retryOnFail = int.Parse(Configuration.GetSection("RetryOnFail").Value);
-						if (retryOnFail > 0) {
-							mysqlOptions.EnableRetryOnFailure(retryOnFail, TimeSpan.FromSeconds(5), null);
+						mysqlOptions.MaxBatchSize(AppConfig.MySQLSettings.MaxBatchSize);
+						if (AppConfig.MySQLSettings.RetryOnFail > 0) {
+							mysqlOptions.EnableRetryOnFailure(AppConfig.MySQLSettings.RetryOnFail, TimeSpan.FromSeconds(5), null);
 						}
 					}
 			));

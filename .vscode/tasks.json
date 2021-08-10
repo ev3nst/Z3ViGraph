@@ -43,7 +43,23 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "dbrollback",
+            "label": "Database Drop",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "ef",
+                "database",
+                "drop",
+                "-f",
+                "--project",
+                "${workspaceFolder}/ViGraph.Database/ViGraph.Database.csproj",
+                "-s",
+                "${workspaceFolder}/ViGraph/ViGraph.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Database Rollback Migrations",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -58,7 +74,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "dbupdate",
+            "label": "Database Update",
             "command": "dotnet",
             "type": "process",
             "args": [
