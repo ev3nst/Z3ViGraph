@@ -8,7 +8,7 @@ namespace ViGraph.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(
-                sql: "ALTER TABLE `Users` ADD FULLTEXT full(`name`, `email`)",
+                sql: "ALTER TABLE `Users` ADD FULLTEXT full(`FullName`, `Email`)",
                 suppressTransaction: true
             );
         }

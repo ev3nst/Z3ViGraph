@@ -30,8 +30,8 @@ namespace ViGraph
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-            Configuration.GetSection("MySQLSettings").Bind(AppConfig.MySQLSettings);
-            Configuration.GetSection("RootCredentials").Bind(AppConfig.RootCredentials);
+			Configuration.GetSection("MySQLSettings").Bind(AppConfig.MySQLSettings);
+			Configuration.GetSection("RootCredentials").Bind(AppConfig.RootCredentials);
 
 			services.AddControllersWithViews();
 			services.AddResponseCompression(options => {
@@ -46,9 +46,28 @@ namespace ViGraph
 			// Not Working ENUM implementation
 			// services.AddSingleton<IRelationalTypeMappingSourcePlugin, EnumTypeMappingSourcePlugin>();
 
-			services.AddIdentity<AppUser, IdentityRole>()
+			services.AddIdentity<AppUser, AppRole>()
 				.AddDefaultTokenProviders()
 				.AddEntityFrameworkStores<ApplicationDbContext>();
+
+			services.Configure<IdentityOptions>(options => {
+				// Password settings.
+				options.Password.RequiredLength = 6;
+
+				// User settings.
+				options.User.RequireUniqueEmail = true;
+			});
+
+			services.ConfigureApplicationCookie(options => {
+				// Cookie settings
+				options.Cookie.HttpOnly = true;
+				options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+
+				options.LoginPath = "/auth/login";
+				options.AccessDeniedPath = "/auth/unauthorized";
+				options.SlidingExpiration = true;
+			});
+
 			services.AddHttpContextAccessor();
 			services.AddSession(Options => {
 				Options.IdleTimeout = TimeSpan.FromMinutes(10);
@@ -78,7 +97,7 @@ namespace ViGraph
 			if (env.IsDevelopment()) {
 				app.UseDeveloperExceptionPage();
 			} else {
-				app.UseExceptionHandler("/Home/Error");
+				app.UseExceptionHandler("/error");
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
@@ -94,8 +113,10 @@ namespace ViGraph
 
 			app.UseEndpoints(endpoints => {
 				endpoints.MapControllerRoute(
-					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}");
+					name: "Index",
+					pattern: "/",
+					defaults: new { controller = "Index", action = "Index" }
+				);
 			});
 		}
 	}

@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 
-namespace ViGraph.Models
+namespace ViGraph.ViewModels
 {
-	public class ErrorViewModel
+	public class ErrorVM
 	{
 		public string RequestId { get; set; }
 
