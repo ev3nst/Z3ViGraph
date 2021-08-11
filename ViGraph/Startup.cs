@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.Globalization;
+using System.Collections.Generic;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.ResponseCompression;
 
 using Microsoft.Extensions.Configuration;
@@ -33,6 +37,8 @@ namespace ViGraph
 			Configuration.GetSection("MySQLSettings").Bind(AppConfig.MySQLSettings);
 			Configuration.GetSection("RootCredentials").Bind(AppConfig.RootCredentials);
 
+            services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
+            services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 			services.AddControllersWithViews();
 			services.AddResponseCompression(options => {
 				options.Providers.Add<BrotliCompressionProvider>();
@@ -101,6 +107,19 @@ namespace ViGraph
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
+
+            var supportedCultures = new[] { new CultureInfo("tr"), new CultureInfo("en") };
+            var localizationOptions = new RequestLocalizationOptions {
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures,
+                DefaultRequestCulture = new RequestCulture("tr"),
+                RequestCultureProviders = new List<IRequestCultureProvider>
+                {
+                    new QueryStringRequestCultureProvider(),
+                    new CookieRequestCultureProvider()
+                }
+            };
+            app.UseRequestLocalization(localizationOptions);
 
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();

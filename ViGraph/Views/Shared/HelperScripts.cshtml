@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor 
 <script>
 const datatableDict = {
     emptyTable: "{{ __('general.datatable.emptyTable') }}",
@@ -454,8 +456,9 @@ $(document).ready(function() {
 });
 </script>
 
-@if(Session::has('message'))
+
+@if (HttpContextAccessor.HttpContext.Session.Get("StatusMessage") != null) {
 <script>
     toastr.{{ Session::get('status') }}("{{ Session::get('message') }}");
 </script>
-@endif
+}

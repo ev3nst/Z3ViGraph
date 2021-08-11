@@ -15,4 +15,28 @@
     <ProjectReference Include="..\ViGraph.Models\ViGraph.Models.csproj" />
     <ProjectReference Include="..\ViGraph.Utility\ViGraph.Utility.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\Views\Auth\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Views\Auth\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Views\Auth\Login.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Login.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Auth\Login.tr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Login.tr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Views\Auth\Login.en.Designer.cs">
+      <DependentUpon>Login.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Auth\Login.tr.Designer.cs">
+      <DependentUpon>Login.tr.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
