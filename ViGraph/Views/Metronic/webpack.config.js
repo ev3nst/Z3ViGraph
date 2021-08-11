@@ -22,7 +22,7 @@ let demo = getDemos(rootPath)[0];
 
 // under demo paths
 const demoPath = rootPath + '/resources/metronic';
-const distPath = demoPath + '/public';
+const distPath = demoPath + '/wwwroot';
 const assetDistPath = distPath + '/assets';
 const srcPath = demoPath;
 

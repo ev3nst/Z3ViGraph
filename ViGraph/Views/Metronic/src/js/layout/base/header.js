@@ -8,10 +8,16 @@ var KTLayoutHeader = function() {
 
 	// Private functions
 	var _init = function() {
-        var options = {
+		var tmp;
+
+		var options = {
             offset: {
                 desktop: 200,
-                tabletAndMobile: 300
+                tabletAndMobile: false
+            },
+            releseOnReverse: {
+                desktop: false,
+                tabletAndMobile: false
             }
 		};
 

@@ -23,12 +23,12 @@ body {
     font-weight: $font-weight-base;
     font-family: $font-family-base;
 
-    // Tablet mode
+    // Tablet Mode
     @include media-breakpoint-down(lg) {
         font-size: $root-font-size-lg !important;
     }
 
-    // Mobile mode
+    // Mobile Mode
     @include media-breakpoint-down(md) {
         font-size: $root-font-size-md !important;
     }
@@ -41,11 +41,6 @@ body {
     a:active,
     a:focus {
         text-decoration: none !important;
-    }
-
-    a,
-    button {
-        outline: none !important;
     }
 }
 

@@ -9,7 +9,7 @@ var KTLayoutHeaderTopbar = function() {
     var _init = function() {
 		_toggleObject = new KTToggle(_toggleElement, KTUtil.getBody(), {
 			targetState: 'topbar-mobile-on',
-			toggleState: 'active'
+			toggleState: 'topbar-toggle-active'
 		});
     }
 

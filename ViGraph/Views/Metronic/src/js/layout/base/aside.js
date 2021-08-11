@@ -9,11 +9,9 @@ var KTLayoutAside = function() {
     // Private functions
 	// Initialize
 	var _init = function() {
-		var offcanvasClass = KTUtil.hasClass(_element, 'aside-offcanvas-default') ? 'aside-offcanvas-default' : 'aside';
-
         // Initialize mobile aside offcanvas
 		_offcanvasObject = new KTOffcanvas(_element, {
-			baseClass: offcanvasClass,
+			baseClass: 'aside',
 			overlay: true,
 			closeBy: 'kt_aside_close_btn',
 			toggleBy: {
@@ -22,6 +20,33 @@ var KTLayoutAside = function() {
 			}
 		});
 	}
+
+    var _initNav = function() {
+        var asideNav = KTUtil.find(_element, '.aside-nav');
+
+        if (!asideNav) {
+            return;
+        }
+
+        KTUtil.scrollInit(asideNav, {
+            disableForMobile: true,
+            resetHeightOnDestroy: true,
+            handleWindowResize: true,
+            height: function() {
+                var height = parseInt(KTUtil.getViewPort().height);
+                var asideBrand = KTUtil.find(_element, '.aside-brand');
+                var asideFooter = KTUtil.find(_element, '.aside-footer');
+
+                height = height - (parseInt(KTUtil.css(asideBrand, 'height')));
+                height = height - (parseInt(KTUtil.css(asideBrand, 'marginBottom')) + parseInt(KTUtil.css(asideBrand, 'marginTop')));
+
+                height = height - (parseInt(KTUtil.css(asideFooter, 'height')));
+                height = height - (parseInt(KTUtil.css(asideFooter, 'marginBottom')) + parseInt(KTUtil.css(asideFooter, 'marginTop')));
+
+                return height;
+            }
+        });
+    }
 
     // Public methods
 	return {
@@ -35,6 +60,7 @@ var KTLayoutAside = function() {
 
             // Initialize
             _init();
+            _initNav();
         },
 
         getElement: function() {

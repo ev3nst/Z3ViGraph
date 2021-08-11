@@ -7,20 +7,18 @@ var KTLayoutHeaderMenu = function() {
     var _offcanvasElement;
     var _offcanvasObject;
 
-	// Private functions
+    // Private functions
 	var _init = function() {
-		// Initialize Offcanvas Panel For Horizontal  Menu On Mobile Mode
 		_offcanvasObject = new KTOffcanvas(_offcanvasElement, {
 			overlay: true,
 			baseClass: 'header-menu-wrapper',
 			closeBy: 'kt_header_menu_mobile_close_btn',
 			toggleBy: {
 				target: 'kt_header_mobile_toggle',
-				state: 'burger-icon-active'
+				state: 'mobile-toggle-active'
 			}
 		});
 
-		// Initialize Menu For Desktop & Mobile Modes
 		_menuObject = new KTMenu(_menuElement, {
 			submenu: {
 				desktop: 'dropdown',

@@ -96,11 +96,6 @@ KTUtil.ready(function() {
         KTLayoutQuickActions.init('kt_quick_actions');
     }
 
-    // Init Quick Notifications Offcanvas Panel
-    if (typeof KTLayoutQuickNotifications !== 'undefined') {
-        KTLayoutQuickNotifications.init('kt_quick_notifications');
-    }
-
     // Init Quick Offcanvas Panel
     if (typeof KTLayoutQuickPanel!== 'undefined') {
         KTLayoutQuickPanel.init('kt_quick_panel');
@@ -114,11 +109,6 @@ KTUtil.ready(function() {
     // Init Quick Search Panel
     if (typeof KTLayoutQuickSearch !== 'undefined') {
         KTLayoutQuickSearch.init('kt_quick_search');
-    }
-
-    // Init Quick Cart Panel
-    if (typeof KTLayoutQuickCartPanel !== 'undefined') {
-        KTLayoutQuickCartPanel.init('kt_quick_cart');
     }
 
     // Init Search For Quick Search Dropdown

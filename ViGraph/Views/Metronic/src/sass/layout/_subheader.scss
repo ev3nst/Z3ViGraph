@@ -29,11 +29,11 @@
 @include media-breakpoint-up(lg) {
     // Subheader
 	.subheader {
-		// Fixed subheader mode
+		// Fixed Subheader Mode
 		.header-fixed.subheader-fixed & {
 			position: fixed;
 			height: get($subheader-config, fixed, height);
-			top: get($header-config, desktop, height);
+			top: get($header-config, desktop, fixed, height);
 			left: 0;
 			right: 0;
 			transition: all 0.3s ease;
@@ -44,12 +44,13 @@
 			margin: 0;
 		}
 
-		// Fixed header, minimized header and fixed subheader
-		.header-fixed.header-minimize.subheader-fixed & {
-			top: get($header-config, desktop, height);
+		// Fixed header, Minimized Header & Fixed Subheader
+		.header-fixed[data-header-scroll="on"].subheader-fixed & {
+			top: get($header-config, desktop, fixed, height);
 			transition: top 0.3s ease;
 		}
 
+		// Aside Enabled & Subheader Fixed Modes
 		.aside-enabled.subheader-fixed & {
 			left: get($aside-config, base, width);
 		}
@@ -73,12 +74,13 @@
 
 // Tablet & Mobile Modes
 @include media-breakpoint-down(md) {
-    // Content & fixed subheader mode
+    // Subheader Enabled Mode
 	.subheader-enabled {
 		.content {
 			padding-top: 0;
 		}
 
+		// Subheader Solid Mode
 		.subheader.subheader-solid {
 			margin-bottom: get($page-padding, tablet-and-mobile);
 		}

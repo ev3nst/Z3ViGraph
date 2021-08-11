@@ -73,7 +73,6 @@
 @import
     "vendors/plugins/blockui",
     "vendors/plugins/bootstrap-daterangepicker",
-    "vendors/plugins/bootstrap-markdown",
     "vendors/plugins/bootstrap-maxlength",
     "vendors/plugins/bootstrap-notify",
     "vendors/plugins/bootstrap-select",
@@ -121,10 +120,6 @@
     margin-left: 15px;
 }
 
-.navi.navi-hover .navi-item .navi-link-active {
-    background-color: #F3F6F9;
-}
-
 .dataTables_scrollBody thead {
     visibility: collapse;
     height: 0px !important;
@@ -154,12 +149,6 @@ select[readonly].select2-hidden-accessible + .select2-container {
 
 .select2-selection__clear {
     margin-right: 12px !important;
-}
-
-.dataTables_processing {
-    position: absolute;
-    left: 300px;
-    top: 40px;
 }
 
 @media print {
