@@ -7,7 +7,7 @@ namespace ViGraph.Controllers
 {
 	public class IndexController : Controller
 	{
-        [Authorize]
+		[Authorize]
 		public IActionResult Index()
 		{
 			return Json(new
@@ -17,7 +17,7 @@ namespace ViGraph.Controllers
 			});
 		}
 
-        [HttpGet("/error")]
+		[HttpGet("/error")]
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
