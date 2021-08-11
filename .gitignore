@@ -403,3 +403,6 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+#Metronic template
+/ViGraph/Views/Metronic/node_modules

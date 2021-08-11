@@ -1,0 +1,48 @@
+//
+// 3rd-Party Plugins Stylesheet Includes
+//
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+////  Mandatory Plugins Includes(do not remove or change order!)  ////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+// Perfect-Scrollbar - Minimalistic but perfect custom scrollbar plugin.  Learn more:  https://github.com/mdbootstrap/perfect-scrollbar
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+
+// Keenthemes Icons - Custom font icon set by Keenthemes used by the core components. Learn more: src/plugins/keenthemes-icons/
+@import "~@/src/plugins/keenthemes-icons/font/ki.css";
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+///  Optional Plugins Includes(you can remove or add)  ///////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+// Apexcharts - mBdern charting library that helps developers to create beautiful and interactive visualizations for web pages: https://apexcharts.com/
+@import "~apexcharts/dist/apexcharts.css";
+
+// Bootstrap Daterangepicker
+@import "~bootstrap-daterangepicker/daterangepicker.css";
+
+// Bootstrap Touchspin
+@import "~bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css";
+
+// Bootstrap Select - The jQuery plugin that brings select elements into the 21st century with intuitive multiselection, searching, and much more: https://developer.snapappointments.com/bootstrap-select/
+@import "~bootstrap-select/dist/css/bootstrap-select.css";
+
+// Bootstrap Switch - Bootstrap switch/toggle is a simple component used for activating one of two predefined options: https://mdbootstrap.com/docs/jquery/forms/switch/
+@import "~bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css";
+
+// select2 - Select2 is a jQuery based replacement for select boxes: https://select2.org/
+@import "~select2/dist/css/select2.css";
+
+// Tagify - Transforms an input field or a textarea into a Tags component, in an easy, customizable way, with great performance and small code footprint, exploded with features: https://github.com/yairEO/tagify
+@import "~@yaireo/tagify/src/tagify.scss";
+
+// Animate.css - is a library of ready-to-use, cross-browser animations for use in your web projects: https://animate.style/
+@import "~animate.css/animate.css";
+
+// Toastr - is a Javascript library for non-blocking notifications. jQuery is required. The goal is to create a simple core library that can be customized and extended: https://github.com/CodeSeven/toastr
+@import "~toastr/build/toastr.css";

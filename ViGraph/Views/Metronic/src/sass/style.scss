@@ -1,0 +1,207 @@
+//
+// Main Style
+//
+
+
+////////////////////////////////////////////////////////////////
+///////////// DO NOT MODIFY BELOW INCLUDE ORDER ////////////////
+////////////////////////////////////////////////////////////////
+
+// 1: Initialize
+@import "init";
+
+// 2: Bootstrap framework includes
+@import "bootstrap/scss/bootstrap.scss";
+
+// 3: Components
+@import
+    "components/utilities",
+    "components/burger-icon",
+    "components/card",
+    "components/wizard",
+    "components/type",
+    "components/breadcrumb",
+    "components/nav",
+    "components/alert",
+    "components/buttons",
+    "components/code",
+    "components/dropdown",
+    "components/forms",
+    "components/grid",
+    "components/modal",
+    "components/progress",
+    "components/table",
+    "components/popover",
+    "components/tooltip",
+    "components/accordion",
+    "components/datatable",
+    "components/checkbox",
+    "components/radio",
+    "components/switch",
+    "components/option",
+    "components/dialog",
+    "components/strikethrough",
+    "components/separator",
+    "components/image-input",
+    "components/label",
+    "components/loader",
+    "components/symbol",
+    "components/pulse",
+    "components/page-loader",
+    "components/quick-search",
+    "components/scrolltop",
+    "components/spinner",
+    "components/sticky-toolbar",
+    "components/svg-icon",
+    "components/svg",
+    "components/timeline",
+    "components/timeline-2",
+    "components/timeline-3",
+    "components/timeline-4",
+    "components/timeline-5",
+    "components/timeline-6",
+    "components/overlay",
+    "components/wave",
+    "components/list",
+    "components/bullet",
+    "components/navi",
+    "components/ribbon",
+    "components/offcanvas",
+    "components/toggle";
+
+// 4: Plugins
+@import
+    "vendors/plugins/blockui",
+    "vendors/plugins/bootstrap-daterangepicker",
+    "vendors/plugins/bootstrap-markdown",
+    "vendors/plugins/bootstrap-maxlength",
+    "vendors/plugins/bootstrap-notify",
+    "vendors/plugins/bootstrap-select",
+    "vendors/plugins/bootstrap-session-timeout",
+    "vendors/plugins/bootstrap-switch",
+    "vendors/plugins/bootstrap-touchspin",
+    "vendors/plugins/datatables",
+    "vendors/plugins/ion-range-slider",
+    "vendors/plugins/jquery-repeater",
+    "vendors/plugins/perfect-scrollbar",
+    "vendors/plugins/select2",
+    "vendors/plugins/tagify",
+    "vendors/plugins/toastr",
+    "vendors/plugins/typeahead",
+    "vendors/plugins/apexcharts";
+
+
+// 5: Layout
+@import "layout/init";
+
+////////////////////////////////////////////////////////////////
+///////////// DO NOT MODIFY ABOVE INCLUDE ORDER ////////////////
+////////////////////////////////////////////////////////////////
+
+/* Datatables Custom */
+.pagination-bottom {
+    padding-bottom: 2.5rem;
+}
+
+.pagination-bottom .dataTables_length{
+   display: none;
+}
+
+.pagination-bottom .dataTables_scroll {
+    margin-top: 0px !important;
+}
+.pagination-bottom .dataTables_info {
+    position: absolute;
+    right: 30px;
+    bottom: 22px;
+}
+
+.pagination-bottom .dataTables_paginate {
+    margin-bottom: -5px;
+    margin-left: 15px;
+}
+
+.navi.navi-hover .navi-item .navi-link-active {
+    background-color: #F3F6F9;
+}
+
+.dataTables_scrollBody thead {
+    visibility: collapse;
+    height: 0px !important;
+    overflow: hidden;
+}
+
+.actions span {
+    display: block;
+    margin: 0px auto;
+    max-width: 130px !important;
+}
+
+/* Select 2 Custom */
+select[readonly].select2-hidden-accessible + .select2-container {
+    pointer-events: none;
+    touch-action: none;
+
+    .select2-selection {
+        background: #eee;
+        box-shadow: none;
+    }
+
+    .select2-selection__arrow, select[readonly].select2-hidden-accessible + .select2-container .select2-selection__clear {
+        display: none;
+    }
+}
+
+.select2-selection__clear {
+    margin-right: 12px !important;
+}
+
+.dataTables_processing {
+    position: absolute;
+    left: 300px;
+    top: 40px;
+}
+
+@media print {
+    .print-hide {
+        display: none !important;
+        background: none !important;
+        padding: 0 !important;
+        margin: 0 !important
+    }
+}
+
+
+/* highlight */
+.language-json pre {
+	max-width: 650px;
+	font-size: 12px;
+	outline: 1px solid #ccc;
+	padding: 5px;
+	margin: 5px;
+}
+
+.language-json .string {
+	color: #008000;
+}
+
+.language-json .number {
+	color: #0000ff;
+}
+
+.language-json .boolean {
+	color: #b22222;
+}
+
+.language-json .null {
+	color: #808080;
+}
+
+.language-json .key {
+	color: #000000;
+}
+
+.form-control-sm + .select2 .select2-selection__rendered {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+}
