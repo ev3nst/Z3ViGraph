@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
@@ -37,8 +38,22 @@ namespace ViGraph
 			Configuration.GetSection("MySQLSettings").Bind(AppConfig.MySQLSettings);
 			Configuration.GetSection("RootCredentials").Bind(AppConfig.RootCredentials);
 
-            services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
-            services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
+			services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
+			services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
+
+			services.Configure<RequestLocalizationOptions>(
+				opt => {
+					var supportedCultures = new[] { new CultureInfo("tr"), new CultureInfo("en") };
+					opt.DefaultRequestCulture = new RequestCulture("tr");
+					opt.SupportedCultures = supportedCultures;
+					opt.SupportedUICultures = supportedCultures;
+					opt.RequestCultureProviders = new List<IRequestCultureProvider> {
+						new QueryStringRequestCultureProvider(),
+						new CookieRequestCultureProvider()
+					};
+				}
+			);
+
 			services.AddControllersWithViews();
 			services.AddResponseCompression(options => {
 				options.Providers.Add<BrotliCompressionProvider>();
@@ -108,18 +123,9 @@ namespace ViGraph
 				app.UseHsts();
 			}
 
-            var supportedCultures = new[] { new CultureInfo("tr"), new CultureInfo("en") };
-            var localizationOptions = new RequestLocalizationOptions {
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures,
-                DefaultRequestCulture = new RequestCulture("tr"),
-                RequestCultureProviders = new List<IRequestCultureProvider>
-                {
-                    new QueryStringRequestCultureProvider(),
-                    new CookieRequestCultureProvider()
-                }
-            };
-            app.UseRequestLocalization(localizationOptions);
+			app.UseRequestLocalization(
+				app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value
+			);
 
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
