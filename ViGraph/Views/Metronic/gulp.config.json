@@ -18,8 +18,8 @@
                     "jquery-mask-plugin"
                 ]
             },
-            "jsMinify": true,
-            "cssMinify": true,
+            "jsMinify": false,
+            "cssMinify": false,
             "jsSourcemaps": false,
             "cssSourcemaps": false
         },
