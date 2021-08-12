@@ -52,3 +52,9 @@
   .login.login-2 .login-form {
     width: 100%;
     max-width: 100%; } }
+
+.welcome_wrapper {
+  margin-bottom: 500px; }
+
+.welcome_desc {
+  line-height: 25px; }

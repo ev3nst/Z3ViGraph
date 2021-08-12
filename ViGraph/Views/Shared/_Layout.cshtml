@@ -1,11 +1,15 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+@{
+    var currentCulture = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>().RequestCulture.UICulture.Name;
+}
+<html lang="@currentCulture">
 	<head>
 		<meta charset="utf-8" />
         <title>@ViewData["Title"] - ViGraph</title>
-		<meta name="description" content="User datatable listing" />
+		<meta name="description" content="@ViewData["Description"]"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="@Context.Request.Host@Context.Request.Path" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 
         @await RenderSectionAsync("HeadBefore", required: false)
@@ -57,5 +61,5 @@
         <partial name="HelperScripts.cshtml" />
 
         @await RenderSectionAsync("Scripts", required: false)
-</body>
+    </body>
 </html>

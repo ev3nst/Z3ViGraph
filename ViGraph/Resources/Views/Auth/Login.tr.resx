@@ -13,6 +13,27 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
     <data name="welcome" xml:space="preserve">
-        <value>Hosgeldiniz.</value>
+        <value>Kanal7 - Youtube Paneline Hoşgeldiniz!</value>
+    </data>
+    <data name="welcome_desc" xml:space="preserve">
+        <value>Bu panel üzerinden videolarınızı uygun şekilde formatlayıp,</value>
+    </data>
+    <data name="welcome_desc_2" xml:space="preserve">
+        <value>otomatik youtube kanallarına yüklenmesini sağlayabilir ve istatistiklerini takip edebilirsiniz.</value>
+    </data>
+    <data name="forgot_form_title" xml:space="preserve">
+        <value>Şifrenizi mi Unuttunuz?</value>
+    </data>
+    <data name="forgot_form_desc" xml:space="preserve">
+        <value>Kayıtlı olan email adresinize şifre yenileme linki gönderilecektir.</value>
+    </data>
+    <data name="signin" xml:space="preserve">
+        <value>Giriş Yap</value>
+    </data>
+    <data name="signin_form_desc" xml:space="preserve">
+        <value>Email ve Şifre bilgileriniz ile giriş yapınız.</value>
+    </data>
+    <data name="remember_me" xml:space="preserve">
+        <value>Beni Hatırla</value>
     </data>
 </root>

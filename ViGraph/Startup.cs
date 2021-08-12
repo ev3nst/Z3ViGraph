@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.Identity;
 
 using ViGraph.Utility.Config;
 using ViGraph.Database;
+using ViGraph.Database.Repository;
+using ViGraph.Database.Repository.IRepository;
 using ViGraph.Models;
 
 namespace ViGraph
@@ -35,6 +37,7 @@ namespace ViGraph
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			Configuration.GetSection("AppMeta").Bind(AppConfig.AppMeta);
 			Configuration.GetSection("MySQLSettings").Bind(AppConfig.MySQLSettings);
 			Configuration.GetSection("RootCredentials").Bind(AppConfig.RootCredentials);
 
@@ -53,6 +56,9 @@ namespace ViGraph
 					};
 				}
 			);
+
+            // Repository Classes
+            services.AddScoped<IAppUserRepository, AppUserRepository>();
 
 			services.AddControllersWithViews();
 			services.AddResponseCompression(options => {
@@ -77,6 +83,11 @@ namespace ViGraph
 
 				// User settings.
 				options.User.RequireUniqueEmail = true;
+
+                // Sign In settings.
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+                options.SignIn.RequireConfirmedEmail = false;
+                options.SignIn.RequireConfirmedAccount = false;
 			});
 
 			services.ConfigureApplicationCookie(options => {

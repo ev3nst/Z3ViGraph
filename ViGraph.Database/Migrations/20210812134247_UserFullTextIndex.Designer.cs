@@ -9,7 +9,7 @@ using ViGraph.Database;
 namespace ViGraph.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210810142641_UserFullTextIndex")]
+    [Migration("20210812134247_UserFullTextIndex")]
     partial class UserFullTextIndex
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

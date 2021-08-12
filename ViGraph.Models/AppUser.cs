@@ -32,5 +32,26 @@ namespace ViGraph.Models
 		public DateTime? UpdatedAt { get; set; } = null;
 
 		public DateTime? DeletedAt { get; set; } = null;
+
+		[NotMapped]
+		public override string NormalizedEmail { get; set; }
+
+		[NotMapped]
+		public override bool EmailConfirmed { get; set; }
+
+		[NotMapped]
+		public override string ConcurrencyStamp { get; set; }
+
+		[NotMapped]
+		public override string PhoneNumber { get; set; }
+
+		[NotMapped]
+		public override bool PhoneNumberConfirmed { get; set; }
+
+		[NotMapped]
+		public override bool TwoFactorEnabled { get; set; }
+
+		[NotMapped]
+		public override int AccessFailedCount { get; set; }
 	}
 }

@@ -1,9 +1,129 @@
-@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@inject IHtmlLocalizer<SharedResources> sharedLocalizer
+@model ViGraph.ViewModels.LoginVM
 @{
     ViewData["Title"] = "Login Page";
+    Layout = "~/Views/Shared/_BasicLayout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">@localizer["welcome"]</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section HeadBefore{
+	<link href="~/assets/css/pages/login/classic/login-2.css?v=7.2.8" rel="stylesheet" type="text/css" />
+}
+
+<div class="login login-2 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white" id="kt_login">
+    <div class="login-aside order-2 order-lg-1 d-flex flex-column-fluid flex-lg-row-auto bgi-size-cover bgi-no-repeat p-7 p-lg-10">
+        <div class="d-flex flex-row-fluid flex-column justify-content-between">
+            <div class="d-flex flex-column-fluid flex-column flex-center mt-5 mt-lg-0">
+                <span class="mb-15 text-center">
+                    <img src="~/assets/media/logos/kanal7-logo.svg" class="max-h-75px" alt="@ViGraph.Utility.Config.AppConfig.AppMeta.Title" />
+                </span>
+                <div class="login-form login-signin">
+                    <div class="text-center mb-10 mb-lg-20">
+                        <h2 class="font-weight-bold">@localizer["signin"]</h2>
+                        <p class="text-muted font-weight-bold">@localizer["signin_form_desc"]</p>
+                    </div>
+                    <form class="form" novalidate="novalidate" id="kt_login_signin_form" asp-controller="Auth" asp-action="LoginPost">
+                        <div class="form-group py-3 m-0">
+                            <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="email" placeholder='@sharedLocalizer["email"]' asp-for="Email" autocomplete="off" />
+                        </div>
+                        <div class="form-group py-3 border-top m-0">
+                            <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="Password" placeholder='@sharedLocalizer["password"]' asp-for="Password" />
+                        </div>
+                        <div class="form-group d-flex flex-wrap justify-content-between align-items-center mt-3">
+                            <div class="checkbox-inline">
+                                <label class="checkbox checkbox-outline m-0 text-muted">
+                                <input type="checkbox" name="remember" />
+                                <span></span>@localizer["remember_me"]</label>
+                            </div>
+                            <a href="javascript:;" id="kt_login_forgot" class="text-muted text-hover-primary">@localizer["forgot_form_title"]</a>
+                        </div>
+                        <div class="form-group d-flex flex-wrap justify-content-between align-items-center mt-2">
+                            <div class="my-3 mr-2"></div>
+                            <button type="submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3">@localizer["signin"]</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="login-form login-forgot">
+                    <div class="text-center mb-10 mb-lg-20">
+                        <h3>@localizer["forgot_form_title"]</h3>
+                        <p class="text-muted font-weight-bold">@localizer["forgot_form_desc"]</p>
+                    </div>
+                    <form class="form" novalidate="novalidate" id="kt_login_forgot_form">
+                        <div class="form-group py-3 border-bottom mb-10">
+                            <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="email" placeholder="@sharedLocalizer["email"]" name="email" autocomplete="off" />
+                        </div>
+                        <div class="form-group d-flex flex-wrap flex-center">
+                            <button id="kt_login_forgot_submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">@sharedLocalizer["submit"]</button>
+                            <button id="kt_login_forgot_cancel" class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-2">@sharedLocalizer["cancel"]</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="d-flex flex-column-auto justify-content-between mt-15">
+                <div class="text-dark-50 font-weight-bold order-2 order-sm-1 my-2">© @System.DateTime.Now.Year.ToString() - Z3 Yazılım ve Teknoloji A.Ş.</div>
+                <div class="d-flex order-1 order-sm-2 my-2">
+                    <a href="http://z3.com.tr/" target="_blank" class="text-muted text-hover-primary ml-4">@sharedLocalizer["contact"]</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="order-1 order-lg-2 flex-column-auto flex-lg-row-fluid d-flex flex-column p-7" style="background-image: url(/assets/media/bg/youtube-bg.jpg);">
+        <div class="d-flex flex-column-fluid flex-lg-center">
+            <div class="d-flex flex-column justify-content-center welcome_wrapper">
+                <h3 class="display-3 font-weight-bold my-7 text-white">@localizer["welcome"]</h3>
+                <p class="font-weight-bold font-size-lg text-white opacity-80 welcome_desc">@localizer["welcome_desc"]
+                <br />
+                @localizer["welcome_desc_2"]</p>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts{
+<script src="~/assets/plugins/global/plugins.bundle.js?v=7.2.8"></script>
+<script>
+var KTLogin = function() {
+    var _login;
+
+    var _showForm = function(form) {
+        var cls = 'login-' + form + '-on';
+        var form = 'kt_login_' + form + '_form';
+
+        _login.removeClass('login-forgot-on');
+        _login.removeClass('login-signin-on');
+        _login.addClass(cls);
+    }
+
+    var _handleSignInForm = function() {
+        var validation;
+
+        $('#kt_login_forgot').on('click', function (e) {
+            e.preventDefault();
+            _showForm('forgot');
+        });
+    }
+
+    var _handleForgotForm = function(e) {
+        var validation;
+        $('#kt_login_forgot_cancel').on('click', function (e) {
+            e.preventDefault();
+
+            _showForm('signin');
+        });
+    }
+
+    return {
+        init: function() {
+            _login = $('#kt_login');
+            _handleSignInForm();
+            _handleForgotForm();
+        }
+    };
+}();
+
+jQuery(document).ready(function() {
+    KTLogin.init();
+});
+</script>
+}

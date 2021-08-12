@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+@{
+    var currentCulture = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>().RequestCulture.UICulture.Name;
+}
+<html lang="@currentCulture">
+	<head>
+		<meta charset="utf-8" />
+        <title>@ViewData["Title"] - ViGraph2</title>
+		<meta name="description" content="@ViewData["Description"]"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<link rel="canonical" href="@Context.Request.Host@Context.Request.Path" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+
+        @await RenderSectionAsync("HeadBefore", required: false)
+		<link href="~/assets/css/style.bundle.css?v=7.2.8" rel="stylesheet" type="text/css" />
+        @await RenderSectionAsync("HeadAfter", required: false)
+
+		<link rel="shortcut icon" href="~/assets/media/logos/favicon.ico" />
+	</head>
+    <body id="kt_body" class="header-static subheader-enabled sidebar-enabled page-loading">
+        <div class="d-flex flex-column flex-root">
+            @RenderBody()
+        </div>
+
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>

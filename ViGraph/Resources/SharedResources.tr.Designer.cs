@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ViGraph.Resources.Views.Auth {
+namespace ViGraph.Resources {
     using System;
     using System.Reflection;
     
@@ -16,21 +16,21 @@ namespace ViGraph.Resources.Views.Auth {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Login_en {
+    internal class SharedResources_tr {
         
         private static System.Resources.ResourceManager resourceMan;
         
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Login_en() {
+        internal SharedResources_tr() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("ViGraph.Resources.Views.Auth.Login.en", typeof(Login_en).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("ViGraph.Resources.SharedResources.tr", typeof(SharedResources_tr).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -47,9 +47,21 @@ namespace ViGraph.Resources.Views.Auth {
             }
         }
         
-        internal static string welcome {
+        internal static string contact {
             get {
-                return ResourceManager.GetString("welcome", resourceCulture);
+                return ResourceManager.GetString("contact", resourceCulture);
+            }
+        }
+        
+        internal static string submit {
+            get {
+                return ResourceManager.GetString("submit", resourceCulture);
+            }
+        }
+        
+        internal static string cancel {
+            get {
+                return ResourceManager.GetString("cancel", resourceCulture);
             }
         }
     }

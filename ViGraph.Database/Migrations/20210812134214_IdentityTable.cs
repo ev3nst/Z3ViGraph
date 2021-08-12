@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ViGraph.Database.Migrations
 {
-    public partial class IdentityMigration : Migration
+    public partial class IdentityTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,6 +53,10 @@ namespace ViGraph.Database.Migrations
                     CreatedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: true),
+                    UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    NormalizedUserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PasswordHash = table.Column<string>(type: "longtext", nullable: true)
@@ -200,19 +204,19 @@ namespace ViGraph.Database.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Discriminator", "Name", "Sef" },
                 values: new object[,]
                 {
-                    { "1", "30a0b28d-0a4c-4af1-bddb-4da8388ae7d9", null, "AppRole", "Super Admin", "super-admin" },
-                    { "2", "8f18cc64-983d-45a8-a1ba-f9f6e5898733", null, "AppRole", "Admin", "admin" },
-                    { "3", "ea922a2a-36f2-4ccc-ae8b-6c1402553d06", null, "AppRole", "Editor", "editor" }
+                    { "1", "9b407ba7-d65d-4c08-a1f2-9b63636a0f02", null, "AppRole", "Super Admin", "super-admin" },
+                    { "2", "be2627e3-f7e3-4c4c-947f-8c109c8f468f", null, "AppRole", "Admin", "admin" },
+                    { "3", "d35e570f-7156-4ee7-895c-b2254fdc06fa", null, "AppRole", "Editor", "editor" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "CreatedAt", "DeletedAt", "Discriminator", "Email", "FullName", "Language", "LastLogin", "LastLoginIP", "LastLogout", "LockoutEnabled", "LockoutEnd", "PasswordHash", "SecurityStamp", "UpdatedAt" },
+                columns: new[] { "Id", "CreatedAt", "DeletedAt", "Discriminator", "Email", "FullName", "Language", "LastLogin", "LastLoginIP", "LastLogout", "LockoutEnabled", "LockoutEnd", "NormalizedUserName", "PasswordHash", "SecurityStamp", "UpdatedAt", "UserName" },
                 values: new object[,]
                 {
-                    { "1", new DateTime(2021, 8, 10, 17, 26, 30, 803, DateTimeKind.Local).AddTicks(7160), null, "AppUser", "z3@vigraph.com", "Z3 Root", "TR", null, null, null, false, null, "AQAAAAEAACcQAAAAEC7590PY/JARBE314tHCoES8/6DZQ/nKrIL2blOkqOCHlgyjkb7O5yBS9f7hyK/2gQ==", "54ccc661-e9de-4303-97ad-f4384dded987", null },
-                    { "2", new DateTime(2021, 8, 10, 17, 26, 30, 816, DateTimeKind.Local).AddTicks(9050), null, "AppUser", "test@admin.com", "Test Admin", "TR", null, null, null, false, null, "AQAAAAEAACcQAAAAEDBg+xtubxSznZD+punaHsOTgg2th8NFaD+5QoMQiDarfy6M7vYCl7LJQFC6xlNuVw==", "f7766633-3c3a-4094-9d15-99049d27f082", null },
-                    { "3", new DateTime(2021, 8, 10, 17, 26, 30, 828, DateTimeKind.Local).AddTicks(680), null, "AppUser", "test@editor.com", "Test Editor", "TR", null, null, null, false, null, "AQAAAAEAACcQAAAAEBT6DZp/FbZRZ73ziv4dRpRmYicArZJyflHdVfSaYXQh/a/RclxcgPalAz3o/QGdwg==", "087cdd31-07ec-41f7-9c74-939ec6ff6289", null }
+                    { "1", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "AppUser", "z3@vigraph.com", "Z3 Root", "TR", null, null, null, false, null, null, "AQAAAAEAACcQAAAAEDw6v1nzgPVarLyJK+lJPOo5C9ssCRqVukoPPFphja19v6bZkzRtzU7FLeYzBsi65Q==", "cf465d32-44ae-4062-93b7-8334225aeae0", null, "z3@vigraph.com" },
+                    { "2", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "AppUser", "test@admin.com", "Test Admin", "TR", null, null, null, false, null, null, "AQAAAAEAACcQAAAAEJyRDgD8h+/I3o/6/VWNqW8JfNn/9jpHG2w0IBVZM1xMZyUMCO+US2CTRBnlZcierw==", "c8f5d607-02dc-4443-b6bb-1217396880be", null, "test@admin.com" },
+                    { "3", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "AppUser", "test@editor.com", "Test Editor", "TR", null, null, null, false, null, null, "AQAAAAEAACcQAAAAENdXDI77gs8+brPi102paCZve8KH4Eup/O4XzlDEvhD65Dgoztyr3/1sFRvkxJ+NrQ==", "89727fdc-29ea-4eae-bc02-d73881e4e47d", null, "test@editor.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -254,6 +258,12 @@ namespace ViGraph.Database.Migrations
                 name: "IX_Users_Email",
                 table: "Users",
                 column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "Users",
+                column: "NormalizedUserName",
                 unique: true);
         }
 

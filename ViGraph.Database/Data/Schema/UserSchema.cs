@@ -18,8 +18,6 @@ namespace ViGraph.Database.Schema
 		{
 			modelBuilder.Entity<IdentityUser>().ToTable("Users");
 			modelBuilder.Entity<IdentityUser>()
-				.Ignore(c => c.UserName)
-				.Ignore(c => c.NormalizedUserName)
 				.Ignore(c => c.NormalizedEmail)
 				.Ignore(c => c.EmailConfirmed)
 				.Ignore(c => c.ConcurrencyStamp)
@@ -79,6 +77,7 @@ namespace ViGraph.Database.Schema
 				Id = Id,
 				FullName = FullName,
 				Email = Email,
+                UserName = Email,
 				CreatedAt = CreatedAtFixed
 			};
 
