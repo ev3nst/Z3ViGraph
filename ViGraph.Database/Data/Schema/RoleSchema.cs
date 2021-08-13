@@ -16,8 +16,6 @@ namespace ViGraph.Database.Schema
         public static void Structure(ModelBuilder modelBuilder)
         {
 			modelBuilder.Entity<IdentityRole>().ToTable("Roles");
-			modelBuilder.Entity<IdentityRole>()
-				.Ignore(c => c.NormalizedName);
         }
 
 		public static List<AppRole> GetData()

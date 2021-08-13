@@ -12,6 +12,15 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
+    <data name="english" xml:space="preserve">
+        <value>İngilizce</value>
+    </data>
+    <data name="turkish" xml:space="preserve">
+        <value>Türkçe</value>
+    </data>
+    <data name="logout" xml:space="preserve">
+        <value>Çıkış Yap</value>
+    </data>
     <data name="contact" xml:space="preserve">
         <value>İletişim</value>
     </data>
@@ -26,5 +35,25 @@
     </data>
     <data name="password" xml:space="preserve">
         <value>Şifre</value>
+    </data>
+
+    <!-- Layout -->
+    <data name="users" xml:space="preserve">
+        <value>Kullanıcılar</value>
+    </data>
+    <data name="channels" xml:space="preserve">
+        <value>Kanallar</value>
+    </data>
+    <data name="categories" xml:space="preserve">
+        <value>Kategoriler</value>
+    </data>
+    <data name="videos" xml:space="preserve">
+        <value>Videolar</value>
+    </data>
+    <data name="playlists" xml:space="preserve">
+        <value>Oynatma Listeleri</value>
+    </data>
+    <data name="activities" xml:space="preserve">
+        <value>Aktiviteler</value>
     </data>
 </root>

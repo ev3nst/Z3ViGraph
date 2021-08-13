@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Localization;
 
 using ViGraph.Models;
 using ViGraph.ViewModels;
@@ -15,15 +16,19 @@ namespace ViGraph.Controllers
 		SignInManager<AppUser> _signInManager;
 		RoleManager<AppRole> _roleManager;
 
+        private readonly IHtmlLocalizer<AuthController> _localizer;
+
 		public AuthController(
 			UserManager<AppUser> userManager,
 			RoleManager<AppRole> roleManager,
-			SignInManager<AppUser> signInManager
+			SignInManager<AppUser> signInManager,
+            IHtmlLocalizer<AuthController> localizer
 		)
 		{
 			_userManager = userManager;
 			_roleManager = roleManager;
 			_signInManager = signInManager;
+            _localizer = localizer;
 		}
 
 		[HttpGet("login")]
@@ -34,15 +39,14 @@ namespace ViGraph.Controllers
 
 		[HttpPost("login")]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> LoginPost(LoginVM loginModel)
+		public async Task<IActionResult> Login(LoginVM loginModel)
 		{
 			if (ModelState.IsValid) {
-                System.Console.WriteLine("Sign INING ??  ? ");
 				var result = await _signInManager.PasswordSignInAsync(loginModel.Email, loginModel.Password, loginModel.RememberMe, false);
 				if (result.Succeeded) {
 					return RedirectToAction("Index", "Dashboard");
 				}
-				ModelState.AddModelError("", "Invalid login attempt");
+				ModelState.AddModelError("", _localizer.GetString("invalid_login_attempt"));
 			}
 			return View(loginModel);
 		}

@@ -24,18 +24,18 @@
     <body id="kt_body" class="header-static subheader-enabled sidebar-enabled page-loading">
         <div class="d-flex flex-column flex-root">
             <div class="d-flex flex-row flex-column-fluid page">
-                <partial name="Aside.cshtml" />
+                <partial name="_Aside.cshtml" />
 
 				<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-                        <partial name="SubHeader.cshtml" />
+                        <partial name="_SubHeader.cshtml" />
 						<div class="d-flex flex-column-fluid">
 							<div class="container-fluid">
                                 @RenderBody()
                             </div>
                         </div>
                     </div>
-                    <partial name="Footer.cshtml" />
+                    <partial name="_Footer.cshtml" />
                 </div>
 
                 <!-- Aside Secondary -->
@@ -55,10 +55,10 @@
 			</span>
 		</div>
 
-        <partial name="JSVariables.cshtml" />
+        <partial name="_JSVariables.cshtml" />
 		<script src="~/assets/plugins/global/plugins.bundle.js?v=7.2.8"></script>
 		<script src="~/assets/js/scripts.bundle.js?v=7.2.8"></script>
-        <partial name="HelperScripts.cshtml" />
+        <partial name="_HelperScripts.cshtml" />
 
         @await RenderSectionAsync("Scripts", required: false)
     </body>

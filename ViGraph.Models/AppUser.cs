@@ -18,7 +18,7 @@ namespace ViGraph.Models
 		public string FullName { get; set; }
 
 		[Column(TypeName = "enum('TR','EN')")]
-		public Language Language { get; set; }
+		public Language Language { get; set; } = Language.TR;
 
 		public DateTime? LastLogin { get; set; } = null;
 

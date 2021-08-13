@@ -16,27 +16,34 @@
         <div class="d-flex flex-row-fluid flex-column justify-content-between">
             <div class="d-flex flex-column-fluid flex-column flex-center mt-5 mt-lg-0">
                 <span class="mb-15 text-center">
-                    <img src="~/assets/media/logos/kanal7-logo.svg" class="max-h-75px" alt="@ViGraph.Utility.Config.AppConfig.AppMeta.Title" />
+                    <img src="~/assets/media/logos/z3-logo.svg" class="max-h-75px" alt="@ViGraph.Utility.Config.AppConfig.AppMeta.Title" />
                 </span>
                 <div class="login-form login-signin">
                     <div class="text-center mb-10 mb-lg-20">
                         <h2 class="font-weight-bold">@localizer["signin"]</h2>
                         <p class="text-muted font-weight-bold">@localizer["signin_form_desc"]</p>
                     </div>
+
+                    <partial name="../Shared/Partials/_ValidationSummary.cshtml" model="ViewData.ModelState" />
+
                     <form class="form" novalidate="novalidate" id="kt_login_signin_form" asp-controller="Auth" asp-action="LoginPost">
                         <div class="form-group py-3 m-0">
                             <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="email" placeholder='@sharedLocalizer["email"]' asp-for="Email" autocomplete="off" />
+                            <div class="invalid-feedback" asp-validation-for="Email"></div>
                         </div>
                         <div class="form-group py-3 border-top m-0">
                             <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="Password" placeholder='@sharedLocalizer["password"]' asp-for="Password" />
+                            <div class="invalid-feedback" asp-validation-for="Password"></div>
                         </div>
                         <div class="form-group d-flex flex-wrap justify-content-between align-items-center mt-3">
                             <div class="checkbox-inline">
-                                <label class="checkbox checkbox-outline m-0 text-muted">
-                                <input type="checkbox" name="remember" />
+                                <label asp-for="RememberMe" class="checkbox checkbox-outline m-0 text-muted">
+                                <input type="checkbox" asp-for="RememberMe" />
                                 <span></span>@localizer["remember_me"]</label>
                             </div>
-                            <a href="javascript:;" id="kt_login_forgot" class="text-muted text-hover-primary">@localizer["forgot_form_title"]</a>
+                            <!--
+                                <a href="javascript:;" id="kt_login_forgot" class="text-muted text-hover-primary">@localizer["forgot_form_title"]</a>
+                            -->
                         </div>
                         <div class="form-group d-flex flex-wrap justify-content-between align-items-center mt-2">
                             <div class="my-3 mr-2"></div>

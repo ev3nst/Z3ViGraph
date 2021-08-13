@@ -78,6 +78,7 @@ namespace ViGraph.Database.Schema
 				FullName = FullName,
 				Email = Email,
                 UserName = Email,
+                NormalizedUserName = Email,
 				CreatedAt = CreatedAtFixed
 			};
 

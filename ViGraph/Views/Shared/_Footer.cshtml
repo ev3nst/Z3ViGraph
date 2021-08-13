@@ -1,0 +1,14 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<SharedResources> sharedLocalizer
+
+<div class="footer py-2 py-lg-0 my-5 d-flex flex-lg-column" id="kt_footer">
+    <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <div class="text-dark order-2 order-md-1">
+            <span class="text-muted font-weight-bold mr-2">@System.DateTime.Now.Year©</span>
+            <span class="text-dark-75">Z3 Yazılım ve Teknoloji A.Ş.</span>
+        </div>
+        <div class="nav nav-dark order-1 order-md-2">
+            <a href="http://z3.com.tr/" target="_blank" class="text-dark-75 text-hover-primary">@sharedLocalizer["contact"]</a>
+        </div>
+    </div>
+</div>

@@ -13,7 +13,7 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
     <data name="welcome" xml:space="preserve">
-        <value>Kanal7 - Youtube Paneline Hoşgeldiniz!</value>
+        <value>Z3 - Youtube Paneline Hoşgeldiniz!</value>
     </data>
     <data name="welcome_desc" xml:space="preserve">
         <value>Bu panel üzerinden videolarınızı uygun şekilde formatlayıp,</value>
