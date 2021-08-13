@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ViGraph.Database.Repository.IRepository
 {
 	public interface IRepository<T> where T : class
 	{
+        // Basic
 		Task<T> Find(int id);
 
 		Task<T> Add(T entity);

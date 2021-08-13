@@ -10,9 +10,10 @@ using ViGraph.Database.Repository.IRepository;
 
 namespace ViGraph.Database.Repository
 {
-	public class Repository<T> : IRepository<T> where T : class
+	public class Repository<T> : IRepository<T> where T : class, IUsesPagination<T>
 	{
 		private readonly ApplicationDbContext _db;
+
 		internal DbSet<T> dbSet;
 
 		public Repository(ApplicationDbContext db)
