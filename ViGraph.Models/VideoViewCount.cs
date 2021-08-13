@@ -5,12 +5,15 @@ namespace ViGraph.Models
 {
 	public class VideoViewCount
 	{
-        [ForeignKey("VideoId")]
-        public Video Video { get; set; }
+		[Required]
+		public int VideoId { get; set; }
+
+		[ForeignKey("VideoId")]
+		public virtual Video Video { get; set; }
 
 		[Required]
-        [MinLength(int.MinValue)]
-        [MaxLength(int.MaxValue)]
+		[MinLength(int.MinValue)]
+		[MaxLength(int.MaxValue)]
 		public int ViewCount { get; set; } = 0;
 	}
 }

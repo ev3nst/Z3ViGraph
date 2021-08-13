@@ -9,7 +9,7 @@ namespace ViGraph.Models
 		[Key]
 		public int Id { get; set; }
 
-        [Required]
+		[Required]
 		[MaxLength(100)]
 		public string Country { get; set; }
 

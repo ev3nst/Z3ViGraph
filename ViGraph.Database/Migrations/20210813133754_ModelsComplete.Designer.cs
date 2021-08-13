@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ViGraph.Database;
 
 namespace ViGraph.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210813133754_ModelsComplete")]
+    partial class ModelsComplete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,21 +224,21 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "10924c6f-a7c5-4b54-b779-c4c955329599",
+                            ConcurrencyStamp = "dd10aaa9-6217-48bb-b931-1d5a3ebeb471",
                             Name = "Super Admin",
                             Sef = "super-admin"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "cd83171c-1c00-4df0-a375-a6e98d4e5ccd",
+                            ConcurrencyStamp = "2ec77cab-9d05-40b7-a994-21a82045c38c",
                             Name = "Admin",
                             Sef = "admin"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "918d5ece-4547-4626-9d26-183eb9c40e9e",
+                            ConcurrencyStamp = "5260ede7-68d1-440d-a497-822d3a5841c2",
                             Name = "Editor",
                             Sef = "editor"
                         });
@@ -332,7 +334,7 @@ namespace ViGraph.Database.Migrations
                             Language = "TR",
                             LockoutEnabled = false,
                             NormalizedUserName = "z3@vigraph.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEO/8ULenhRdQk8vJeYX4M1jb9n7xvLhaOh7RKkUHLohVrGcE9idg3vPQfa6+AQmwnQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJFU9XRwxM4fVuPhf2v/rRNteCHoekbYnSZg32wXfuNMhxtCSTIp443eAR/OZCApcg==",
                             UserName = "z3@vigraph.com"
                         },
                         new
@@ -344,7 +346,7 @@ namespace ViGraph.Database.Migrations
                             Language = "TR",
                             LockoutEnabled = false,
                             NormalizedUserName = "test@admin.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDfCgpxMBSpTUF/5o6N4U6gAPmN02z3dOdNY8sWfsCeaWDcNEEWOLx+LV9nkAqTpCA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELaP9GlrsfqwE1DMS9W1KBX+GQ8HRzzQF0+HcXWgOCTjrYWFpg2cHRugdZjQE7mXxQ==",
                             UserName = "test@admin.com"
                         },
                         new
@@ -356,7 +358,7 @@ namespace ViGraph.Database.Migrations
                             Language = "TR",
                             LockoutEnabled = false,
                             NormalizedUserName = "test@editor.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAmeo1HjATu9dXhEscR0ix4cfKKGXeaKYii2vtjYk/DiUkWkP0DxfPIW9A7eDFe9oA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK/WCnVMmXhtUFljXGpHjNSQyEAVFxk0n/s3RxIugLiKjxRsqYzHKl6KwzlzZI+8Lw==",
                             UserName = "test@editor.com"
                         });
                 });
@@ -413,7 +415,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 8, 13, 16, 38, 38, 516, DateTimeKind.Local).AddTicks(4960),
+                            CreatedAt = new DateTime(2021, 8, 13, 16, 37, 53, 434, DateTimeKind.Local).AddTicks(9450),
                             CreatedById = 1,
                             Sef = "gundem",
                             Title = "Gündem"
@@ -421,7 +423,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 8, 13, 16, 38, 38, 516, DateTimeKind.Local).AddTicks(6650),
+                            CreatedAt = new DateTime(2021, 8, 13, 16, 37, 53, 435, DateTimeKind.Local).AddTicks(1300),
                             CreatedById = 1,
                             Sef = "spor",
                             Title = "Spor"
@@ -429,7 +431,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 8, 13, 16, 38, 38, 516, DateTimeKind.Local).AddTicks(6650),
+                            CreatedAt = new DateTime(2021, 8, 13, 16, 37, 53, 435, DateTimeKind.Local).AddTicks(1310),
                             CreatedById = 1,
                             Sef = "yasam",
                             Title = "Yaşam"

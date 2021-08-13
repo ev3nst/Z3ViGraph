@@ -3,8 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ViGraph.Models
 {
-
-	public class AppRole : IdentityRole
+	public class AppRole : IdentityRole<int>
 	{
 		[Required]
 		[MaxLength(255)]

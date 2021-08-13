@@ -15,7 +15,7 @@ namespace ViGraph.Database.Schema
 
         public static void Structure(ModelBuilder modelBuilder)
         {
-			modelBuilder.Entity<IdentityRole>().ToTable("Roles");
+			modelBuilder.Entity<AppRole>().ToTable("Roles");
         }
 
 		public static List<AppRole> GetData()
@@ -24,21 +24,21 @@ namespace ViGraph.Database.Schema
 
 			rolesList.Add(new AppRole
 			{
-				Id = "1",
+				Id = 1,
 				Name = "Super Admin",
 				Sef = "super-admin"
 			});
 
 			rolesList.Add(new AppRole
 			{
-				Id = "2",
+				Id = 2,
 				Name = "Admin",
 				Sef = "admin"
 			});
 
 			rolesList.Add(new AppRole
 			{
-				Id = "3",
+				Id = 3,
 				Name = "Editor",
 				Sef = "editor"
 			});

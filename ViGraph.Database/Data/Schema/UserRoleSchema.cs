@@ -8,30 +8,30 @@ namespace ViGraph.Database.Schema
 	{
 		public static void Seed(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<IdentityUserRole<string>>().HasData(GetData());
+			modelBuilder.Entity<IdentityUserRole<int>>().HasData(GetData());
 		}
 
         public static void Structure(ModelBuilder modelBuilder)
         {
-			modelBuilder.Entity<IdentityUserRole<string>>().ToTable("UserRoles");
+			modelBuilder.Entity<IdentityUserRole<int>>().ToTable("UserRoles");
         }
-		public static List<IdentityUserRole<string>> GetData()
+		public static List<IdentityUserRole<int>> GetData()
 		{
-			var userRoleList = new List<IdentityUserRole<string>>();
-            userRoleList.Add(new IdentityUserRole<string> { // Root
-                UserId = "1",
-                RoleId = "1"
+			var userRoleList = new List<IdentityUserRole<int>>();
+            userRoleList.Add(new IdentityUserRole<int> { // Root
+                UserId = 1,
+                RoleId = 1
             });
 
 			if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development") {
                 // Test Admin & Editor    
-                userRoleList.Add(new IdentityUserRole<string> {
-                    UserId = "2",
-                    RoleId = "2"
+                userRoleList.Add(new IdentityUserRole<int> {
+                    UserId = 2,
+                    RoleId = 2
                 });
-                userRoleList.Add(new IdentityUserRole<string> {
-                    UserId = "3",
-                    RoleId = "3"
+                userRoleList.Add(new IdentityUserRole<int> {
+                    UserId = 3,
+                    RoleId = 3
                 });
 			}
 

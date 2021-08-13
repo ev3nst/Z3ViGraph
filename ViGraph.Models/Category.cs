@@ -6,8 +6,8 @@ namespace ViGraph.Models
 {
 	public class Category
 	{
-        [Key]
-        public int Id { get; set; }
+		[Key]
+		public int Id { get; set; }
 
 		[Required]
 		[MaxLength(255)]
@@ -27,10 +27,14 @@ namespace ViGraph.Models
 		public DateTime? DeletedAt { get; set; } = null;
 
 		[Required]
-		[ForeignKey("CreatedBy")]
-        public AppUser CreatedBy { get; set; }
+		public int CreatedById { get; set; }
 
-		[ForeignKey("UpdatedBy")]
-        public AppUser UpdatedBy { get; set; }
+		[ForeignKey("CreatedById")]
+		public virtual AppUser CreatedBy { get; set; }
+
+		public int? UpdatedById { get; set; }
+
+		[ForeignKey("UpdatedById")]
+		public virtual AppUser UpdatedBy { get; set; }
 	}
 }

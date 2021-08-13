@@ -4,8 +4,8 @@ namespace ViGraph.Models
 {
 	public class YTCategory : YTBase
 	{
-        [Key]
-        public int Id { get; set; }
+		[Key]
+		public int Id { get; set; }
 
 		[Required]
 		[MaxLength(255)]

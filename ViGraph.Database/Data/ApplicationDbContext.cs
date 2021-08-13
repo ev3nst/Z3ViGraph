@@ -13,7 +13,7 @@ using ViGraph.Database.Schema;
 
 namespace ViGraph.Database
 {
-	public class ApplicationDbContext : IdentityDbContext
+	public class ApplicationDbContext : IdentityDbContext<AppUser, AppRole, int>
 	{
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
 		{
@@ -39,20 +39,44 @@ namespace ViGraph.Database
 			UserSchema.Structure(modelBuilder);
 			RoleSchema.Structure(modelBuilder);
 			UserRoleSchema.Structure(modelBuilder);
+			modelBuilder.Entity<IdentityUserClaim<int>>().ToTable("UserClaims");
+			modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
+			modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("UserLogins");
+			modelBuilder.Entity<IdentityUserToken<int>>().ToTable("UserTokens");
 
-			modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims");
-			modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
-			modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
-			modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
+            YTMetaSchema.Structure(modelBuilder);
+            YTChannelSchema.Structure(modelBuilder);
+            YTCategorySchema.Structure(modelBuilder);
+
+			CategorySchema.Structure(modelBuilder);
+			VideoSchema.Structure(modelBuilder);
+			ThumbnailSchema.Structure(modelBuilder);
+			VideoViewCountSchema.Structure(modelBuilder);
+
+            YTPlaylistSchema.Structure(modelBuilder);
+			YTPlaylistItemSchema.Structure(modelBuilder);
+
 
 			// Seeds
 			RoleSchema.Seed(modelBuilder);
 			UserSchema.Seed(modelBuilder);
 			UserRoleSchema.Seed(modelBuilder);
+            
+            YTMetaSchema.Seed(modelBuilder);
+            YTChannelSchema.Seed(modelBuilder);
+            YTCategorySchema.Seed(modelBuilder);
+
+			CategorySchema.Seed(modelBuilder);
+			VideoSchema.Seed(modelBuilder);
+			ThumbnailSchema.Seed(modelBuilder);
+			VideoViewCountSchema.Seed(modelBuilder);
+
+            YTPlaylistSchema.Seed(modelBuilder);
+			YTPlaylistItemSchema.Seed(modelBuilder);
 		}
 	}
 
-    /*
+	/*
 	// Custom type mapping plugin:
 	public class EnumTypeMappingSourcePlugin : IRelationalTypeMappingSourcePlugin
 	{

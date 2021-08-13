@@ -11,12 +11,13 @@ namespace ViGraph.Models
 
 		[Required]
 		[MaxLength(255)]
-		public int PrivacyStatus { get; set; }
+		public string PrivacyStatus { get; set; }
 
 		[Required]
 		public DateTime PublishedAt { get; set; } = DateTime.Now;
 
 		[Required]
+		[MaxLength(10)]
 		public string DefaultLanguage { get; set; }
 
 		[Required]

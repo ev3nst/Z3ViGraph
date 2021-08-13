@@ -5,9 +5,6 @@ namespace ViGraph.Models
 	public class YTBase
 	{
 		[MaxLength(255)]
-		public string Kind { get; set; }
-
-		[MaxLength(255)]
 		public string Etag { get; set; }
 
 		[MaxLength(255)]
@@ -15,5 +12,5 @@ namespace ViGraph.Models
 
 		[MaxLength(255)]
 		public virtual string YTChannelId { get; set; }
-    }
+	}
 }

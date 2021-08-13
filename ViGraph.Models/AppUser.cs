@@ -11,7 +11,7 @@ namespace ViGraph.Models
 		EN
 	}
 
-	public class AppUser : IdentityUser
+	public class AppUser : IdentityUser<int>
 	{
 		[Required]
 		[MaxLength(255)]

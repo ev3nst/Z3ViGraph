@@ -6,18 +6,20 @@ namespace ViGraph.Models
 {
 	public class YTPlaylist : YTBase
 	{
-        [Key]
-        public int Id { get; set; }
-
-        [Required]
-        [MaxLength(255)]
-        public string Title { get; set; }
-        
-        [Required]
-        [MaxLength(255)]
-        public string Description { get; set; }
+		[Key]
+		public int Id { get; set; }
 
 		[Required]
+		[MaxLength(255)]
+		public string Title { get; set; }
+
+		[Required]
+		[MaxLength(255)]
+		public string Description { get; set; }
+
+		[Required]
+		public int YTMetaId { get; set; }
+
 		[ForeignKey("YTMetaId")]
 		public YTMeta YTMeta { get; set; }
 
@@ -27,10 +29,14 @@ namespace ViGraph.Models
 		public DateTime? UpdatedAt { get; set; } = null;
 
 		[Required]
-		[ForeignKey("CreatedBy")]
-        public AppUser CreatedBy { get; set; }
+		public int CreatedById { get; set; }
 
-		[ForeignKey("UpdatedBy")]
-        public AppUser UpdatedBy { get; set; }
+		[ForeignKey("CreatedById")]
+		public virtual AppUser CreatedBy { get; set; }
+
+		public int? UpdatedById { get; set; }
+
+		[ForeignKey("UpdatedById")]
+		public virtual AppUser UpdatedBy { get; set; }
 	}
 }

@@ -16,8 +16,8 @@ namespace ViGraph.Database.Schema
 
 		public static void Structure(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<IdentityUser>().ToTable("Users");
-			modelBuilder.Entity<IdentityUser>()
+			modelBuilder.Entity<AppUser>().ToTable("Users");
+			modelBuilder.Entity<AppUser>()
 				.Ignore(c => c.NormalizedEmail)
 				.Ignore(c => c.EmailConfirmed)
 				.Ignore(c => c.ConcurrencyStamp)
@@ -32,7 +32,7 @@ namespace ViGraph.Database.Schema
 			modelBuilder.Entity<AppUser>().Property(c => c.DeletedAt).HasColumnName("DeletedAt").HasPrecision(0);
 			modelBuilder.Entity<AppUser>().Property(c => c.LockoutEnd).HasColumnName("LockoutEnd").HasPrecision(0);
 
-			modelBuilder.Entity<IdentityUser>()
+			modelBuilder.Entity<AppUser>()
 				.HasIndex(u => u.Email)
 				.IsUnique();
 		}
@@ -46,7 +46,7 @@ namespace ViGraph.Database.Schema
 		{
 			var userList = new List<AppUser>();
 			userList.Add(createUser(
-				Id: "1",
+				Id: 1,
 				FullName: "Z3 Root",
 				Email: AppConfig.RootCredentials.Email,
 				Password: AppConfig.RootCredentials.Password
@@ -54,13 +54,13 @@ namespace ViGraph.Database.Schema
 
 			if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development") {
 				userList.Add(createUser(
-					Id: "2",
+					Id: 2,
 					FullName: "Test Admin",
 					Email: "test@admin.com",
 					Password: "admin123"
 				));
 				userList.Add(createUser(
-					Id: "3",
+					Id: 3,
 					FullName: "Test Editor",
 					Email: "test@editor.com",
 					Password: "editor123"
@@ -70,7 +70,7 @@ namespace ViGraph.Database.Schema
 			return userList;
 		}
 
-		public static AppUser createUser(string Id, string FullName, string Email, string Password)
+		public static AppUser createUser(int Id, string FullName, string Email, string Password)
 		{
 			var user = new AppUser
 			{
