@@ -4,17 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ViGraph.Models
 {
-	public enum YTUploadStatus
-	{
-		Initialized,
-		Started,
-		Deleted,
-		Failed,
-		Processed,
-		Rejected,
-		Uploaded
-	};
-
 	public class YTMeta : YTBase
 	{
 		[Key]
@@ -33,9 +22,6 @@ namespace ViGraph.Models
 		[Required]
 		public bool PublicStatsViewable { get; set; } = true;
 
-		[Required]
-		[Column(TypeName = "enum('initialized', 'started', 'deleted','failed', 'processed', 'rejected', 'uploaded')")]
-		public YTUploadStatus UploadStatus { get; set; } = YTUploadStatus.Initialized;
 	}
 }
 

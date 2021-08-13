@@ -22,10 +22,19 @@ namespace ViGraph.Database
 
 		public DbSet<AppUser> AppUser { get; set; }
 		public DbSet<AppRole> AppRole { get; set; }
+		public DbSet<YTChannel> YTChannel { get; set; }
+		public DbSet<YTCategory> YTCategory { get; set; }
+		public DbSet<YTMeta> YTMeta { get; set; }
+		public DbSet<Category> Category { get; set; }
+		public DbSet<Video> Video { get; set; }
+		public DbSet<Thumbnail> Thumbnail { get; set; }
+		public DbSet<VideoViewCount> VideoViewCount { get; set; }
+		public DbSet<YTPlaylist> YTPlaylist { get; set; }
+		public DbSet<YTPlaylistItem> YTPlaylistItem { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-            // Migration Modifications
+			// Migration Modifications
 			base.OnModelCreating(modelBuilder);
 			UserSchema.Structure(modelBuilder);
 			RoleSchema.Structure(modelBuilder);
@@ -36,13 +45,14 @@ namespace ViGraph.Database
 			modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
 			modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
 
-            // Seeds
+			// Seeds
 			RoleSchema.Seed(modelBuilder);
 			UserSchema.Seed(modelBuilder);
 			UserRoleSchema.Seed(modelBuilder);
 		}
 	}
 
+    /*
 	// Custom type mapping plugin:
 	public class EnumTypeMappingSourcePlugin : IRelationalTypeMappingSourcePlugin
 	{
@@ -58,4 +68,5 @@ namespace ViGraph.Database
 				? new MySqlStringTypeMapping(mappingInfo.StoreTypeName, _options, StoreTypePostfix.None)
 				: null;
 	}
+    */
 }

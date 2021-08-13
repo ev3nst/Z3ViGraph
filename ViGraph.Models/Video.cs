@@ -4,6 +4,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ViGraph.Models
 {
+	public enum YTUploadStatus
+	{
+		Initialized,
+		Started,
+		Deleted,
+		Failed,
+		Processed,
+		Rejected,
+		Uploaded
+	};
+
 	public class Video
 	{
 		[Key]
@@ -52,9 +63,13 @@ namespace ViGraph.Models
 
 		[Required]
 		[ForeignKey("CreatedBy")]
-        public AppUser CreatedBy { get; set; }
+		public AppUser CreatedBy { get; set; }
 
 		[ForeignKey("UpdatedBy")]
-        public AppUser UpdatedBy { get; set; }
+		public AppUser UpdatedBy { get; set; }
+
+		[Required]
+		[Column(TypeName = "enum('initialized', 'started', 'deleted','failed', 'processed', 'rejected', 'uploaded')")]
+		public YTUploadStatus UploadStatus { get; set; } = YTUploadStatus.Initialized;
 	}
 }

@@ -14,6 +14,6 @@ namespace ViGraph.Models
 		public string YTId { get; set; }
 
 		[MaxLength(255)]
-		public string YTChannelId { get; set; }
+		public virtual string YTChannelId { get; set; }
     }
 }
