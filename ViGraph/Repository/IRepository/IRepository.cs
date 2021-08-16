@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ViGraph.Repository.IRepository
 {
-	public interface IRepository<T> where T : class
+	public interface IRepository<T> : IUsesPagination<T> where T : class
 	{
 		// Basic
 		Task<T> Find(int id);

@@ -57,6 +57,9 @@ namespace ViGraph
 				}
 			);
 
+			// Repository Classes
+			services.AddScoped<IAppUserRepository, AppUserRepository>();
+
 			services.AddControllersWithViews();
 			services.AddResponseCompression(options => {
 				options.Providers.Add<BrotliCompressionProvider>();
@@ -103,9 +106,6 @@ namespace ViGraph
 				Options.Cookie.HttpOnly = true;
 				Options.Cookie.IsEssential = true;
 			});
-
-			// Repository Classes
-			services.AddScoped<IAppUserRepository, AppUserRepository>();
 		}
 
 		public void ConfigureEntityFramework(IServiceCollection services)

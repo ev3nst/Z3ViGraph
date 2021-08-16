@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Localization;
 
 using ViGraph.Models;
+using ViGraph.Repository.IRepository;
 using ViGraph.ViewModels;
 
 namespace ViGraph.Controllers
@@ -16,25 +17,33 @@ namespace ViGraph.Controllers
 		SignInManager<AppUser> _signInManager;
 		RoleManager<AppRole> _roleManager;
 
+        IAppUserRepository _appUseRepository;
+
         private readonly IHtmlLocalizer<AuthController> _localizer;
 
 		public AuthController(
 			UserManager<AppUser> userManager,
 			RoleManager<AppRole> roleManager,
 			SignInManager<AppUser> signInManager,
-            IHtmlLocalizer<AuthController> localizer
+            IHtmlLocalizer<AuthController> localizer,
+            IAppUserRepository appUseRepository
 		)
 		{
 			_userManager = userManager;
 			_roleManager = roleManager;
 			_signInManager = signInManager;
             _localizer = localizer;
+            _appUseRepository = appUseRepository;
 		}
 
 		[HttpGet]
         [Route(Routes.ShowLoginPath, Name = Routes.ShowLogin)]
 		public IActionResult Login()
 		{
+
+            //System.Console.WriteLine(Url.RouteUrl(Routes.ShowLogin));
+
+            _appUseRepository.EditLink(1);
 			return View();
 		}
 

@@ -3,23 +3,24 @@ using System.Threading.Tasks;
 
 namespace ViGraph.Repository.IRepository
 {
-	public interface IUsesPagination<T> {
-        Task<IEnumerable<T>> Paginate(PaginationOptions PaginationOptions);
+	public interface IUsesPagination<T> where T : class
+	{
+		bool UseEditButton { get; set; }
 
-        bool UseEditButton { get; set; }
+		bool UseDeleteButton { get; set; }
 
-        bool UseDeleteButton { get; set; }
+		string EditLink(int Id);
 
-        string EditLink(int Id);
+		string DeleteLink(int Id);
 
-        string DeleteLink(int Id);
+		string CreateEditButton(int Id);
 
-        string CreateEditButton(T Resource);
+		string CreateDeleteButton(int Id, string Title);
 
-        string CreateDeleteButton(T Resource);
+		string ActionsHTML(T Resource);
 
-        string ActionsHTML(T Resource);
+		void CheckButtonPermissions();
 
-        void CheckButtonPermissions();
-    }
+		Task<IEnumerable<T>> Paginate(PaginationOptions PaginationOptions);
+	}
 }
