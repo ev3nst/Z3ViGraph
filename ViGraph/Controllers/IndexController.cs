@@ -8,6 +8,7 @@ namespace ViGraph.Controllers
 	public class IndexController : Controller
 	{
 		[Authorize]
+	    [Route("/")]
 		public IActionResult Index()
 		{
 			return Json(new

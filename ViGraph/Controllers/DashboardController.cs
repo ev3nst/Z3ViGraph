@@ -14,7 +14,7 @@ namespace ViGraph.Controllers
 	public class DashboardController : Controller
 	{
 
-        [HttpGet("dashboard")]
+        [HttpGet("/dashboard")]
 		public IActionResult Index()
 		{
 			return View();

@@ -9,7 +9,6 @@ using ViGraph.ViewModels;
 
 namespace ViGraph.Controllers
 {
-	[Route("users")]
 	public class UserController : Controller
 	{
 		UserManager<AppUser> _userManager;
@@ -28,7 +27,7 @@ namespace ViGraph.Controllers
             _localizer = localizer;
 		}
 
-		[HttpGet("/")]
+		[HttpGet("/users")]
 		public IActionResult Index()
 		{
 			return View();

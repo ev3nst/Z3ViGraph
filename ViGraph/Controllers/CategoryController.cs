@@ -9,7 +9,6 @@ using ViGraph.ViewModels;
 
 namespace ViGraph.Controllers
 {
-	[Route("categories")]
 	public class CategoryController : Controller
 	{
         private readonly IHtmlLocalizer<AuthController> _localizer;
@@ -21,7 +20,7 @@ namespace ViGraph.Controllers
             _localizer = localizer;
 		}
 
-		[HttpGet("/")]
+		[HttpGet("/categories")]
 		public IActionResult Index()
 		{
 			return View();

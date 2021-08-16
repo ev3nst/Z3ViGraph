@@ -4,11 +4,11 @@ using System.Linq.Expressions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ViGraph.Database.Repository.IRepository
+namespace ViGraph.Repository.IRepository
 {
 	public interface IRepository<T> where T : class
 	{
-        // Basic
+		// Basic
 		Task<T> Find(int id);
 
 		Task<T> Add(T entity);
@@ -24,6 +24,7 @@ namespace ViGraph.Database.Repository.IRepository
 			string includeProperties = null,
 			bool isTracking = true
 		);
+
 		Task<IEnumerable<T>> GetAll(
 			Expression<Func<T, bool>> filter = null,
 			Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,

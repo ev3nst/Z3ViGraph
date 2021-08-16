@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace ViGraph.Database.Repository.IRepository
+namespace ViGraph.Repository.IRepository
 {
     public enum SortOrderTypes {
         ASC,

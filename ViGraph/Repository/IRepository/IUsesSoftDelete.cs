@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ViGraph.Database.Repository.IRepository
+namespace ViGraph.Repository.IRepository
 {
     public interface IUsesSoftDelete<T>
     {

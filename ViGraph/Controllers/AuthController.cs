@@ -31,13 +31,15 @@ namespace ViGraph.Controllers
             _localizer = localizer;
 		}
 
-		[HttpGet("login")]
+		[HttpGet]
+        [Route(Routes.ShowLoginPath, Name = Routes.ShowLogin)]
 		public IActionResult Login()
 		{
 			return View();
 		}
 
-		[HttpPost("login")]
+		[HttpPost]
+        [Route(Routes.LoginPath, Name = Routes.Login)]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Login(LoginVM loginModel)
 		{

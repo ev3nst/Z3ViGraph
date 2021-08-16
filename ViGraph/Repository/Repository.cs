@@ -3,23 +3,34 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Security.Claims;
 
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
-using ViGraph.Database.Repository.IRepository;
+using ViGraph.Models;
+using ViGraph.Database;
+using ViGraph.Repository.IRepository;
 
-namespace ViGraph.Database.Repository
+namespace ViGraph.Repository
 {
-	public class Repository<T> : IRepository<T> where T : class, IUsesPagination<T>
+	public class Repository<T> : IRepository<T> where T : class
 	{
 		private readonly ApplicationDbContext _db;
 
 		internal DbSet<T> dbSet;
 
-		public Repository(ApplicationDbContext db)
+		private readonly IHttpContextAccessor _context;
+
+		public bool UseEditButton { get; set; } = true;
+
+		public bool UseDeleteButton { get; set; } = true;
+
+		public Repository(ApplicationDbContext db, IHttpContextAccessor context)
 		{
 			_db = db;
 			this.dbSet = _db.Set<T>();
+			_context = context;
 		}
 
 		public async Task<T> Find(int id)
@@ -95,5 +106,27 @@ namespace ViGraph.Database.Repository
 			}
 			return await query.ToListAsync();
 		}
+
+		public string EditLink(int Id)
+		{
+			return "asd";
+		}
+
+		public string GetCurrentUserName()
+		{
+			return _context.HttpContext.User.Identity.Name;
+		}
+
+		public int GetCurrentUserId()
+		{
+			return int.Parse(_context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+		}
+
+		public async Task<AppUser> GetCurrentUser()
+		{
+			var loggedInUserId = _context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+			return await _db.AppUser.FindAsync(GetCurrentUserId());
+		}
+
 	}
 }

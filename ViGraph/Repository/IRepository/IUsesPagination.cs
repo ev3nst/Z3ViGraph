@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ViGraph.Database.Repository.IRepository
+namespace ViGraph.Repository.IRepository
 {
 	public interface IUsesPagination<T> {
         Task<IEnumerable<T>> Paginate(PaginationOptions PaginationOptions);
 
-        void SetUseEditButton(bool Status);
-        void SetUseDeleteButton(bool Status);
+        bool UseEditButton { get; set; }
+
+        bool UseDeleteButton { get; set; }
 
         string EditLink(int Id);
 

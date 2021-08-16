@@ -17,11 +17,11 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
-using ViGraph.Utility.Config;
-using ViGraph.Database;
-using ViGraph.Database.Repository;
-using ViGraph.Database.Repository.IRepository;
 using ViGraph.Models;
+using ViGraph.Database;
+using ViGraph.Repository;
+using ViGraph.Repository.IRepository;
+using ViGraph.Utility.Config;
 
 namespace ViGraph
 {
@@ -57,9 +57,6 @@ namespace ViGraph
 				}
 			);
 
-            // Repository Classes
-            services.AddScoped<IAppUserRepository, AppUserRepository>();
-
 			services.AddControllersWithViews();
 			services.AddResponseCompression(options => {
 				options.Providers.Add<BrotliCompressionProvider>();
@@ -84,10 +81,10 @@ namespace ViGraph
 				// User settings.
 				options.User.RequireUniqueEmail = true;
 
-                // Sign In settings.
-                options.SignIn.RequireConfirmedPhoneNumber = false;
-                options.SignIn.RequireConfirmedEmail = false;
-                options.SignIn.RequireConfirmedAccount = false;
+				// Sign In settings.
+				options.SignIn.RequireConfirmedPhoneNumber = false;
+				options.SignIn.RequireConfirmedEmail = false;
+				options.SignIn.RequireConfirmedAccount = false;
 			});
 
 			services.ConfigureApplicationCookie(options => {
@@ -106,6 +103,9 @@ namespace ViGraph
 				Options.Cookie.HttpOnly = true;
 				Options.Cookie.IsEssential = true;
 			});
+
+			// Repository Classes
+			services.AddScoped<IAppUserRepository, AppUserRepository>();
 		}
 
 		public void ConfigureEntityFramework(IServiceCollection services)

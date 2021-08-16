@@ -9,7 +9,6 @@ using ViGraph.ViewModels;
 
 namespace ViGraph.Controllers
 {
-	[Route("playlists")]
 	public class PlaylistController : Controller
 	{
         private readonly IHtmlLocalizer<AuthController> _localizer;
@@ -21,7 +20,7 @@ namespace ViGraph.Controllers
             _localizer = localizer;
 		}
 
-		[HttpGet("/")]
+		[HttpGet("/playlists")]
 		public IActionResult Index()
 		{
 			return View();

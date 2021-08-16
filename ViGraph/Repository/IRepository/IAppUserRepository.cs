@@ -1,6 +1,6 @@
 ﻿using ViGraph.Models;
 
-namespace ViGraph.Database.Repository.IRepository
+namespace ViGraph.Repository.IRepository
 {
     public interface IAppUserRepository : IRepository<AppUser>
     {
