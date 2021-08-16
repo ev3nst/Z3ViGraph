@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.ResponseCompression;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,6 +23,7 @@ using ViGraph.Database;
 using ViGraph.Repository;
 using ViGraph.Repository.IRepository;
 using ViGraph.Utility.Config;
+using ViGraph.Middlewares.Permission;
 
 namespace ViGraph
 {
@@ -57,6 +59,9 @@ namespace ViGraph
 				}
 			);
 
+            services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+            services.AddScoped<IAuthorizationHandler, PermissionGuard>();
+
 			// Repository Classes
 			services.AddScoped<IAppUserRepository, AppUserRepository>();
 
@@ -69,9 +74,6 @@ namespace ViGraph
 						new[] { "image/svg+xml", "application/javascript+json+xml", "text/html+css+json+plain+xml" });
 			});
 			ConfigureEntityFramework(services);
-
-			// Not Working ENUM implementation
-			// services.AddSingleton<IRelationalTypeMappingSourcePlugin, EnumTypeMappingSourcePlugin>();
 
 			services.AddIdentity<AppUser, AppRole>()
 				.AddDefaultTokenProviders()

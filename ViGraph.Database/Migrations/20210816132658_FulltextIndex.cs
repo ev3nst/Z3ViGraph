@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ViGraph.Database.Migrations
 {
-    public partial class FullTextIndexes : Migration
+    public partial class FulltextIndex : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

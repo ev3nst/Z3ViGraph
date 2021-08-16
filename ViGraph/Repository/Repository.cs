@@ -51,7 +51,7 @@ namespace ViGraph.Repository
 		public async Task<AppUser> GetCurrentUser()
 		{
 			var loggedInUserId = _context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-			return await _db.AppUser.FindAsync(GetCurrentUserId());
+			return await _db.AppUser.Include(u => u.Role).ThenInclude(u => u.RoleClaims).FirstAsync(u => u.Id == GetCurrentUserId());
 		}
 		#endregion
 
@@ -181,10 +181,7 @@ namespace ViGraph.Repository
 
 		public abstract string ActionsHTML(T Resource);
 
-		public void CheckButtonPermissions()
-		{
-			throw new NotImplementedException();
-		}
+		public abstract Task CheckButtonPermissions();
 
 		public Task<IEnumerable<T>> Paginate(PaginationOptions PaginationOptions)
 		{

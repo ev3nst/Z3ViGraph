@@ -26,6 +26,7 @@ namespace ViGraph.Database.Schema
 			{
 				Id = 1,
 				Name = "Super Admin",
+				NormalizedName = "SuperAdmin",
 				Sef = "super-admin"
 			});
 
@@ -33,6 +34,7 @@ namespace ViGraph.Database.Schema
 			{
 				Id = 2,
 				Name = "Admin",
+				NormalizedName = "Admin",
 				Sef = "admin"
 			});
 
@@ -40,6 +42,7 @@ namespace ViGraph.Database.Schema
 			{
 				Id = 3,
 				Name = "Editor",
+				NormalizedName = "Editor",
 				Sef = "editor"
 			});
 

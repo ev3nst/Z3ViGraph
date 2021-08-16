@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 using Microsoft.AspNetCore.Identity;
 
 namespace ViGraph.Models
@@ -34,6 +35,10 @@ namespace ViGraph.Models
 		public DateTime? DeletedAt { get; set; } = null;
 
 		[NotMapped]
+		public virtual AppRole Role { get; set; }
+
+        #region Ignored Default Fields
+		[NotMapped]
 		public override string NormalizedEmail { get; set; }
 
 		[NotMapped]
@@ -53,5 +58,6 @@ namespace ViGraph.Models
 
 		[NotMapped]
 		public override int AccessFailedCount { get; set; }
+        #endregion
 	}
 }

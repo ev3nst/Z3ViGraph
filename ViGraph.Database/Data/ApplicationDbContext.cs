@@ -39,8 +39,8 @@ namespace ViGraph.Database
 			UserSchema.Structure(modelBuilder);
 			RoleSchema.Structure(modelBuilder);
 			UserRoleSchema.Structure(modelBuilder);
+			RoleClaimSchema.Structure(modelBuilder);
 			modelBuilder.Entity<IdentityUserClaim<int>>().ToTable("UserClaims");
-			modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
 			modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("UserLogins");
 			modelBuilder.Entity<IdentityUserToken<int>>().ToTable("UserTokens");
 
@@ -56,8 +56,8 @@ namespace ViGraph.Database
             YTPlaylistSchema.Structure(modelBuilder);
 			YTPlaylistItemSchema.Structure(modelBuilder);
 
-
 			// Seeds
+            RoleClaimSchema.Seed(modelBuilder);
 			RoleSchema.Seed(modelBuilder);
 			UserSchema.Seed(modelBuilder);
 			UserRoleSchema.Seed(modelBuilder);

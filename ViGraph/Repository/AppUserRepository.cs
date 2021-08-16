@@ -4,6 +4,7 @@ using ViGraph.Repository.IRepository;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using System.Threading.Tasks;
 
 namespace ViGraph.Repository
 {
@@ -44,5 +45,13 @@ namespace ViGraph.Repository
             </span>
             ";
 		}
+
+        public async override Task CheckButtonPermissions() {
+            var currentUser = await GetCurrentUser();
+            System.Console.WriteLine("Check button permissions?");
+            System.Console.WriteLine(currentUser.Role.RoleClaims);
+
+            return;
+        }
 	}
 }
