@@ -8,7 +8,7 @@ namespace ViGraph.Middlewares.Permission
 {
 	internal class PermissionPolicyProvider : IAuthorizationPolicyProvider
 	{
-		const string POLICY_PREFIX = "Permission";
+		const string POLICY_PREFIX = "";
 
 		public DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; }
 

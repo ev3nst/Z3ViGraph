@@ -36,10 +36,14 @@ namespace ViGraph.Database.Schema
 				.HasIndex(u => u.Email)
 				.IsUnique();
 
-            modelBuilder.Entity<AppUser>().HasMany<AppUserRole>(u => u.UserRoles)
-            .WithOne(ur => ur.User)
-            .HasForeignKey(ur => ur.UserId)
-            .IsRequired();
+			modelBuilder.Entity<AppUser>()
+				.HasIndex(u => u.NormalizedEmail)
+				.IsUnique();
+
+			modelBuilder.Entity<AppUser>().HasMany<AppUserRole>(u => u.UserRoles)
+			.WithOne(ur => ur.User)
+			.HasForeignKey(ur => ur.UserId)
+			.IsRequired();
 		}
 
 		public static void Seed(ModelBuilder modelBuilder)
@@ -82,11 +86,11 @@ namespace ViGraph.Database.Schema
 				Id = Id,
 				FullName = FullName,
 				Email = Email,
-                NormalizedEmail = Email,
-                UserName = Email,
-                NormalizedUserName = Email,
+				NormalizedEmail = Email,
+				UserName = Email,
+				NormalizedUserName = Email,
 				CreatedAt = CreatedAtFixed,
-                SecurityStamp = Guid.NewGuid().ToString()
+				SecurityStamp = Guid.NewGuid().ToString()
 			};
 
 			user.PasswordHash = passwordHasher.HashPassword(user, Password);

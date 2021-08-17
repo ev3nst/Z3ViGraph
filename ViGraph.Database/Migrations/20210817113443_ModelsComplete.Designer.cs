@@ -9,7 +9,7 @@ using ViGraph.Database;
 namespace ViGraph.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210816142500_ModelsComplete")]
+    [Migration("20210817113443_ModelsComplete")]
     partial class ModelsComplete
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,1248 +18,6 @@ namespace ViGraph.Database.Migrations
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.8");
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.AppRoleClaim", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("RoleClaims");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.Create",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.Create",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.Create",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.View",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.View",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.View",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.Edit",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.Edit",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 9,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.Edit",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 10,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.Delete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 11,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.Delete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 12,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.Delete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 13,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.Restore",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 14,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.Restore",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 15,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.Restore",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 16,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.ForceDelete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 17,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.ForceDelete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 18,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppFile.ForceDelete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 19,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppRole.Create",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 20,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppRole.View",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 21,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppRole.Edit",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 22,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppRole.Delete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 23,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppRole.Restore",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 24,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppRole.ForceDelete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 25,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppUser.Create",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 26,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppUser.View",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 27,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppUser.Edit",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 28,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppUser.Delete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 29,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppUser.Restore",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 30,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.AppUser.ForceDelete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 31,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.Create",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 32,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.Create",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 33,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.Create",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 34,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.View",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 35,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.View",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 36,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.View",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 37,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.Edit",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 38,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.Edit",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 39,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.Edit",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 40,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.Delete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 41,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.Delete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 42,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.Delete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 43,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.Restore",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 44,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.Restore",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 45,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.Restore",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 46,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.ForceDelete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 47,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.ForceDelete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 48,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Category.ForceDelete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 49,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.Create",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 50,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.Create",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 51,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.Create",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 52,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.View",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 53,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.View",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 54,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.View",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 55,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.Edit",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 56,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.Edit",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 57,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.Edit",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 58,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.Delete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 59,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.Delete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 60,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.Delete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 61,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.Restore",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 62,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.Restore",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 63,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.Restore",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 64,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.ForceDelete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 65,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.ForceDelete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 66,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.Video.ForceDelete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 67,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.Create",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 68,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.Create",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 69,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.Create",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 70,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.View",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 71,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.View",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 72,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.View",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 73,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.Edit",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 74,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.Edit",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 75,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.Edit",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 76,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.Delete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 77,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.Delete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 78,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.Delete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 79,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.Restore",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 80,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.Restore",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 81,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.Restore",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 82,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.ForceDelete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 83,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.ForceDelete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 84,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.VideoViewCount.ForceDelete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 85,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.Create",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 86,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.Create",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 87,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.Create",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 88,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.View",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 89,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.View",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 90,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.View",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 91,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.Edit",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 92,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.Edit",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 93,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.Edit",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 94,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.Delete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 95,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.Delete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 96,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.Delete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 97,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.Restore",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 98,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.Restore",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 99,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.Restore",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 100,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.ForceDelete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 101,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.ForceDelete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 102,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTCategory.ForceDelete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 103,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.Create",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 104,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.Create",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 105,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.Create",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 106,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.View",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 107,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.View",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 108,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.View",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 109,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.Edit",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 110,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.Edit",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 111,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.Edit",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 112,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.Delete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 113,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.Delete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 114,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.Delete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 115,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.Restore",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 116,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.Restore",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 117,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.Restore",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 118,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.ForceDelete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 119,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.ForceDelete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 120,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTChannel.ForceDelete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 121,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.Create",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 122,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.Create",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 123,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.Create",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 124,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.View",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 125,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.View",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 126,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.View",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 127,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.Edit",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 128,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.Edit",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 129,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.Edit",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 130,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.Delete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 131,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.Delete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 132,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.Delete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 133,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.Restore",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 134,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.Restore",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 135,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.Restore",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 136,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.ForceDelete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 137,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.ForceDelete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 138,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTMeta.ForceDelete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 139,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.Create",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 140,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.Create",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 141,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.Create",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 142,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.View",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 143,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.View",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 144,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.View",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 145,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.Edit",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 146,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.Edit",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 147,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.Edit",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 148,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.Delete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 149,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.Delete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 150,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.Delete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 151,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.Restore",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 152,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.Restore",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 153,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.Restore",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 154,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.ForceDelete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 155,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.ForceDelete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 156,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylist.ForceDelete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 157,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.Create",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 158,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.Create",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 159,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.Create",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 160,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.View",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 161,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.View",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 162,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.View",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 163,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.Edit",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 164,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.Edit",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 165,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.Edit",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 166,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.Delete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 167,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.Delete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 168,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.Delete",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 169,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.Restore",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 170,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.Restore",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 171,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.Restore",
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            Id = 172,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.ForceDelete",
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            Id = 173,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.ForceDelete",
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            Id = 174,
-                            ClaimType = "Permission",
-                            ClaimValue = "Permissions.YTPlaylistItem.ForceDelete",
-                            RoleId = 3
-                        });
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
@@ -1302,38 +60,6 @@ namespace ViGraph.Database.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserLogins");
-                });
-
-            modelBuilder.Entity("ViGraph.Models.AppUserRole", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("UserRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            UserId = 3,
-                            RoleId = 3
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -1420,12 +146,12 @@ namespace ViGraph.Database.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Sef")
                         .IsRequired()
@@ -1444,7 +170,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "52afa639-5192-48eb-8417-910d4dc2d2e2",
+                            ConcurrencyStamp = "4c84bf06-61e4-4de1-b9a9-e5ca1da12e06",
                             Name = "Super Admin",
                             NormalizedName = "SuperAdmin",
                             Sef = "super-admin"
@@ -1452,7 +178,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "030b0d81-b9f2-47a3-bfce-f30f50dd458e",
+                            ConcurrencyStamp = "3da526de-e35c-4d4b-8dff-107029d8d40d",
                             Name = "Admin",
                             NormalizedName = "Admin",
                             Sef = "admin"
@@ -1460,10 +186,1252 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "bed2412d-ac0d-49ff-b082-bb30da666ebb",
+                            ConcurrencyStamp = "46305bd9-467c-49e6-9d59-cf06bd97b922",
                             Name = "Editor",
                             NormalizedName = "Editor",
                             Sef = "editor"
+                        });
+                });
+
+            modelBuilder.Entity("ViGraph.Models.AppRoleClaim", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("RoleClaims");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.Create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.Create",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.Create",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.View",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.View",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.View",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.Edit",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.Edit",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.Edit",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.Delete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.Delete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.Delete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.Restore",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.Restore",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.Restore",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.ForceDelete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.ForceDelete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppFile.ForceDelete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppRole.Create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppRole.View",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppRole.Edit",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppRole.Delete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppRole.Restore",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppRole.ForceDelete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppUser.Create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppUser.View",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 27,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppUser.Edit",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 28,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppUser.Delete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 29,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppUser.Restore",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 30,
+                            ClaimType = "Permission",
+                            ClaimValue = "AppUser.ForceDelete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 31,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.Create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 32,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.Create",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 33,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.Create",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 34,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.View",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 35,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.View",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 36,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.View",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 37,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.Edit",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 38,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.Edit",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 39,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.Edit",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 40,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.Delete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 41,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.Delete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 42,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.Delete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 43,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.Restore",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 44,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.Restore",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 45,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.Restore",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 46,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.ForceDelete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 47,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.ForceDelete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 48,
+                            ClaimType = "Permission",
+                            ClaimValue = "Category.ForceDelete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 49,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.Create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 50,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.Create",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 51,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.Create",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 52,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.View",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 53,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.View",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 54,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.View",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 55,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.Edit",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 56,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.Edit",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 57,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.Edit",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 58,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.Delete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 59,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.Delete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 60,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.Delete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 61,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.Restore",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 62,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.Restore",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 63,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.Restore",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 64,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.ForceDelete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 65,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.ForceDelete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 66,
+                            ClaimType = "Permission",
+                            ClaimValue = "Video.ForceDelete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 67,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.Create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 68,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.Create",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 69,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.Create",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 70,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.View",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 71,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.View",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 72,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.View",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 73,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.Edit",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 74,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.Edit",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 75,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.Edit",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 76,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.Delete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 77,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.Delete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 78,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.Delete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 79,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.Restore",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 80,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.Restore",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 81,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.Restore",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 82,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.ForceDelete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 83,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.ForceDelete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 84,
+                            ClaimType = "Permission",
+                            ClaimValue = "VideoViewCount.ForceDelete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 85,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.Create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 86,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.Create",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 87,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.Create",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 88,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.View",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 89,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.View",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 90,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.View",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 91,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.Edit",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 92,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.Edit",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 93,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.Edit",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 94,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.Delete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 95,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.Delete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 96,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.Delete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 97,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.Restore",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 98,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.Restore",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 99,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.Restore",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 100,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.ForceDelete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 101,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.ForceDelete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 102,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTCategory.ForceDelete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 103,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.Create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 104,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.Create",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 105,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.Create",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 106,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.View",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 107,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.View",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 108,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.View",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 109,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.Edit",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 110,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.Edit",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 111,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.Edit",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 112,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.Delete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 113,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.Delete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 114,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.Delete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 115,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.Restore",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 116,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.Restore",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 117,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.Restore",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 118,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.ForceDelete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 119,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.ForceDelete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 120,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTChannel.ForceDelete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 121,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.Create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 122,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.Create",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 123,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.Create",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 124,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.View",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 125,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.View",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 126,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.View",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 127,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.Edit",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 128,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.Edit",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 129,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.Edit",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 130,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.Delete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 131,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.Delete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 132,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.Delete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 133,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.Restore",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 134,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.Restore",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 135,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.Restore",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 136,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.ForceDelete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 137,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.ForceDelete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 138,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTMeta.ForceDelete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 139,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.Create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 140,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.Create",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 141,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.Create",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 142,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.View",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 143,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.View",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 144,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.View",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 145,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.Edit",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 146,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.Edit",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 147,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.Edit",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 148,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.Delete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 149,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.Delete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 150,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.Delete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 151,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.Restore",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 152,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.Restore",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 153,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.Restore",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 154,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.ForceDelete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 155,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.ForceDelete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 156,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylist.ForceDelete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 157,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.Create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 158,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.Create",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 159,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.Create",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 160,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.View",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 161,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.View",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 162,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.View",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 163,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.Edit",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 164,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.Edit",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 165,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.Edit",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 166,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.Delete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 167,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.Delete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 168,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.Delete",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 169,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.Restore",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 170,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.Restore",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 171,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.Restore",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 172,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.ForceDelete",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 173,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.ForceDelete",
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 174,
+                            ClaimType = "Permission",
+                            ClaimValue = "YTPlaylistItem.ForceDelete",
+                            RoleId = 3
                         });
                 });
 
@@ -1517,6 +1485,9 @@ namespace ViGraph.Database.Migrations
                         .HasColumnType("datetime(0)")
                         .HasColumnName("LockoutEnd");
 
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("varchar(255)");
+
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
@@ -1541,6 +1512,9 @@ namespace ViGraph.Database.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
+                    b.HasIndex("NormalizedEmail")
+                        .IsUnique();
+
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
@@ -1556,9 +1530,10 @@ namespace ViGraph.Database.Migrations
                             FullName = "Z3 Root",
                             Language = "TR",
                             LockoutEnabled = false,
+                            NormalizedEmail = "z3@vigraph.com",
                             NormalizedUserName = "z3@vigraph.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAELp5xepUu5O+0Kic6mQspdn+LNUp7UEvqxEV0Ow7srT4MW+ebdPAMDTsx39QVBzj6g==",
-                            SecurityStamp = "e148ca61-6d91-42d3-a91a-ca39b4132f29",
+                            PasswordHash = "AQAAAAEAACcQAAAAECoeTh0aBqiDqLJ4RTlOAleyX3w+kjok/l/2fe57iuEWS/P6HPgrBKuUB6ac6uaa/g==",
+                            SecurityStamp = "95f2f7df-eb99-44c7-9173-e11436b7d03c",
                             UserName = "z3@vigraph.com"
                         },
                         new
@@ -1569,9 +1544,10 @@ namespace ViGraph.Database.Migrations
                             FullName = "Test Admin",
                             Language = "TR",
                             LockoutEnabled = false,
+                            NormalizedEmail = "test@admin.com",
                             NormalizedUserName = "test@admin.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAcoIxj+6zHmCxt3opZMVnZycP+Y+f52alkWPhj5sl6dNykh14bFKgvkYr/QEyIEeg==",
-                            SecurityStamp = "862a9df3-96b5-4e15-9d33-48c3db557dba",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGUOIJ4OShydndCOlER4mLcBV8ApTd6Zo8JNDqqCVwlYnfCo905rLUapcjnc5SWIew==",
+                            SecurityStamp = "e8e63224-f5b2-4d95-8aa9-f8df99fd26d0",
                             UserName = "test@admin.com"
                         },
                         new
@@ -1582,10 +1558,43 @@ namespace ViGraph.Database.Migrations
                             FullName = "Test Editor",
                             Language = "TR",
                             LockoutEnabled = false,
+                            NormalizedEmail = "test@editor.com",
                             NormalizedUserName = "test@editor.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKIxr7zB3AlOxA5m/BiCrwaiX6sdvxMB8DyjQviiv1CIZzPjIiKAhhP+jvWhlSRRxg==",
-                            SecurityStamp = "e4bac3cd-a5c4-4afb-a7ce-e4ab15785736",
+                            PasswordHash = "AQAAAAEAACcQAAAAENFiFkjTNZ3oM73nKcd9f6/MNLjoAoaCpDuD2imEmvvKLv1FYsGHnvaxDPnGER6/ZA==",
+                            SecurityStamp = "86be72dc-5c04-45b4-90d2-2783c35e3895",
                             UserName = "test@editor.com"
+                        });
+                });
+
+            modelBuilder.Entity("ViGraph.Models.AppUserRole", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            RoleId = 3
                         });
                 });
 
@@ -1641,7 +1650,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 8, 16, 17, 25, 0, 6, DateTimeKind.Local).AddTicks(8180),
+                            CreatedAt = new DateTime(2021, 8, 17, 14, 34, 42, 725, DateTimeKind.Local).AddTicks(1260),
                             CreatedById = 1,
                             Sef = "gundem",
                             Title = "Gündem"
@@ -1649,7 +1658,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 8, 16, 17, 25, 0, 6, DateTimeKind.Local).AddTicks(9950),
+                            CreatedAt = new DateTime(2021, 8, 17, 14, 34, 42, 725, DateTimeKind.Local).AddTicks(2910),
                             CreatedById = 1,
                             Sef = "spor",
                             Title = "Spor"
@@ -1657,7 +1666,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 8, 16, 17, 25, 0, 6, DateTimeKind.Local).AddTicks(9960),
+                            CreatedAt = new DateTime(2021, 8, 17, 14, 34, 42, 725, DateTimeKind.Local).AddTicks(2920),
                             CreatedById = 1,
                             Sef = "yasam",
                             Title = "Yaşam"
@@ -2018,15 +2027,6 @@ namespace ViGraph.Database.Migrations
                     b.ToTable("YTPlaylistItems");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.AppRoleClaim", b =>
-                {
-                    b.HasOne("ViGraph.Models.AppRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.HasOne("ViGraph.Models.AppUser", null)
@@ -2045,21 +2045,6 @@ namespace ViGraph.Database.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ViGraph.Models.AppUserRole", b =>
-                {
-                    b.HasOne("ViGraph.Models.AppRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ViGraph.Models.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.HasOne("ViGraph.Models.AppUser", null)
@@ -2067,6 +2052,36 @@ namespace ViGraph.Database.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ViGraph.Models.AppRoleClaim", b =>
+                {
+                    b.HasOne("ViGraph.Models.AppRole", "Role")
+                        .WithMany("RoleClaims")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("ViGraph.Models.AppUserRole", b =>
+                {
+                    b.HasOne("ViGraph.Models.AppRole", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ViGraph.Models.AppUser", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ViGraph.Models.Category", b =>
@@ -2229,6 +2244,16 @@ namespace ViGraph.Database.Migrations
                     b.Navigation("UpdatedBy");
 
                     b.Navigation("YTPlaylist");
+                });
+
+            modelBuilder.Entity("ViGraph.Models.AppRole", b =>
+                {
+                    b.Navigation("RoleClaims");
+                });
+
+            modelBuilder.Entity("ViGraph.Models.AppUser", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

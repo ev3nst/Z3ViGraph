@@ -3,11 +3,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ViGraph.Models;
 
 namespace ViGraph.Repository.IRepository
 {
 	public interface IRepository<T> : IUsesPagination<T> where T : class
 	{
+		#region Basic CRUD
 		// Basic
 		Task<T> Find(int id);
 
@@ -31,5 +33,20 @@ namespace ViGraph.Repository.IRepository
 			string includeProperties = null,
 			bool isTracking = true
 		);
+		#endregion
+
+		#region Get Current User
+		string GetCurrentUserName();
+
+		int GetCurrentUserId();
+
+		Task<AppUser> GetByUserId(int UserId);
+
+		Task<AppUser> GetByUserIdWithRoles(int UserId);
+
+		Task<AppUser> GetCurrentUser();
+
+		Task<AppUser> GetCurrentUserWithRoleClaims();
+		#endregion
 	}
 }

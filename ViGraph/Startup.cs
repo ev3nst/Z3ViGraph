@@ -8,22 +8,24 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.ResponseCompression;
-
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 
 using ViGraph.Models;
 using ViGraph.Database;
 using ViGraph.Repository;
 using ViGraph.Repository.IRepository;
-using ViGraph.Utility.Config;
 using ViGraph.Middlewares.Permission;
+using ViGraph.Middlewares.ClaimTransformations;
+using ViGraph.Utility.Config;
 
 namespace ViGraph
 {
@@ -58,7 +60,8 @@ namespace ViGraph
 					};
 				}
 			);
-
+           
+            services.AddScoped<IClaimsTransformation, AddRoleClaims>();
             services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
             services.AddScoped<IAuthorizationHandler, PermissionGuard>();
 
@@ -74,6 +77,15 @@ namespace ViGraph
 						new[] { "image/svg+xml", "application/javascript+json+xml", "text/html+css+json+plain+xml" });
 			});
 			ConfigureEntityFramework(services);
+
+            /*
+            services.AddLogging(builder =>
+                builder
+                    .AddConfiguration(Configuration.GetSection("Logging"))
+                    .AddConsole()
+                    .AddDebug()
+            );
+            */
 
 			services.AddIdentity<AppUser, AppRole>()
 				.AddDefaultTokenProviders()
@@ -113,7 +125,7 @@ namespace ViGraph
 		public void ConfigureEntityFramework(IServiceCollection services)
 		{
 			services.AddDbContextPool<ApplicationDbContext>(
-				options => options.UseMySql(
+				options => options.UseMySql( // .EnableSensitiveDataLogging()
 					Configuration.GetConnectionString("DefaultConnection"),
 					ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection")),
 					mysqlOptions => {

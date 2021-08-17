@@ -17,7 +17,6 @@ namespace ViGraph.Database.Schema
 		public static void Structure(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<AppRoleClaim>().ToTable("RoleClaims");
-			modelBuilder.Entity<AppRoleClaim>().HasOne<AppRole>().WithOne().HasForeignKey<AppRole>(b => b.Id).IsRequired();
 		}
 		public static List<AppRoleClaim> GetData()
 		{

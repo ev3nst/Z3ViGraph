@@ -21,10 +21,8 @@ namespace ViGraph.Controllers
 
 
         [HttpGet("/dashboard")]
-		public async Task<IActionResult> Index()
+		public IActionResult Index()
 		{
-
-            await _appUseRepository.CheckButtonPermissions();
 			return View();
 		}
 	}

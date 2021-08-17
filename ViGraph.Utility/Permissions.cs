@@ -24,12 +24,12 @@ namespace ViGraph.Utility
 		public static List<string> GeneratePermissionsForModule(string module)
 		{
 			return new List<string>() {
-				$"Permissions.{module}.Create",
-				$"Permissions.{module}.View",
-				$"Permissions.{module}.Edit",
-				$"Permissions.{module}.Delete",
-				$"Permissions.{module}.Restore",
-				$"Permissions.{module}.ForceDelete",
+				$"{module}.Create",
+				$"{module}.View",
+				$"{module}.Edit",
+				$"{module}.Delete",
+				$"{module}.Restore",
+				$"{module}.ForceDelete",
 			};
 		}
 	}

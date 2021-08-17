@@ -13,7 +13,6 @@ namespace ViGraph.Middlewares.Permission
 			PermissionRequirement requirement
 		)
 		{
-            System.Console.WriteLine("PERMISSION GUARD IS ON OWRK");
 			if (context.User == null) {
 				return Task.CompletedTask;
 			}

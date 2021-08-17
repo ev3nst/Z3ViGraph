@@ -1,10 +1,12 @@
-﻿using ViGraph.Models;
+﻿using System.Threading.Tasks;
+using System.Linq;
+
+using ViGraph.Models;
 using ViGraph.Database;
 using ViGraph.Repository.IRepository;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using System.Threading.Tasks;
 
 namespace ViGraph.Repository
 {
@@ -46,13 +48,12 @@ namespace ViGraph.Repository
             ";
 		}
 
-        public async override Task CheckButtonPermissions() {
-            var currentUser = await GetCurrentUser();
-            System.Console.WriteLine("Check button permissions?");
-            System.Console.WriteLine();
+        public override void CheckButtonPermissions() {
+            foreach (var xx in _context.HttpContext.User.Claims.Where(c => c.Type == "Permission"))
+            {
+                System.Console.WriteLine(xx);
+            }
 
-
-System.Console.WriteLine(currentUser.UserRoles);
 
             return;
         }

@@ -38,8 +38,6 @@ namespace ViGraph.Models
         public virtual ICollection<AppUserRole> UserRoles { get; set; }
 
         #region Ignored Default Fields
-		[NotMapped]
-		public override string NormalizedEmail { get; set; }
 
 		[NotMapped]
 		public override bool EmailConfirmed { get; set; }

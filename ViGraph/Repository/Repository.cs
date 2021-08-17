@@ -37,24 +37,6 @@ namespace ViGraph.Repository
 			_generator = generator;
 		}
 
-		#region Get Current User
-		public string GetCurrentUserName()
-		{
-			return _context.HttpContext.User.Identity.Name;
-		}
-
-		public int GetCurrentUserId()
-		{
-			return int.Parse(_context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
-		}
-
-		public async Task<AppUser> GetCurrentUser()
-		{
-			var loggedInUserId = _context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-			return await _db.AppUser.Include(u => u.UserRoles).ThenInclude(u => u.Role).ThenInclude(r => r.RoleClaims).FirstOrDefaultAsync(u => u.Id == GetCurrentUserId());
-		}
-		#endregion
-
 		#region Basic CRUD
 		public async Task<T> Find(int id)
 		{
@@ -131,6 +113,40 @@ namespace ViGraph.Repository
 		}
 		#endregion
 
+		#region Get Current User
+		public string GetCurrentUserName()
+		{
+			return _context.HttpContext.User.Identity.Name;
+		}
+
+		public int GetCurrentUserId()
+		{
+			return int.Parse(_context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+		}
+
+		public async Task<AppUser> GetByUserId(int UserId)
+		{
+			return await _db.AppUser.AsNoTracking().FirstOrDefaultAsync(u => u.Id == UserId);
+		}
+
+		public async Task<AppUser> GetByUserIdWithRoles(int UserId)
+		{
+			return await _db.AppUser.Include(u => u.UserRoles).ThenInclude(u => u.Role).ThenInclude(r => r.RoleClaims).AsSplitQuery().AsNoTracking().FirstOrDefaultAsync(u => u.Id == UserId);
+		}
+
+		public async Task<AppUser> GetCurrentUser()
+		{
+			var loggedInUserId = _context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+			return await _db.AppUser.AsNoTracking().FirstOrDefaultAsync(u => u.Id == GetCurrentUserId());
+		}
+
+		public async Task<AppUser> GetCurrentUserWithRoleClaims()
+		{
+			var loggedInUserId = _context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+			return await _db.AppUser.Include(u => u.UserRoles).ThenInclude(u => u.Role).ThenInclude(r => r.RoleClaims).AsSplitQuery().AsNoTracking().FirstOrDefaultAsync(u => u.Id == GetCurrentUserId());
+		}
+		#endregion
+
 		#region Pagination
 		public abstract string EditLink(int Id);
 
@@ -181,7 +197,7 @@ namespace ViGraph.Repository
 
 		public abstract string ActionsHTML(T Resource);
 
-		public abstract Task CheckButtonPermissions();
+		public abstract void CheckButtonPermissions();
 
 		public Task<IEnumerable<T>> Paginate(PaginationOptions PaginationOptions)
 		{
