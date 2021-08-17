@@ -40,9 +40,9 @@ namespace ViGraph.Repository.IRepository
 
 		int GetCurrentUserId();
 
-		Task<AppUser> GetByUserId(int UserId);
+		Task<AppUser> GetUserById(int UserId);
 
-		Task<AppUser> GetByUserIdWithRoles(int UserId);
+		Task<AppUser> GetUserByIdWithRoles(int UserId);
 
 		Task<AppUser> GetCurrentUser();
 

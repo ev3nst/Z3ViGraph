@@ -1,15 +1,19 @@
-﻿using System.Threading.Tasks;
-using System.Linq;
+﻿using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using ViGraph.Models;
 using ViGraph.Database;
 using ViGraph.Repository.IRepository;
+using ViGraph.Utility.Config;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
 
 namespace ViGraph.Repository
 {
+
 	public class AppUserRepository : Repository<AppUser>, IAppUserRepository
 	{
 		private readonly ApplicationDbContext _db;
@@ -48,14 +52,44 @@ namespace ViGraph.Repository
             ";
 		}
 
-        public override void CheckButtonPermissions() {
-            foreach (var xx in _context.HttpContext.User.Claims.Where(c => c.Type == "Permission"))
-            {
-                System.Console.WriteLine(xx);
-            }
+		public override void CheckButtonPermissions()
+		{
+			var editPermission = _context.HttpContext.User.Claims.Where(c => c.Type == "Permission" && c.Value == "AppUser.Edit");
+			UseEditButton = editPermission.Any();
 
+			var deletePermission = _context.HttpContext.User.Claims.Where(c => c.Type == "Permission" && c.Value == "AppUser.Delete");
+			UseEditButton = deletePermission.Any();
+		}
 
-            return;
-        }
+		public override async Task<IEnumerable<AppUser>> Paginate(PaginationOptions<AppUser> PaginationOptions)
+		{
+			CheckButtonPermissions();
+			var mainQuery = _db.AppUser
+			.Include(u => u.UserRoles)
+			.ThenInclude(u => u.Role)
+			.Where(
+				u => u.DeletedAt == null && u.Email != AppConfig.RootCredentials.Email
+			);
+
+			if (PaginationOptions.SortOrder == SortOrderTypes.ASC) {
+				mainQuery = mainQuery.OrderBy(u => EF.Property<object>(u, PaginationOptions.SortField));
+			} else {
+				mainQuery = mainQuery.OrderByDescending(u => EF.Property<object>(u, PaginationOptions.SortField));
+			}
+
+			int TotalCount = await mainQuery.CountAsync();
+			var data = await mainQuery
+			.Skip(PaginationOptions.Offset)
+			.Take(PaginationOptions.PerPage)
+			.AsNoTracking()
+			.AsSingleQuery()
+			.ToListAsync();
+
+			for (int i = 0; i < data.Count; i++) {
+				data[i].ActionsHTML = ActionsHTML(data[i]);
+			}
+
+			return data;
+		}
 	}
 }

@@ -124,26 +124,26 @@ namespace ViGraph.Repository
 			return int.Parse(_context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 		}
 
-		public async Task<AppUser> GetByUserId(int UserId)
+		public async Task<AppUser> GetUserById(int UserId)
 		{
-			return await _db.AppUser.AsNoTracking().FirstOrDefaultAsync(u => u.Id == UserId);
+			return await _db.AppUser.OrderBy(u => u.Id).AsNoTracking().FirstOrDefaultAsync(u => u.Id == UserId);
 		}
 
-		public async Task<AppUser> GetByUserIdWithRoles(int UserId)
+		public async Task<AppUser> GetUserByIdWithRoles(int UserId)
 		{
-			return await _db.AppUser.Include(u => u.UserRoles).ThenInclude(u => u.Role).ThenInclude(r => r.RoleClaims).AsSplitQuery().AsNoTracking().FirstOrDefaultAsync(u => u.Id == UserId);
+			return await _db.AppUser.Include(u => u.UserRoles).ThenInclude(u => u.Role).ThenInclude(r => r.RoleClaims).OrderBy(u => u.Id).AsSplitQuery().AsNoTracking().FirstOrDefaultAsync(u => u.Id == UserId);
 		}
 
 		public async Task<AppUser> GetCurrentUser()
 		{
 			var loggedInUserId = _context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-			return await _db.AppUser.AsNoTracking().FirstOrDefaultAsync(u => u.Id == GetCurrentUserId());
+			return await _db.AppUser.OrderBy(u => u.Id).AsNoTracking().FirstOrDefaultAsync(u => u.Id == GetCurrentUserId());
 		}
 
 		public async Task<AppUser> GetCurrentUserWithRoleClaims()
 		{
 			var loggedInUserId = _context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-			return await _db.AppUser.Include(u => u.UserRoles).ThenInclude(u => u.Role).ThenInclude(r => r.RoleClaims).AsSplitQuery().AsNoTracking().FirstOrDefaultAsync(u => u.Id == GetCurrentUserId());
+			return await _db.AppUser.Include(u => u.UserRoles).ThenInclude(u => u.Role).ThenInclude(r => r.RoleClaims).OrderBy(u => u.Id).AsSplitQuery().AsNoTracking().FirstOrDefaultAsync(u => u.Id == GetCurrentUserId());
 		}
 		#endregion
 
@@ -199,10 +199,7 @@ namespace ViGraph.Repository
 
 		public abstract void CheckButtonPermissions();
 
-		public Task<IEnumerable<T>> Paginate(PaginationOptions PaginationOptions)
-		{
-			throw new NotImplementedException();
-		}
+		public abstract Task<IEnumerable<T>> Paginate(PaginationOptions<T> PaginationOptions);
 		#endregion
 	}
 }

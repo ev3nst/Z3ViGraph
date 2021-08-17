@@ -5,7 +5,7 @@ namespace ViGraph.Repository.IRepository
         DESC
     }
 
-    public class PaginationOptions
+    public class PaginationOptions<T> where T : class
     {
         public int PerPage { get; set; }
 
@@ -16,6 +16,8 @@ namespace ViGraph.Repository.IRepository
         public string SearchKey { get; set; } = null;
 
         public string SortField { get; set; }
+
+        public int Offset { get => Page <= 1 ? 0 : Page * PerPage; }
 
         public SortOrderTypes SortOrder { get; set; } = SortOrderTypes.DESC;
     }

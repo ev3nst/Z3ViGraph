@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ViGraph.Models
 {
@@ -13,5 +14,8 @@ namespace ViGraph.Models
 
 		[Required]
 		public bool Assignable { get; set; }
+
+		[NotMapped]
+		public virtual string ActionsHTML { get; set; } = null;
 	}
 }

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ViGraph.Repository.IRepository
 {
-    public interface IUsesSoftDelete<T>
+    public interface IUsesSoftDelete<T> where T : class
     {
         bool SetUseRestoreButton(bool Status);
 
@@ -17,6 +17,6 @@ namespace ViGraph.Repository.IRepository
 
         string CreatePermaDeleteButton(T Resource);
 
-        Task<IEnumerable<T>> paginateDeleted(PaginationOptions PaginationOptions);
+        Task<IEnumerable<T>> paginateDeleted(PaginationOptions<T> PaginationOptions);
     }
 }

@@ -50,5 +50,8 @@ namespace ViGraph.Models
 
 		[NotMapped]
 		public string Url { get; set; }
+
+		[NotMapped]
+		public virtual string ActionsHTML { get; set; } = null;
 	}
 }

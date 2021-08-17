@@ -85,5 +85,8 @@ namespace ViGraph.Models
 		[Required]
 		[Column(TypeName = "enum('initialized', 'started', 'deleted','failed', 'processed', 'rejected', 'uploaded')")]
 		public YTUploadStatus UploadStatus { get; set; } = YTUploadStatus.Initialized;
+
+		[NotMapped]
+		public virtual string ActionsHTML { get; set; } = null;
 	}
 }

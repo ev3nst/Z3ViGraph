@@ -24,7 +24,6 @@ namespace ViGraph.Middlewares.ClaimTransformations
 			var claimType = "Permission";
 
 			if (!principal.HasClaim(claim => claim.Type == claimType)) {
-                System.Console.WriteLine("CLAIM NOT FOUND BEING ADDED");
 				var userId = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier || c.Type == ClaimTypes.Name);
 				if (userId == null) {
 					return principal;
@@ -32,7 +31,7 @@ namespace ViGraph.Middlewares.ClaimTransformations
 
 				int userIdParsed;
 				if (int.TryParse(userId.Value, out userIdParsed)) {
-					var user = await _appUserRepo.GetByUserIdWithRoles(userIdParsed);
+					var user = await _appUserRepo.GetUserByIdWithRoles(userIdParsed);
 					if (user == null) {
 						return principal;
 					}

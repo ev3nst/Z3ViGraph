@@ -36,5 +36,8 @@ namespace ViGraph.Models
 
 		[ForeignKey("UpdatedById")]
 		public virtual AppUser UpdatedBy { get; set; }
+
+		[NotMapped]
+		public virtual string ActionsHTML { get; set; } = null;
 	}
 }

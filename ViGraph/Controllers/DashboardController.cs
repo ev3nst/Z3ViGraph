@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using ViGraph.Models;
 using ViGraph.Repository.IRepository;
 
 namespace ViGraph.Controllers
@@ -21,8 +21,18 @@ namespace ViGraph.Controllers
 
 
         [HttpGet("/dashboard")]
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
+
+            var paginationOptions = new PaginationOptions<AppUser> {
+                PerPage = 10,
+                Page = 1,
+                SortField = "FullName",
+                SortOrder = SortOrderTypes.ASC,
+            };
+
+            _appUseRepository.Paginate(paginationOptions);
+
 			return View();
 		}
 	}

@@ -21,6 +21,6 @@ namespace ViGraph.Repository.IRepository
 
 		void CheckButtonPermissions();
 
-		Task<IEnumerable<T>> Paginate(PaginationOptions PaginationOptions);
+		Task<IEnumerable<T>> Paginate(PaginationOptions<T> PaginationOptions);
 	}
 }

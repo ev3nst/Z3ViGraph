@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,13 +20,17 @@ namespace ViGraph.Models
 		[MaxLength(255)]
 		public string FullName { get; set; }
 
+        [JsonIgnore]
 		[Column(TypeName = "enum('TR','EN')")]
 		public Language Language { get; set; } = Language.TR;
 
+        [JsonIgnore]
 		public DateTime? LastLogin { get; set; } = null;
 
+        [JsonIgnore]
 		public string LastLoginIP { get; set; } = null;
 
+        [JsonIgnore]
 		public DateTime? LastLogout { get; set; } = null;
 
 		[Required]
@@ -35,9 +40,12 @@ namespace ViGraph.Models
 
 		public DateTime? DeletedAt { get; set; } = null;
 
-        public virtual ICollection<AppUserRole> UserRoles { get; set; }
+		public virtual ICollection<AppUserRole> UserRoles { get; set; }
 
-        #region Ignored Default Fields
+		[NotMapped]
+		public virtual string ActionsHTML { get; set; } = null;
+
+		#region Ignored Default Fields
 
 		[NotMapped]
 		public override bool EmailConfirmed { get; set; }
@@ -56,6 +64,6 @@ namespace ViGraph.Models
 
 		[NotMapped]
 		public override int AccessFailedCount { get; set; }
-        #endregion
+		#endregion
 	}
 }
