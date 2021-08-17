@@ -17,7 +17,7 @@ namespace ViGraph.Database.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.8");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.AppRoleClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1302,7 +1302,7 @@ namespace ViGraph.Database.Migrations
                     b.ToTable("UserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+            modelBuilder.Entity("ViGraph.Models.AppUserRole", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -1442,7 +1442,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "648a0946-bc44-4258-b4fc-da27cb022aab",
+                            ConcurrencyStamp = "52afa639-5192-48eb-8417-910d4dc2d2e2",
                             Name = "Super Admin",
                             NormalizedName = "SuperAdmin",
                             Sef = "super-admin"
@@ -1450,7 +1450,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "981afc50-9f3e-469f-a944-4205713a8c62",
+                            ConcurrencyStamp = "030b0d81-b9f2-47a3-bfce-f30f50dd458e",
                             Name = "Admin",
                             NormalizedName = "Admin",
                             Sef = "admin"
@@ -1458,7 +1458,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "2c1700a4-b5cf-4894-89da-8b36209c0306",
+                            ConcurrencyStamp = "bed2412d-ac0d-49ff-b082-bb30da666ebb",
                             Name = "Editor",
                             NormalizedName = "Editor",
                             Sef = "editor"
@@ -1555,7 +1555,8 @@ namespace ViGraph.Database.Migrations
                             Language = "TR",
                             LockoutEnabled = false,
                             NormalizedUserName = "z3@vigraph.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIjyewSTDKZZ9W9PdUMsRhy2id+ZLDIvh/7FAeV7hqpHj/UwCvqYgRHwxAPBu0STWQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELp5xepUu5O+0Kic6mQspdn+LNUp7UEvqxEV0Ow7srT4MW+ebdPAMDTsx39QVBzj6g==",
+                            SecurityStamp = "e148ca61-6d91-42d3-a91a-ca39b4132f29",
                             UserName = "z3@vigraph.com"
                         },
                         new
@@ -1567,7 +1568,8 @@ namespace ViGraph.Database.Migrations
                             Language = "TR",
                             LockoutEnabled = false,
                             NormalizedUserName = "test@admin.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHEYFhdrWman5bX4Za6F6RcxOWRqx2Vm6KobcBsCKkhcT6Hy9+kRpAAkjokUh0ZEmw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAcoIxj+6zHmCxt3opZMVnZycP+Y+f52alkWPhj5sl6dNykh14bFKgvkYr/QEyIEeg==",
+                            SecurityStamp = "862a9df3-96b5-4e15-9d33-48c3db557dba",
                             UserName = "test@admin.com"
                         },
                         new
@@ -1579,7 +1581,8 @@ namespace ViGraph.Database.Migrations
                             Language = "TR",
                             LockoutEnabled = false,
                             NormalizedUserName = "test@editor.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIpiuIxBwxuKc0OSNESw2wJKSQbiZaroYbc6VE+k90E+tV3gbCxz+xcVOzm8urkX/Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKIxr7zB3AlOxA5m/BiCrwaiX6sdvxMB8DyjQviiv1CIZzPjIiKAhhP+jvWhlSRRxg==",
+                            SecurityStamp = "e4bac3cd-a5c4-4afb-a7ce-e4ab15785736",
                             UserName = "test@editor.com"
                         });
                 });
@@ -1636,7 +1639,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 8, 16, 16, 26, 57, 945, DateTimeKind.Local).AddTicks(2660),
+                            CreatedAt = new DateTime(2021, 8, 16, 17, 25, 0, 6, DateTimeKind.Local).AddTicks(8180),
                             CreatedById = 1,
                             Sef = "gundem",
                             Title = "Gündem"
@@ -1644,7 +1647,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 8, 16, 16, 26, 57, 945, DateTimeKind.Local).AddTicks(4500),
+                            CreatedAt = new DateTime(2021, 8, 16, 17, 25, 0, 6, DateTimeKind.Local).AddTicks(9950),
                             CreatedById = 1,
                             Sef = "spor",
                             Title = "Spor"
@@ -1652,7 +1655,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 8, 16, 16, 26, 57, 945, DateTimeKind.Local).AddTicks(4510),
+                            CreatedAt = new DateTime(2021, 8, 16, 17, 25, 0, 6, DateTimeKind.Local).AddTicks(9960),
                             CreatedById = 1,
                             Sef = "yasam",
                             Title = "Yaşam"
@@ -2013,7 +2016,7 @@ namespace ViGraph.Database.Migrations
                     b.ToTable("YTPlaylistItems");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.AppRoleClaim", b =>
                 {
                     b.HasOne("ViGraph.Models.AppRole", null)
                         .WithMany()
@@ -2040,7 +2043,7 @@ namespace ViGraph.Database.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+            modelBuilder.Entity("ViGraph.Models.AppUserRole", b =>
                 {
                     b.HasOne("ViGraph.Models.AppRole", null)
                         .WithMany()

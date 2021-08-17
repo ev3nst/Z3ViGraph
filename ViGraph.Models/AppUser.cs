@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -34,8 +35,7 @@ namespace ViGraph.Models
 
 		public DateTime? DeletedAt { get; set; } = null;
 
-		[NotMapped]
-		public virtual AppRole Role { get; set; }
+        public virtual ICollection<AppUserRole> UserRoles { get; set; }
 
         #region Ignored Default Fields
 		[NotMapped]

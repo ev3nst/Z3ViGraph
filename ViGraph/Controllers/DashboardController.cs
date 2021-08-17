@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ViGraph.Models;
+
+using ViGraph.Repository.IRepository;
 
 namespace ViGraph.Controllers
 {
@@ -14,9 +11,20 @@ namespace ViGraph.Controllers
 	public class DashboardController : Controller
 	{
 
-        [HttpGet("/dashboard")]
-		public IActionResult Index()
+		IAppUserRepository _appUseRepository;
+		public DashboardController(
+			IAppUserRepository appUseRepository
+		)
 		{
+			_appUseRepository = appUseRepository;
+		}
+
+
+        [HttpGet("/dashboard")]
+		public async Task<IActionResult> Index()
+		{
+
+            await _appUseRepository.CheckButtonPermissions();
 			return View();
 		}
 	}

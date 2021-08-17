@@ -544,9 +544,9 @@ namespace ViGraph.Database.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName", "Sef" },
                 values: new object[,]
                 {
-                    { 1, "f07266a2-af2d-476b-b477-1b484ea613e3", null, "Super Admin", "SuperAdmin", "super-admin" },
-                    { 2, "f8fcbd81-004e-4b57-8740-e6c4bd1e4c31", null, "Admin", "Admin", "admin" },
-                    { 3, "9ef4b932-7159-4b44-8c5f-fe57dadf1b6e", null, "Editor", "Editor", "editor" }
+                    { 1, "52afa639-5192-48eb-8417-910d4dc2d2e2", null, "Super Admin", "SuperAdmin", "super-admin" },
+                    { 2, "030b0d81-b9f2-47a3-bfce-f30f50dd458e", null, "Admin", "Admin", "admin" },
+                    { 3, "bed2412d-ac0d-49ff-b082-bb30da666ebb", null, "Editor", "Editor", "editor" }
                 });
 
             migrationBuilder.InsertData(
@@ -554,9 +554,9 @@ namespace ViGraph.Database.Migrations
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "Email", "FullName", "Language", "LastLogin", "LastLoginIP", "LastLogout", "LockoutEnabled", "LockoutEnd", "NormalizedUserName", "PasswordHash", "SecurityStamp", "UpdatedAt", "UserName" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "z3@vigraph.com", "Z3 Root", "TR", null, null, null, false, null, "z3@vigraph.com", "AQAAAAEAACcQAAAAEEU3N16azoLLcAsQrBHOlZMcEyfvupqL8JkHyDmCRwOhu+dMB6SGXTSaCyJaWxKFUQ==", null, null, "z3@vigraph.com" },
-                    { 2, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "test@admin.com", "Test Admin", "TR", null, null, null, false, null, "test@admin.com", "AQAAAAEAACcQAAAAEDiHirzElMi3W/FsHTmcIEbsrBg1zmeiNfrNyijAKNzPXUpQMv2eA9ITfYiy34LEmQ==", null, null, "test@admin.com" },
-                    { 3, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "test@editor.com", "Test Editor", "TR", null, null, null, false, null, "test@editor.com", "AQAAAAEAACcQAAAAEGQyChrpv0hDnwDW57v1ZL1WGJIPM7bclXME+sxUTOkE4aDw/fKLSjIn+C0yNqOq3A==", null, null, "test@editor.com" }
+                    { 1, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "z3@vigraph.com", "Z3 Root", "TR", null, null, null, false, null, "z3@vigraph.com", "AQAAAAEAACcQAAAAELp5xepUu5O+0Kic6mQspdn+LNUp7UEvqxEV0Ow7srT4MW+ebdPAMDTsx39QVBzj6g==", "e148ca61-6d91-42d3-a91a-ca39b4132f29", null, "z3@vigraph.com" },
+                    { 2, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "test@admin.com", "Test Admin", "TR", null, null, null, false, null, "test@admin.com", "AQAAAAEAACcQAAAAEAcoIxj+6zHmCxt3opZMVnZycP+Y+f52alkWPhj5sl6dNykh14bFKgvkYr/QEyIEeg==", "862a9df3-96b5-4e15-9d33-48c3db557dba", null, "test@admin.com" },
+                    { 3, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "test@editor.com", "Test Editor", "TR", null, null, null, false, null, "test@editor.com", "AQAAAAEAACcQAAAAEKIxr7zB3AlOxA5m/BiCrwaiX6sdvxMB8DyjQviiv1CIZzPjIiKAhhP+jvWhlSRRxg==", "e4bac3cd-a5c4-4afb-a7ce-e4ab15785736", null, "test@editor.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -564,9 +564,9 @@ namespace ViGraph.Database.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedById", "DeletedAt", "Description", "Sef", "Title", "UpdatedAt", "UpdatedById" },
                 values: new object[,]
                 {
-                    { 3, new DateTime(2021, 8, 16, 16, 26, 10, 103, DateTimeKind.Local).AddTicks(3400), 1, null, null, "yasam", "Yaşam", null, null },
-                    { 2, new DateTime(2021, 8, 16, 16, 26, 10, 103, DateTimeKind.Local).AddTicks(3390), 1, null, null, "spor", "Spor", null, null },
-                    { 1, new DateTime(2021, 8, 16, 16, 26, 10, 103, DateTimeKind.Local).AddTicks(1510), 1, null, null, "gundem", "Gündem", null, null }
+                    { 3, new DateTime(2021, 8, 16, 17, 25, 0, 6, DateTimeKind.Local).AddTicks(9960), 1, null, null, "yasam", "Yaşam", null, null },
+                    { 2, new DateTime(2021, 8, 16, 17, 25, 0, 6, DateTimeKind.Local).AddTicks(9950), 1, null, null, "spor", "Spor", null, null },
+                    { 1, new DateTime(2021, 8, 16, 17, 25, 0, 6, DateTimeKind.Local).AddTicks(8180), 1, null, null, "gundem", "Gündem", null, null }
                 });
 
             migrationBuilder.InsertData(

@@ -1,19 +1,22 @@
-﻿using System;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure.Internal;
-using Pomelo.EntityFrameworkCore.MySql.Storage.Internal;
 
 using ViGraph.Models;
 using ViGraph.Database.Schema;
 
 namespace ViGraph.Database
 {
-	public class ApplicationDbContext : IdentityDbContext<AppUser, AppRole, int>
+	public class ApplicationDbContext : IdentityDbContext<
+		AppUser,
+		AppRole,
+		int,
+		IdentityUserClaim<int>,
+		AppUserRole,
+		IdentityUserLogin<int>,
+		AppRoleClaim,
+		IdentityUserToken<int>
+	>
 	{
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
 		{
@@ -22,6 +25,8 @@ namespace ViGraph.Database
 
 		public DbSet<AppUser> AppUser { get; set; }
 		public DbSet<AppRole> AppRole { get; set; }
+		public DbSet<AppRoleClaim> AppRoleClaim { get; set; }
+		public DbSet<AppUserRole> AppUserRole { get; set; }
 		public DbSet<YTChannel> YTChannel { get; set; }
 		public DbSet<YTCategory> YTCategory { get; set; }
 		public DbSet<YTMeta> YTMeta { get; set; }
@@ -44,53 +49,35 @@ namespace ViGraph.Database
 			modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("UserLogins");
 			modelBuilder.Entity<IdentityUserToken<int>>().ToTable("UserTokens");
 
-            YTMetaSchema.Structure(modelBuilder);
-            YTChannelSchema.Structure(modelBuilder);
-            YTCategorySchema.Structure(modelBuilder);
+			YTMetaSchema.Structure(modelBuilder);
+			YTChannelSchema.Structure(modelBuilder);
+			YTCategorySchema.Structure(modelBuilder);
 
 			CategorySchema.Structure(modelBuilder);
 			VideoSchema.Structure(modelBuilder);
 			ThumbnailSchema.Structure(modelBuilder);
 			VideoViewCountSchema.Structure(modelBuilder);
 
-            YTPlaylistSchema.Structure(modelBuilder);
+			YTPlaylistSchema.Structure(modelBuilder);
 			YTPlaylistItemSchema.Structure(modelBuilder);
 
 			// Seeds
-            RoleClaimSchema.Seed(modelBuilder);
+			RoleClaimSchema.Seed(modelBuilder);
 			RoleSchema.Seed(modelBuilder);
 			UserSchema.Seed(modelBuilder);
 			UserRoleSchema.Seed(modelBuilder);
-            
-            YTMetaSchema.Seed(modelBuilder);
-            YTChannelSchema.Seed(modelBuilder);
-            YTCategorySchema.Seed(modelBuilder);
+
+			YTMetaSchema.Seed(modelBuilder);
+			YTChannelSchema.Seed(modelBuilder);
+			YTCategorySchema.Seed(modelBuilder);
 
 			CategorySchema.Seed(modelBuilder);
 			VideoSchema.Seed(modelBuilder);
 			ThumbnailSchema.Seed(modelBuilder);
 			VideoViewCountSchema.Seed(modelBuilder);
 
-            YTPlaylistSchema.Seed(modelBuilder);
+			YTPlaylistSchema.Seed(modelBuilder);
 			YTPlaylistItemSchema.Seed(modelBuilder);
 		}
 	}
-
-	/*
-	// Custom type mapping plugin:
-	public class EnumTypeMappingSourcePlugin : IRelationalTypeMappingSourcePlugin
-	{
-		private readonly IMySqlOptions _options;
-
-		public EnumTypeMappingSourcePlugin(IMySqlOptions options) => _options = options;
-
-		/// <summary>
-		/// Return a string type mapping with an `enum` store type, if an `enum()` type has been specified explicitly as the column type.
-		/// </summary>
-		public RelationalTypeMapping FindMapping(in RelationalTypeMappingInfo mappingInfo)
-			=> string.Equals(mappingInfo.StoreTypeNameBase, "enum", StringComparison.OrdinalIgnoreCase)
-				? new MySqlStringTypeMapping(mappingInfo.StoreTypeName, _options, StoreTypePostfix.None)
-				: null;
-	}
-    */
 }

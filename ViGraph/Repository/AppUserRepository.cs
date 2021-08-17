@@ -49,7 +49,10 @@ namespace ViGraph.Repository
         public async override Task CheckButtonPermissions() {
             var currentUser = await GetCurrentUser();
             System.Console.WriteLine("Check button permissions?");
-            System.Console.WriteLine(currentUser.Role.RoleClaims);
+            System.Console.WriteLine();
+
+
+System.Console.WriteLine(currentUser.UserRoles);
 
             return;
         }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
+using ViGraph.Models;
 
 namespace ViGraph.Database.Schema
 {
@@ -8,28 +9,28 @@ namespace ViGraph.Database.Schema
 	{
 		public static void Seed(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<IdentityUserRole<int>>().HasData(GetData());
+			modelBuilder.Entity<AppUserRole>().HasData(GetData());
 		}
 
         public static void Structure(ModelBuilder modelBuilder)
         {
-			modelBuilder.Entity<IdentityUserRole<int>>().ToTable("UserRoles");
+			modelBuilder.Entity<AppUserRole>().ToTable("UserRoles");
         }
-		public static List<IdentityUserRole<int>> GetData()
+		public static List<AppUserRole> GetData()
 		{
-			var userRoleList = new List<IdentityUserRole<int>>();
-            userRoleList.Add(new IdentityUserRole<int> { // Root
+			var userRoleList = new List<AppUserRole>();
+            userRoleList.Add(new AppUserRole { // Root
                 UserId = 1,
                 RoleId = 1
             });
 
 			if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development") {
                 // Test Admin & Editor    
-                userRoleList.Add(new IdentityUserRole<int> {
+                userRoleList.Add(new AppUserRole {
                     UserId = 2,
                     RoleId = 2
                 });
-                userRoleList.Add(new IdentityUserRole<int> {
+                userRoleList.Add(new AppUserRole {
                     UserId = 3,
                     RoleId = 3
                 });

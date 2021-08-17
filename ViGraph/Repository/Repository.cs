@@ -51,7 +51,7 @@ namespace ViGraph.Repository
 		public async Task<AppUser> GetCurrentUser()
 		{
 			var loggedInUserId = _context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-			return await _db.AppUser.Include(u => u.Role).ThenInclude(u => u.RoleClaims).FirstAsync(u => u.Id == GetCurrentUserId());
+			return await _db.AppUser.Include(u => u.UserRoles).ThenInclude(u => u.Role).ThenInclude(r => r.RoleClaims).FirstOrDefaultAsync(u => u.Id == GetCurrentUserId());
 		}
 		#endregion
 

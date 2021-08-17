@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using ViGraph.Utility;
+using ViGraph.Models;
 
 namespace ViGraph.Database.Schema
 {
@@ -11,23 +11,24 @@ namespace ViGraph.Database.Schema
 	{
 		public static void Seed(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<IdentityRoleClaim<int>>().HasData(GetData());
+			modelBuilder.Entity<AppRoleClaim>().HasData(GetData());
 		}
 
 		public static void Structure(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
+			modelBuilder.Entity<AppRoleClaim>().ToTable("RoleClaims");
+			modelBuilder.Entity<AppRoleClaim>().HasOne<AppRole>().WithOne().HasForeignKey<AppRole>(b => b.Id).IsRequired();
 		}
-		public static List<IdentityRoleClaim<int>> GetData()
+		public static List<AppRoleClaim> GetData()
 		{
-			var roleClaimList = new List<IdentityRoleClaim<int>>();
+			var roleClaimList = new List<AppRoleClaim>();
 
             var idCounter = 0;
 			foreach (var module in Permissions.PermissionModules()) {
 				var allPermissions = Permissions.GeneratePermissionsForModule(module);
 				foreach (var permissionClaim in allPermissions) {
                     idCounter++;
-					roleClaimList.Add(new IdentityRoleClaim<int>
+					roleClaimList.Add(new AppRoleClaim
 					{ // Super Admin
                         Id = idCounter,
 						ClaimType = "Permission",
@@ -37,7 +38,7 @@ namespace ViGraph.Database.Schema
 
 					if (module != "AppUser" && module != "AppRole") {
                         idCounter++;
-						roleClaimList.Add(new IdentityRoleClaim<int>
+						roleClaimList.Add(new AppRoleClaim
 						{ // Admin
                             Id = idCounter,
 							ClaimType = "Permission",
@@ -54,7 +55,7 @@ namespace ViGraph.Database.Schema
 						permissionClaim != "Permissions" + module + ".ForceDelete"
 					) {
                         idCounter++;
-						roleClaimList.Add(new IdentityRoleClaim<int>
+						roleClaimList.Add(new AppRoleClaim
 						{ // Editor
                             Id = idCounter,
 							ClaimType = "Permission",
