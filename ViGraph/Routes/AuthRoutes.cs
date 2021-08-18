@@ -1,12 +1,15 @@
 namespace ViGraph
 {
-	public static class Routes
+	public static partial class Routes
 	{
 		public const string ShowLogin = nameof(ShowLogin);
 		public const string ShowLoginPath = "login";
 
 		public const string Login = nameof(Login);
 		public const string LoginPath = "login";
+
+		public const string ListUsers = nameof(ListUsers);
+		public const string ListUsersPath = "/users";
 
 		public const string EditUser = nameof(EditUser);
 		public const string EditUserPath = "/users/{Id}";

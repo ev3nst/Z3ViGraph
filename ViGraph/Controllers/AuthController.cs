@@ -38,7 +38,7 @@ namespace ViGraph.Controllers
 			_appUseRepository = appUseRepository;
 		}
 
-		[HttpGet(Routes.ShowLoginPath)]
+		[HttpGet]
 		[Route(Routes.ShowLoginPath, Name = Routes.ShowLogin)]
 		public IActionResult Login()
 		{

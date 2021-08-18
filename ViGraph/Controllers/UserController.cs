@@ -27,7 +27,8 @@ namespace ViGraph.Controllers
             _localizer = localizer;
 		}
 
-		[HttpGet("/users")]
+		[HttpGet]
+		[Route(Routes.ListUsersPath, Name = Routes.ListUsers)]
 		public IActionResult Index()
 		{
 			return View();

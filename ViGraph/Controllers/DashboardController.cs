@@ -8,7 +8,7 @@ using ViGraph.Repository.IRepository;
 
 namespace ViGraph.Controllers
 {
-    [Authorize]
+	[Authorize]
 	public class DashboardController : Controller
 	{
 
@@ -21,26 +21,10 @@ namespace ViGraph.Controllers
 		}
 
 
-        [HttpGet("/dashboard")]
-		public async Task<IActionResult> Index()
+		[HttpGet("/dashboard")]
+		public IActionResult Index()
 		{
-
-            var paginationOptions = new PaginationOptions {
-                PerPage = 10,
-                Page = 1,
-                SortField = "FullName",
-                SortOrder = SortOrderTypes.ASC,
-            };
-
-           var data = await _appUseRepository.Paginate(paginationOptions);
-
-
-     return Json(data, new JsonSerializerOptions
-    {
-        WriteIndented = true,
-    });
-
-			// return View();
+			return View();
 		}
 	}
 }
