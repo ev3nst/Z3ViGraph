@@ -88,5 +88,7 @@ namespace ViGraph.Models
 		public YTUploadStatus UploadStatus { get; set; } = YTUploadStatus.Initialized;
 
 		public virtual ICollection<Thumbnail> Thumbnails { get; set; }
+
+		public virtual VideoViewCount ViewCount { get; set; }
 	}
 }

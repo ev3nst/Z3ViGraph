@@ -17,8 +17,7 @@ namespace ViGraph.Database.Schema
 		{
 			modelBuilder.Entity<VideoViewCount>(videoViewCount => {
 				videoViewCount.ToTable("VideoViewCounts");
-				videoViewCount.HasNoKey();
-				videoViewCount.HasIndex(c => new { c.VideoId }).IsUnique();
+				videoViewCount.HasKey(c => new { c.VideoId });
 			});
 		}
 

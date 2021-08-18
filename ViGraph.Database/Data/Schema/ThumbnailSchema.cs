@@ -17,9 +17,13 @@ namespace ViGraph.Database.Schema
 		{
 			modelBuilder.Entity<Thumbnail>(thumbnail => {
 				thumbnail.ToTable("Thumbnails");
-				thumbnail.HasNoKey();
 				thumbnail.Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
-				thumbnail.HasIndex(c => new { c.VideoId, c.Size }).IsUnique();
+				thumbnail.HasKey(c => new { c.VideoId, c.Size });
+
+				thumbnail.HasOne<Video>(x => x.Video)
+					.WithMany(ur => ur.Thumbnails)
+					.HasForeignKey(x => x.VideoId)
+					.IsRequired();
 			});
 		}
 

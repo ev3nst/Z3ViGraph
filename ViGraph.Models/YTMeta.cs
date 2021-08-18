@@ -21,5 +21,9 @@ namespace ViGraph.Models
 
 		[Required]
 		public bool PublicStatsViewable { get; set; } = true;
+
+		public virtual Video Video { get; set; } = null;
+
+		public virtual YTPlaylist YTPlaylist { get; set; } = null;
 	}
 }

@@ -144,12 +144,13 @@ namespace ViGraph.Database.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<string>("Sef")
                         .IsRequired()
@@ -162,13 +163,16 @@ namespace ViGraph.Database.Migrations
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
 
+                    b.HasIndex("Sef")
+                        .IsUnique();
+
                     b.ToTable("Roles");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "4c84bf06-61e4-4de1-b9a9-e5ca1da12e06",
+                            ConcurrencyStamp = "1b302285-76f3-48e8-9979-d417737cff8c",
                             Name = "Super Admin",
                             NormalizedName = "SuperAdmin",
                             Sef = "super-admin"
@@ -176,7 +180,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "3da526de-e35c-4d4b-8dff-107029d8d40d",
+                            ConcurrencyStamp = "15bce1ed-f17e-4797-a4eb-030760ee76b9",
                             Name = "Admin",
                             NormalizedName = "Admin",
                             Sef = "admin"
@@ -184,7 +188,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "46305bd9-467c-49e6-9d59-cf06bd97b922",
+                            ConcurrencyStamp = "462b77b6-8454-4f4f-894f-6321845d224c",
                             Name = "Editor",
                             NormalizedName = "Editor",
                             Sef = "editor"
@@ -198,17 +202,22 @@ namespace ViGraph.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("RoleId", "ClaimValue")
+                        .IsUnique();
 
                     b.ToTable("RoleClaims");
 
@@ -1468,7 +1477,8 @@ namespace ViGraph.Database.Migrations
                         .HasColumnName("LastLogin");
 
                     b.Property<string>("LastLoginIP")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(45)
+                        .HasColumnType("varchar(45)");
 
                     b.Property<DateTime?>("LastLogout")
                         .HasPrecision(0)
@@ -1530,8 +1540,8 @@ namespace ViGraph.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "z3@vigraph.com",
                             NormalizedUserName = "z3@vigraph.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAECoeTh0aBqiDqLJ4RTlOAleyX3w+kjok/l/2fe57iuEWS/P6HPgrBKuUB6ac6uaa/g==",
-                            SecurityStamp = "95f2f7df-eb99-44c7-9173-e11436b7d03c",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH0BQEnilTlkB+xNub7c7MQcS88uQdDh/t42oJGXqWJdSpb2nnDnVtAsVEaZRL7s0Q==",
+                            SecurityStamp = "1cb7e73d-267e-4c40-84cc-31b5069dcd3d",
                             UserName = "z3@vigraph.com"
                         },
                         new
@@ -1544,8 +1554,8 @@ namespace ViGraph.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "test@admin.com",
                             NormalizedUserName = "test@admin.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGUOIJ4OShydndCOlER4mLcBV8ApTd6Zo8JNDqqCVwlYnfCo905rLUapcjnc5SWIew==",
-                            SecurityStamp = "e8e63224-f5b2-4d95-8aa9-f8df99fd26d0",
+                            PasswordHash = "AQAAAAEAACcQAAAAENHQCu+jgpHhakmQEudwFqg29JXVYXEzD+6VXLte9tnvHdMfnTL1t9deMcC96NSQGQ==",
+                            SecurityStamp = "0d2a8fe5-59e5-4fe1-ab45-fe802f68e5ca",
                             UserName = "test@admin.com"
                         },
                         new
@@ -1558,8 +1568,8 @@ namespace ViGraph.Database.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "test@editor.com",
                             NormalizedUserName = "test@editor.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAENFiFkjTNZ3oM73nKcd9f6/MNLjoAoaCpDuD2imEmvvKLv1FYsGHnvaxDPnGER6/ZA==",
-                            SecurityStamp = "86be72dc-5c04-45b4-90d2-2783c35e3895",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL+NzeG4SxFtrXe/QxHlvyXXg3Sb5e/qfb/oeoLwg2bkmJkhMpDVjA/9u9Ke7DiXeg==",
+                            SecurityStamp = "6b25cffa-81ef-463c-a8bf-4c4c7ddb7c78",
                             UserName = "test@editor.com"
                         });
                 });
@@ -1575,6 +1585,12 @@ namespace ViGraph.Database.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId", "RoleId")
+                        .IsUnique();
 
                     b.ToTable("UserRoles");
 
@@ -1640,6 +1656,9 @@ namespace ViGraph.Database.Migrations
 
                     b.HasIndex("CreatedById");
 
+                    b.HasIndex("Sef")
+                        .IsUnique();
+
                     b.HasIndex("UpdatedById");
 
                     b.ToTable("Categories");
@@ -1648,7 +1667,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 8, 17, 14, 34, 42, 725, DateTimeKind.Local).AddTicks(1260),
+                            CreatedAt = new DateTime(2021, 8, 18, 15, 30, 38, 755, DateTimeKind.Local).AddTicks(3940),
                             CreatedById = 1,
                             Sef = "gundem",
                             Title = "Gündem"
@@ -1656,7 +1675,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 8, 17, 14, 34, 42, 725, DateTimeKind.Local).AddTicks(2910),
+                            CreatedAt = new DateTime(2021, 8, 18, 15, 30, 38, 755, DateTimeKind.Local).AddTicks(5720),
                             CreatedById = 1,
                             Sef = "spor",
                             Title = "Spor"
@@ -1664,7 +1683,7 @@ namespace ViGraph.Database.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 8, 17, 14, 34, 42, 725, DateTimeKind.Local).AddTicks(2920),
+                            CreatedAt = new DateTime(2021, 8, 18, 15, 30, 38, 755, DateTimeKind.Local).AddTicks(5730),
                             CreatedById = 1,
                             Sef = "yasam",
                             Title = "Yaşam"
@@ -1673,6 +1692,12 @@ namespace ViGraph.Database.Migrations
 
             modelBuilder.Entity("ViGraph.Models.Thumbnail", b =>
                 {
+                    b.Property<int>("VideoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("enum('default','medium', 'high', 'standart', 'maxres')");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasPrecision(0)
                         .HasColumnType("datetime(0)")
@@ -1687,22 +1712,14 @@ namespace ViGraph.Database.Migrations
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("enum('default','medium', 'high', 'standart', 'maxres')");
-
-                    b.Property<int>("VideoId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Width")
                         .HasColumnType("int");
 
+                    b.HasKey("VideoId", "Size");
+
                     b.HasIndex("CreatedById");
 
-                    b.HasIndex("VideoId");
-
-                    b.HasIndex("FileId", "VideoId", "Size")
-                        .IsUnique();
+                    b.HasIndex("FileId");
 
                     b.ToTable("Thumbnails");
                 });
@@ -1781,8 +1798,6 @@ namespace ViGraph.Database.Migrations
 
                     b.HasIndex("UpdatedById");
 
-                    b.HasIndex("YTCategoryId");
-
                     b.HasIndex("YTMetaId")
                         .IsUnique();
 
@@ -1798,8 +1813,7 @@ namespace ViGraph.Database.Migrations
                         .HasMaxLength(2147483647)
                         .HasColumnType("int");
 
-                    b.HasIndex("VideoId")
-                        .IsUnique();
+                    b.HasKey("VideoId");
 
                     b.ToTable("VideoViewCounts");
                 });
@@ -1807,7 +1821,6 @@ namespace ViGraph.Database.Migrations
             modelBuilder.Entity("ViGraph.Models.YTCategory", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<bool>("Assignable")
@@ -1884,7 +1897,6 @@ namespace ViGraph.Database.Migrations
             modelBuilder.Entity("ViGraph.Models.YTMeta", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("DefaultLanguage")
@@ -1989,6 +2001,12 @@ namespace ViGraph.Database.Migrations
 
             modelBuilder.Entity("ViGraph.Models.YTPlaylistItem", b =>
                 {
+                    b.Property<int>("YTPlaylistId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VideoId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasPrecision(0)
                         .HasColumnType("datetime(0)")
@@ -2000,10 +2018,6 @@ namespace ViGraph.Database.Migrations
                     b.Property<int>("Position")
                         .HasColumnType("int");
 
-                    b.Property<string>("ResourceId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasPrecision(0)
                         .HasColumnType("datetime(0)")
@@ -2012,12 +2026,13 @@ namespace ViGraph.Database.Migrations
                     b.Property<int?>("UpdatedById")
                         .HasColumnType("int");
 
-                    b.Property<int>("YTPlaylistId")
-                        .HasColumnType("int");
+                    b.HasKey("YTPlaylistId", "VideoId");
 
                     b.HasIndex("CreatedById");
 
                     b.HasIndex("UpdatedById");
+
+                    b.HasIndex("VideoId");
 
                     b.HasIndex("YTPlaylistId", "Position")
                         .IsUnique();
@@ -2072,8 +2087,8 @@ namespace ViGraph.Database.Migrations
                         .IsRequired();
 
                     b.HasOne("ViGraph.Models.AppUser", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
+                        .WithOne("UserRole")
+                        .HasForeignKey("ViGraph.Models.AppUserRole", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2114,7 +2129,7 @@ namespace ViGraph.Database.Migrations
                         .IsRequired();
 
                     b.HasOne("ViGraph.Models.Video", "Video")
-                        .WithMany()
+                        .WithMany("Thumbnails")
                         .HasForeignKey("VideoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2156,18 +2171,6 @@ namespace ViGraph.Database.Migrations
                         .WithMany()
                         .HasForeignKey("UpdatedById");
 
-                    b.HasOne("ViGraph.Models.YTCategory", "YTCategory")
-                        .WithMany()
-                        .HasForeignKey("YTCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ViGraph.Models.YTMeta", "YTMeta")
-                        .WithMany()
-                        .HasForeignKey("YTMetaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Category");
 
                     b.Navigation("CreatedBy");
@@ -2177,21 +2180,47 @@ namespace ViGraph.Database.Migrations
                     b.Navigation("SDFile");
 
                     b.Navigation("UpdatedBy");
-
-                    b.Navigation("YTCategory");
-
-                    b.Navigation("YTMeta");
                 });
 
             modelBuilder.Entity("ViGraph.Models.VideoViewCount", b =>
                 {
                     b.HasOne("ViGraph.Models.Video", "Video")
-                        .WithMany()
-                        .HasForeignKey("VideoId")
+                        .WithOne("ViewCount")
+                        .HasForeignKey("ViGraph.Models.VideoViewCount", "VideoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Video");
+                });
+
+            modelBuilder.Entity("ViGraph.Models.YTCategory", b =>
+                {
+                    b.HasOne("ViGraph.Models.Video", "Video")
+                        .WithOne("YTCategory")
+                        .HasForeignKey("ViGraph.Models.YTCategory", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Video");
+                });
+
+            modelBuilder.Entity("ViGraph.Models.YTMeta", b =>
+                {
+                    b.HasOne("ViGraph.Models.Video", "Video")
+                        .WithOne("YTMeta")
+                        .HasForeignKey("ViGraph.Models.YTMeta", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ViGraph.Models.YTPlaylist", "YTPlaylist")
+                        .WithOne("YTMeta")
+                        .HasForeignKey("ViGraph.Models.YTMeta", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Video");
+
+                    b.Navigation("YTPlaylist");
                 });
 
             modelBuilder.Entity("ViGraph.Models.YTPlaylist", b =>
@@ -2206,17 +2235,9 @@ namespace ViGraph.Database.Migrations
                         .WithMany()
                         .HasForeignKey("UpdatedById");
 
-                    b.HasOne("ViGraph.Models.YTMeta", "YTMeta")
-                        .WithMany()
-                        .HasForeignKey("YTMetaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("CreatedBy");
 
                     b.Navigation("UpdatedBy");
-
-                    b.Navigation("YTMeta");
                 });
 
             modelBuilder.Entity("ViGraph.Models.YTPlaylistItem", b =>
@@ -2231,8 +2252,14 @@ namespace ViGraph.Database.Migrations
                         .WithMany()
                         .HasForeignKey("UpdatedById");
 
-                    b.HasOne("ViGraph.Models.YTPlaylist", "YTPlaylist")
+                    b.HasOne("ViGraph.Models.Video", "Video")
                         .WithMany()
+                        .HasForeignKey("VideoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ViGraph.Models.YTPlaylist", "YTPlaylist")
+                        .WithMany("YTPlaylistItems")
                         .HasForeignKey("YTPlaylistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2240,6 +2267,8 @@ namespace ViGraph.Database.Migrations
                     b.Navigation("CreatedBy");
 
                     b.Navigation("UpdatedBy");
+
+                    b.Navigation("Video");
 
                     b.Navigation("YTPlaylist");
                 });
@@ -2251,7 +2280,25 @@ namespace ViGraph.Database.Migrations
 
             modelBuilder.Entity("ViGraph.Models.AppUser", b =>
                 {
-                    b.Navigation("UserRoles");
+                    b.Navigation("UserRole");
+                });
+
+            modelBuilder.Entity("ViGraph.Models.Video", b =>
+                {
+                    b.Navigation("Thumbnails");
+
+                    b.Navigation("ViewCount");
+
+                    b.Navigation("YTCategory");
+
+                    b.Navigation("YTMeta");
+                });
+
+            modelBuilder.Entity("ViGraph.Models.YTPlaylist", b =>
+                {
+                    b.Navigation("YTMeta");
+
+                    b.Navigation("YTPlaylistItems");
                 });
 #pragma warning restore 612, 618
         }

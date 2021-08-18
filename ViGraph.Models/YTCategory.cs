@@ -14,5 +14,7 @@ namespace ViGraph.Models
 
 		[Required]
 		public bool Assignable { get; set; }
+
+		public virtual Video Video { get; set; }
 	}
 }

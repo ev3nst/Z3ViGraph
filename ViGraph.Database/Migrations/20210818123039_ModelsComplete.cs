@@ -45,13 +45,13 @@ namespace ViGraph.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    NormalizedName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Sef = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Name = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    NormalizedName = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ConcurrencyStamp = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
@@ -73,7 +73,7 @@ namespace ViGraph.Database.Migrations
                     Language = table.Column<string>(type: "enum('TR','EN')", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastLogin = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: true),
-                    LastLoginIP = table.Column<string>(type: "longtext", nullable: true)
+                    LastLoginIP = table.Column<string>(type: "varchar(45)", maxLength: 45, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastLogout = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
@@ -97,28 +97,6 @@ namespace ViGraph.Database.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "YTCategories",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Assignable = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Etag = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    YTId = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    YTChannelId = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_YTCategories", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -150,40 +128,15 @@ namespace ViGraph.Database.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "YTMetas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PrivacyStatus = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    PublishedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
-                    DefaultLanguage = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    PublicStatsViewable = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Etag = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    YTId = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    YTChannelId = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_YTMetas", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "RoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RoleId = table.Column<int>(type: "int", nullable: false),
-                    ClaimType = table.Column<string>(type: "longtext", nullable: true)
+                    ClaimType = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ClaimValue = table.Column<string>(type: "longtext", nullable: true)
+                    ClaimValue = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -368,12 +321,6 @@ namespace ViGraph.Database.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_YTPlaylists_YTMetas_YTMetaId",
-                        column: x => x.YTMetaId,
-                        principalTable: "YTMetas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -436,54 +383,6 @@ namespace ViGraph.Database.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Videos_YTCategories_YTCategoryId",
-                        column: x => x.YTCategoryId,
-                        principalTable: "YTCategories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Videos_YTMetas_YTMetaId",
-                        column: x => x.YTMetaId,
-                        principalTable: "YTMetas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "YTPlaylistItems",
-                columns: table => new
-                {
-                    YTPlaylistId = table.Column<int>(type: "int", nullable: false),
-                    ResourceId = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Position = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: true),
-                    CreatedById = table.Column<int>(type: "int", nullable: false),
-                    UpdatedById = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.ForeignKey(
-                        name: "FK_YTPlaylistItems_Users_CreatedById",
-                        column: x => x.CreatedById,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_YTPlaylistItems_Users_UpdatedById",
-                        column: x => x.UpdatedById,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_YTPlaylistItems_YTPlaylists_YTPlaylistId",
-                        column: x => x.YTPlaylistId,
-                        principalTable: "YTPlaylists",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -491,17 +390,18 @@ namespace ViGraph.Database.Migrations
                 name: "Thumbnails",
                 columns: table => new
                 {
-                    FileId = table.Column<int>(type: "int", nullable: false),
                     VideoId = table.Column<int>(type: "int", nullable: false),
-                    Width = table.Column<int>(type: "int", nullable: false),
-                    Height = table.Column<int>(type: "int", nullable: false),
                     Size = table.Column<string>(type: "enum('default','medium', 'high', 'standart', 'maxres')", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    FileId = table.Column<int>(type: "int", nullable: false),
+                    Width = table.Column<int>(type: "int", nullable: false),
+                    Height = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
                     CreatedById = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_Thumbnails", x => new { x.VideoId, x.Size });
                     table.ForeignKey(
                         name: "FK_Thumbnails_AppFile_FileId",
                         column: x => x.FileId,
@@ -532,10 +432,116 @@ namespace ViGraph.Database.Migrations
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_VideoViewCounts", x => x.VideoId);
                     table.ForeignKey(
                         name: "FK_VideoViewCounts_Videos_VideoId",
                         column: x => x.VideoId,
                         principalTable: "Videos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "YTCategories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Assignable = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Etag = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    YTId = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    YTChannelId = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_YTCategories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_YTCategories_Videos_Id",
+                        column: x => x.Id,
+                        principalTable: "Videos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "YTMetas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    PrivacyStatus = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PublishedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
+                    DefaultLanguage = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PublicStatsViewable = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Etag = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    YTId = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    YTChannelId = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_YTMetas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_YTMetas_Videos_Id",
+                        column: x => x.Id,
+                        principalTable: "Videos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_YTMetas_YTPlaylists_Id",
+                        column: x => x.Id,
+                        principalTable: "YTPlaylists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "YTPlaylistItems",
+                columns: table => new
+                {
+                    YTPlaylistId = table.Column<int>(type: "int", nullable: false),
+                    VideoId = table.Column<int>(type: "int", nullable: false),
+                    Position = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: true),
+                    CreatedById = table.Column<int>(type: "int", nullable: false),
+                    UpdatedById = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_YTPlaylistItems", x => new { x.YTPlaylistId, x.VideoId });
+                    table.ForeignKey(
+                        name: "FK_YTPlaylistItems_Users_CreatedById",
+                        column: x => x.CreatedById,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_YTPlaylistItems_Users_UpdatedById",
+                        column: x => x.UpdatedById,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_YTPlaylistItems_Videos_VideoId",
+                        column: x => x.VideoId,
+                        principalTable: "Videos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_YTPlaylistItems_YTPlaylists_YTPlaylistId",
+                        column: x => x.YTPlaylistId,
+                        principalTable: "YTPlaylists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -546,9 +552,9 @@ namespace ViGraph.Database.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName", "Sef" },
                 values: new object[,]
                 {
-                    { 1, "4c84bf06-61e4-4de1-b9a9-e5ca1da12e06", null, "Super Admin", "SuperAdmin", "super-admin" },
-                    { 2, "3da526de-e35c-4d4b-8dff-107029d8d40d", null, "Admin", "Admin", "admin" },
-                    { 3, "46305bd9-467c-49e6-9d59-cf06bd97b922", null, "Editor", "Editor", "editor" }
+                    { 1, "1b302285-76f3-48e8-9979-d417737cff8c", null, "Super Admin", "SuperAdmin", "super-admin" },
+                    { 2, "15bce1ed-f17e-4797-a4eb-030760ee76b9", null, "Admin", "Admin", "admin" },
+                    { 3, "462b77b6-8454-4f4f-894f-6321845d224c", null, "Editor", "Editor", "editor" }
                 });
 
             migrationBuilder.InsertData(
@@ -556,9 +562,9 @@ namespace ViGraph.Database.Migrations
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "Email", "FullName", "Language", "LastLogin", "LastLoginIP", "LastLogout", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "SecurityStamp", "UpdatedAt", "UserName" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "z3@vigraph.com", "Z3 Root", "TR", null, null, null, false, null, "z3@vigraph.com", "z3@vigraph.com", "AQAAAAEAACcQAAAAECoeTh0aBqiDqLJ4RTlOAleyX3w+kjok/l/2fe57iuEWS/P6HPgrBKuUB6ac6uaa/g==", "95f2f7df-eb99-44c7-9173-e11436b7d03c", null, "z3@vigraph.com" },
-                    { 2, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "test@admin.com", "Test Admin", "TR", null, null, null, false, null, "test@admin.com", "test@admin.com", "AQAAAAEAACcQAAAAEGUOIJ4OShydndCOlER4mLcBV8ApTd6Zo8JNDqqCVwlYnfCo905rLUapcjnc5SWIew==", "e8e63224-f5b2-4d95-8aa9-f8df99fd26d0", null, "test@admin.com" },
-                    { 3, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "test@editor.com", "Test Editor", "TR", null, null, null, false, null, "test@editor.com", "test@editor.com", "AQAAAAEAACcQAAAAENFiFkjTNZ3oM73nKcd9f6/MNLjoAoaCpDuD2imEmvvKLv1FYsGHnvaxDPnGER6/ZA==", "86be72dc-5c04-45b4-90d2-2783c35e3895", null, "test@editor.com" }
+                    { 1, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "z3@vigraph.com", "Z3 Root", "TR", null, null, null, false, null, "z3@vigraph.com", "z3@vigraph.com", "AQAAAAEAACcQAAAAEH0BQEnilTlkB+xNub7c7MQcS88uQdDh/t42oJGXqWJdSpb2nnDnVtAsVEaZRL7s0Q==", "1cb7e73d-267e-4c40-84cc-31b5069dcd3d", null, "z3@vigraph.com" },
+                    { 2, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "test@admin.com", "Test Admin", "TR", null, null, null, false, null, "test@admin.com", "test@admin.com", "AQAAAAEAACcQAAAAENHQCu+jgpHhakmQEudwFqg29JXVYXEzD+6VXLte9tnvHdMfnTL1t9deMcC96NSQGQ==", "0d2a8fe5-59e5-4fe1-ab45-fe802f68e5ca", null, "test@admin.com" },
+                    { 3, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "test@editor.com", "Test Editor", "TR", null, null, null, false, null, "test@editor.com", "test@editor.com", "AQAAAAEAACcQAAAAEL+NzeG4SxFtrXe/QxHlvyXXg3Sb5e/qfb/oeoLwg2bkmJkhMpDVjA/9u9Ke7DiXeg==", "6b25cffa-81ef-463c-a8bf-4c4c7ddb7c78", null, "test@editor.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -566,9 +572,9 @@ namespace ViGraph.Database.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedById", "DeletedAt", "Description", "Sef", "Title", "UpdatedAt", "UpdatedById" },
                 values: new object[,]
                 {
-                    { 3, new DateTime(2021, 8, 17, 14, 34, 42, 725, DateTimeKind.Local).AddTicks(2920), 1, null, null, "yasam", "Yaşam", null, null },
-                    { 2, new DateTime(2021, 8, 17, 14, 34, 42, 725, DateTimeKind.Local).AddTicks(2910), 1, null, null, "spor", "Spor", null, null },
-                    { 1, new DateTime(2021, 8, 17, 14, 34, 42, 725, DateTimeKind.Local).AddTicks(1260), 1, null, null, "gundem", "Gündem", null, null }
+                    { 3, new DateTime(2021, 8, 18, 15, 30, 38, 755, DateTimeKind.Local).AddTicks(5730), 1, null, null, "yasam", "Yaşam", null, null },
+                    { 2, new DateTime(2021, 8, 18, 15, 30, 38, 755, DateTimeKind.Local).AddTicks(5720), 1, null, null, "spor", "Spor", null, null },
+                    { 1, new DateTime(2021, 8, 18, 15, 30, 38, 755, DateTimeKind.Local).AddTicks(3940), 1, null, null, "gundem", "Gündem", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -768,14 +774,27 @@ namespace ViGraph.Database.Migrations
                 column: "CreatedById");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Categories_Sef",
+                table: "Categories",
+                column: "Sef",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Categories_UpdatedById",
                 table: "Categories",
                 column: "UpdatedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoleClaims_RoleId",
+                name: "IX_RoleClaims_RoleId_ClaimValue",
                 table: "RoleClaims",
-                column: "RoleId");
+                columns: new[] { "RoleId", "ClaimValue" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Roles_Sef",
+                table: "Roles",
+                column: "Sef",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
@@ -789,15 +808,9 @@ namespace ViGraph.Database.Migrations
                 column: "CreatedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Thumbnails_FileId_VideoId_Size",
+                name: "IX_Thumbnails_FileId",
                 table: "Thumbnails",
-                columns: new[] { "FileId", "VideoId", "Size" },
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Thumbnails_VideoId",
-                table: "Thumbnails",
-                column: "VideoId");
+                column: "FileId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
@@ -813,6 +826,18 @@ namespace ViGraph.Database.Migrations
                 name: "IX_UserRoles_RoleId",
                 table: "UserRoles",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRoles_UserId",
+                table: "UserRoles",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRoles_UserId_RoleId",
+                table: "UserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
@@ -858,20 +883,9 @@ namespace ViGraph.Database.Migrations
                 column: "UpdatedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Videos_YTCategoryId",
-                table: "Videos",
-                column: "YTCategoryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Videos_YTMetaId",
                 table: "Videos",
                 column: "YTMetaId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_VideoViewCounts_VideoId",
-                table: "VideoViewCounts",
-                column: "VideoId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -901,6 +915,11 @@ namespace ViGraph.Database.Migrations
                 name: "IX_YTPlaylistItems_UpdatedById",
                 table: "YTPlaylistItems",
                 column: "UpdatedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_YTPlaylistItems_VideoId",
+                table: "YTPlaylistItems",
+                column: "VideoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_YTPlaylistItems_YTPlaylistId_Position",
@@ -955,7 +974,13 @@ namespace ViGraph.Database.Migrations
                 name: "VideoViewCounts");
 
             migrationBuilder.DropTable(
+                name: "YTCategories");
+
+            migrationBuilder.DropTable(
                 name: "YTChannels");
+
+            migrationBuilder.DropTable(
+                name: "YTMetas");
 
             migrationBuilder.DropTable(
                 name: "YTPlaylistItems");
@@ -974,12 +999,6 @@ namespace ViGraph.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categories");
-
-            migrationBuilder.DropTable(
-                name: "YTCategories");
-
-            migrationBuilder.DropTable(
-                name: "YTMetas");
 
             migrationBuilder.DropTable(
                 name: "Users");

@@ -16,7 +16,6 @@ namespace ViGraph.Database.Schema
 		{
 			modelBuilder.Entity<AppUserRole>(appUseRole => {
 				appUseRole.ToTable("UserRoles");
-				appUseRole.HasNoKey();
 				appUseRole.HasIndex(c => new { c.UserId, c.RoleId }).IsUnique();
 			});
 		}
