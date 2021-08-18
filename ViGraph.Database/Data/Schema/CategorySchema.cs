@@ -15,10 +15,13 @@ namespace ViGraph.Database.Schema
 
 		public static void Structure(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Category>().ToTable("Categories");
-			modelBuilder.Entity<Category>().Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
-			modelBuilder.Entity<Category>().Property(c => c.UpdatedAt).HasColumnName("UpdatedAt").HasPrecision(0);
-			modelBuilder.Entity<Category>().Property(c => c.DeletedAt).HasColumnName("DeletedAt").HasPrecision(0);
+			modelBuilder.Entity<Category>(category => {
+				category.ToTable("Categories");
+				category.Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
+				category.Property(c => c.UpdatedAt).HasColumnName("UpdatedAt").HasPrecision(0);
+				category.Property(c => c.DeletedAt).HasColumnName("DeletedAt").HasPrecision(0);
+				category.HasIndex(c => new { c.Sef }).IsUnique();
+			});
 		}
 
 		public static List<Category> GetData()

@@ -18,20 +18,19 @@ namespace ViGraph.Database.Schema
 			modelBuilder.Entity<AppRole>(role => {
 				role.ToTable("Roles");
 				role.HasKey(r => r.Id);
-				role.HasIndex(r => r.NormalizedName).HasDatabaseName("RoleNameIndex").IsUnique();
+				role.HasIndex(r => r.NormalizedName).IsUnique();
+				role.HasIndex(r => r.Sef).IsUnique();
 				role.Property(r => r.ConcurrencyStamp).IsConcurrencyToken();
-				role.Property(u => u.Name).HasMaxLength(255);
-				role.Property(u => u.NormalizedName).HasMaxLength(255);
 
 				role.HasMany<AppUserRole>()
 					.WithOne(ur => ur.Role)
 					.HasForeignKey(ur => ur.RoleId)
 					.IsRequired();
 
-                role.HasMany<AppRoleClaim>(u => u.RoleClaims)
-                    .WithOne(ur => ur.Role)
-                    .HasForeignKey(ur => ur.RoleId)
-                    .IsRequired();
+				role.HasMany<AppRoleClaim>(u => u.RoleClaims)
+					.WithOne(ur => ur.Role)
+					.HasForeignKey(ur => ur.RoleId)
+					.IsRequired();
 			});
 		}
 

@@ -11,5 +11,13 @@ namespace ViGraph.Models
 
 		[ForeignKey("RoleId")]
 		public virtual AppRole Role { get; set; }
+
+		[Required]
+		[MaxLength(255)]
+		public override string ClaimType { get; set; }
+
+		[Required]
+		[MaxLength(255)]
+		public override string ClaimValue { get; set; }
 	}
 }

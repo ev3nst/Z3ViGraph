@@ -15,10 +15,11 @@ namespace ViGraph.Database.Schema
 
 		public static void Structure(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<YTMeta>().ToTable("YTMetas");
-			modelBuilder.Entity<YTMeta>().Property(c => c.PublishedAt).HasColumnName("PublishedAt").HasPrecision(0);
-			modelBuilder.Entity<YTMeta>()
-			.HasIndex(c => new { c.YTId }).IsUnique();
+			modelBuilder.Entity<YTMeta>(ytMeta => {
+				ytMeta.ToTable("YTMetas");
+				ytMeta.Property(c => c.PublishedAt).HasColumnName("PublishedAt").HasPrecision(0);
+				ytMeta.HasIndex(c => new { c.YTId }).IsUnique();
+			});
 		}
 
 		public static List<YTMeta> GetData()

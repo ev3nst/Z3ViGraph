@@ -16,30 +16,34 @@ namespace ViGraph.Database.Schema
 
 		public static void Structure(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<AppRoleClaim>().ToTable("RoleClaims");
+			modelBuilder.Entity<AppRoleClaim>(roleClaim => {
+				roleClaim.ToTable("RoleClaims");
+				roleClaim.HasIndex(c => new { c.RoleId, c.ClaimValue }).IsUnique();
+			});
 		}
+
 		public static List<AppRoleClaim> GetData()
 		{
 			var roleClaimList = new List<AppRoleClaim>();
 
-            var idCounter = 0;
+			var idCounter = 0;
 			foreach (var module in Permissions.PermissionModules()) {
 				var allPermissions = Permissions.GeneratePermissionsForModule(module);
 				foreach (var permissionClaim in allPermissions) {
-                    idCounter++;
+					idCounter++;
 					roleClaimList.Add(new AppRoleClaim
 					{ // Super Admin
-                        Id = idCounter,
+						Id = idCounter,
 						ClaimType = "Permission",
 						ClaimValue = permissionClaim,
 						RoleId = 1
 					});
 
 					if (module != "AppUser" && module != "AppRole") {
-                        idCounter++;
+						idCounter++;
 						roleClaimList.Add(new AppRoleClaim
 						{ // Admin
-                            Id = idCounter,
+							Id = idCounter,
 							ClaimType = "Permission",
 							ClaimValue = permissionClaim,
 							RoleId = 2
@@ -53,10 +57,10 @@ namespace ViGraph.Database.Schema
 						permissionClaim != "Permissions" + module + ".Restore" &&
 						permissionClaim != "Permissions" + module + ".ForceDelete"
 					) {
-                        idCounter++;
+						idCounter++;
 						roleClaimList.Add(new AppRoleClaim
 						{ // Editor
-                            Id = idCounter,
+							Id = idCounter,
 							ClaimType = "Permission",
 							ClaimValue = permissionClaim,
 							RoleId = 3

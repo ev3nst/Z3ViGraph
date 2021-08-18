@@ -13,7 +13,10 @@ namespace ViGraph.Models
 		public virtual YTPlaylist YTPlaylist { get; set; }
 
 		[Required]
-		public string ResourceId { get; set; }
+		public int VideoId { get; set; }
+
+		[ForeignKey("VideoId")]
+		public virtual Video Video { get; set; }
 
 		[Required]
 		public int Position { get; set; } = 0;

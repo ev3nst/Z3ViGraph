@@ -15,12 +15,13 @@ namespace ViGraph.Database.Schema
 
 		public static void Structure(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Video>().ToTable("Videos");
-			modelBuilder.Entity<Video>().Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
-			modelBuilder.Entity<Video>().Property(c => c.UpdatedAt).HasColumnName("UpdatedAt").HasPrecision(0);
-			modelBuilder.Entity<Video>().Property(c => c.DeletedAt).HasColumnName("DeletedAt").HasPrecision(0);
-			modelBuilder.Entity<Video>()
-			.HasIndex(c => new { c.YTMetaId }).IsUnique();
+			modelBuilder.Entity<Video>(video => {
+				video.ToTable("Videos");
+				video.Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
+				video.Property(c => c.UpdatedAt).HasColumnName("UpdatedAt").HasPrecision(0);
+				video.Property(c => c.DeletedAt).HasColumnName("DeletedAt").HasPrecision(0);
+				video.HasIndex(c => new { c.YTMetaId }).IsUnique();
+			});
 		}
 
 		public static List<Video> GetData()

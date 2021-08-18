@@ -15,12 +15,14 @@ namespace ViGraph.Database.Schema
 
 		public static void Structure(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<YTPlaylistItem>().ToTable("YTPlaylistItems");
-			modelBuilder.Entity<YTPlaylistItem>().Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
-			modelBuilder.Entity<YTPlaylistItem>().Property(c => c.UpdatedAt).HasColumnName("UpdatedAt").HasPrecision(0);
-			modelBuilder.Entity<YTPlaylistItem>().HasNoKey();
-			modelBuilder.Entity<YTPlaylistItem>()
-			.HasIndex(c => new { c.YTPlaylistId, c.Position }).IsUnique();
+			modelBuilder.Entity<YTPlaylistItem>(ytPlaylistItem => {
+                ytPlaylistItem.ToTable("YTPlaylistItems");
+                ytPlaylistItem.HasNoKey();
+                ytPlaylistItem.Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
+                ytPlaylistItem.Property(c => c.UpdatedAt).HasColumnName("UpdatedAt").HasPrecision(0);
+                ytPlaylistItem.HasIndex(c => new { c.YTPlaylistId, c.VideoId }).IsUnique();
+                ytPlaylistItem.HasIndex(c => new { c.YTPlaylistId, c.Position }).IsUnique();
+            });
 		}
 
 		public static List<YTPlaylistItem> GetData()

@@ -15,10 +15,11 @@ namespace ViGraph.Database.Schema
 
 		public static void Structure(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<VideoViewCount>().ToTable("VideoViewCounts");
-			modelBuilder.Entity<VideoViewCount>().HasNoKey();
-			modelBuilder.Entity<VideoViewCount>()
-			.HasIndex(c => new { c.VideoId }).IsUnique();
+			modelBuilder.Entity<VideoViewCount>(videoViewCount => {
+				videoViewCount.ToTable("VideoViewCounts");
+				videoViewCount.HasNoKey();
+				videoViewCount.HasIndex(c => new { c.VideoId }).IsUnique();
+			});
 		}
 
 		public static List<VideoViewCount> GetData()

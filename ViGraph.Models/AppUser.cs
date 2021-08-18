@@ -28,6 +28,7 @@ namespace ViGraph.Models
 		public DateTime? LastLogin { get; set; } = null;
 
         [JsonIgnore]
+		[MaxLength(45)]
 		public string LastLoginIP { get; set; } = null;
 
         [JsonIgnore]

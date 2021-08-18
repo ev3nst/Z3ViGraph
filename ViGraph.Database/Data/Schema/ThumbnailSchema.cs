@@ -15,11 +15,12 @@ namespace ViGraph.Database.Schema
 
 		public static void Structure(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Thumbnail>().ToTable("Thumbnails");
-			modelBuilder.Entity<Thumbnail>().Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
-			modelBuilder.Entity<Thumbnail>().HasNoKey();
-			modelBuilder.Entity<Thumbnail>()
-			.HasIndex(c => new { c.FileId, c.VideoId, c.Size }).IsUnique();
+			modelBuilder.Entity<Thumbnail>(thumbnail => {
+				thumbnail.ToTable("Thumbnails");
+				thumbnail.HasNoKey();
+				thumbnail.Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
+				thumbnail.HasIndex(c => new { c.VideoId, c.Size }).IsUnique();
+			});
 		}
 
 		public static List<Thumbnail> GetData()

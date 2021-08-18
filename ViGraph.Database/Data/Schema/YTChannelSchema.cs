@@ -15,9 +15,10 @@ namespace ViGraph.Database.Schema
 
 		public static void Structure(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<YTChannel>().ToTable("YTChannels");
-			modelBuilder.Entity<YTChannel>()
-			.HasIndex(c => new { c.YTId }).IsUnique();
+			modelBuilder.Entity<YTChannel>(ytChannel => {
+				ytChannel.ToTable("YTChannels");
+				ytChannel.HasIndex(c => new { c.YTId }).IsUnique();
+			});
 		}
 
 		public static List<YTChannel> GetData()

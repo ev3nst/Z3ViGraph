@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace ViGraph.Models.DTO
 {
@@ -19,6 +18,6 @@ namespace ViGraph.Models.DTO
 
 		public string RoleSef { get; set; }
 
-		public virtual string ActionsHTML { get; set; } = null;
+		public string ActionsHTML { get; set; }
 	}
 }

@@ -16,34 +16,32 @@ namespace ViGraph.Database.Schema
 
 		public static void Structure(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<AppUser>().ToTable("Users");
-			modelBuilder.Entity<AppUser>()
-				.Ignore(c => c.NormalizedEmail)
-				.Ignore(c => c.EmailConfirmed)
-				.Ignore(c => c.ConcurrencyStamp)
-				.Ignore(c => c.PhoneNumber)
-				.Ignore(c => c.PhoneNumberConfirmed)
-				.Ignore(c => c.TwoFactorEnabled)
-				.Ignore(c => c.AccessFailedCount);
-			modelBuilder.Entity<AppUser>().Property(c => c.LastLogin).HasColumnName("LastLogin").HasPrecision(0);
-			modelBuilder.Entity<AppUser>().Property(c => c.LastLogout).HasColumnName("LastLogout").HasPrecision(0);
-			modelBuilder.Entity<AppUser>().Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
-			modelBuilder.Entity<AppUser>().Property(c => c.UpdatedAt).HasColumnName("UpdatedAt").HasPrecision(0);
-			modelBuilder.Entity<AppUser>().Property(c => c.DeletedAt).HasColumnName("DeletedAt").HasPrecision(0);
-			modelBuilder.Entity<AppUser>().Property(c => c.LockoutEnd).HasColumnName("LockoutEnd").HasPrecision(0);
+			modelBuilder.Entity<AppUser>(appUser => {
+				appUser.ToTable("Users");
+				appUser
+					.Ignore(c => c.NormalizedEmail)
+					.Ignore(c => c.EmailConfirmed)
+					.Ignore(c => c.ConcurrencyStamp)
+					.Ignore(c => c.PhoneNumber)
+					.Ignore(c => c.PhoneNumberConfirmed)
+					.Ignore(c => c.TwoFactorEnabled)
+					.Ignore(c => c.AccessFailedCount);
+				appUser.Property(c => c.LastLogin).HasColumnName("LastLogin").HasPrecision(0);
+				appUser.Property(c => c.LastLogout).HasColumnName("LastLogout").HasPrecision(0);
+				appUser.Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
+				appUser.Property(c => c.UpdatedAt).HasColumnName("UpdatedAt").HasPrecision(0);
+				appUser.Property(c => c.DeletedAt).HasColumnName("DeletedAt").HasPrecision(0);
+				appUser.Property(c => c.LockoutEnd).HasColumnName("LockoutEnd").HasPrecision(0);
 
-			modelBuilder.Entity<AppUser>()
-				.HasIndex(u => u.Email)
-				.IsUnique();
+				appUser.HasIndex(u => u.Email).IsUnique();
+				appUser.HasIndex(u => u.NormalizedEmail).IsUnique();
 
-			modelBuilder.Entity<AppUser>()
-				.HasIndex(u => u.NormalizedEmail)
-				.IsUnique();
+				appUser.HasOne<AppUserRole>(x => x.UserRole)
+					.WithOne(ur => ur.User)
+					.HasForeignKey<AppUserRole>(x => x.UserId)
+					.IsRequired();
+			});
 
-			modelBuilder.Entity<AppUser>().HasOne<AppUserRole>(x => x.UserRole)
-			.WithOne(ur => ur.User)
-			.HasForeignKey<AppUserRole>(x => x.UserId)
-			.IsRequired();
 		}
 
 		public static void Seed(ModelBuilder modelBuilder)

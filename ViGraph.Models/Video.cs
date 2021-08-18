@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -85,5 +86,7 @@ namespace ViGraph.Models
 		[Required]
 		[Column(TypeName = "enum('initialized', 'started', 'deleted','failed', 'processed', 'rejected', 'uploaded')")]
 		public YTUploadStatus UploadStatus { get; set; } = YTUploadStatus.Initialized;
+
+		public virtual ICollection<Thumbnail> Thumbnails { get; set; }
 	}
 }
