@@ -27,9 +27,6 @@ namespace ViGraph.Models
 
 		[NotMapped]
 		public override string YTChannelId { get; set; }
-
-		[NotMapped]
-		public virtual string ActionsHTML { get; set; } = null;
 	}
 }
 

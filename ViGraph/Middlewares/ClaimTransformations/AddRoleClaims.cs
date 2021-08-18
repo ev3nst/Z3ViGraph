@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -7,7 +6,6 @@ using ViGraph.Repository.IRepository;
 
 namespace ViGraph.Middlewares.ClaimTransformations
 {
-
 	public class AddRoleClaims : IClaimsTransformation
 	{
 		private readonly IAppUserRepository _appUserRepo;
@@ -36,10 +34,8 @@ namespace ViGraph.Middlewares.ClaimTransformations
 						return principal;
 					}
 
-					foreach (var userRole in user.UserRoles) {
-						foreach (var roleClaim in userRole.Role.RoleClaims) {
-							newIdentity.AddClaim(new Claim(claimType, roleClaim.ClaimValue));
-						}
+					foreach (var roleClaim in user.UserRole.Role.RoleClaims) {
+						newIdentity.AddClaim(new Claim(claimType, roleClaim.ClaimValue));
 					}
 				} else {
 					return principal;

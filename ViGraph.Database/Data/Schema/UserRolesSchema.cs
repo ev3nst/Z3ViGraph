@@ -5,7 +5,7 @@ using ViGraph.Models;
 
 namespace ViGraph.Database.Schema
 {
-	public static class UserRoleSchema
+	public static class UserRolesSchema
 	{
 		public static void Seed(ModelBuilder modelBuilder)
 		{

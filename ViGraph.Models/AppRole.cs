@@ -16,8 +16,5 @@ namespace ViGraph.Models
 		public string Description { get; set; } = null;
 
 		public virtual ICollection<AppRoleClaim> RoleClaims { get; set; }
-
-		[NotMapped]
-		public virtual string ActionsHTML { get; set; } = null;
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Text.Json;
+using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,16 +25,22 @@ namespace ViGraph.Controllers
 		public async Task<IActionResult> Index()
 		{
 
-            var paginationOptions = new PaginationOptions<AppUser> {
+            var paginationOptions = new PaginationOptions {
                 PerPage = 10,
                 Page = 1,
                 SortField = "FullName",
                 SortOrder = SortOrderTypes.ASC,
             };
 
-            _appUseRepository.Paginate(paginationOptions);
+           var data = await _appUseRepository.Paginate(paginationOptions);
 
-			return View();
+
+     return Json(data, new JsonSerializerOptions
+    {
+        WriteIndented = true,
+    });
+
+			// return View();
 		}
 	}
 }

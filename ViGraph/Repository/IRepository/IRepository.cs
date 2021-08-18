@@ -7,7 +7,7 @@ using ViGraph.Models;
 
 namespace ViGraph.Repository.IRepository
 {
-	public interface IRepository<T> : IUsesPagination<T> where T : class
+	public interface IRepository<T, TDTO> : IUsesPagination<T, TDTO> where T : class
 	{
 		#region Basic CRUD
 		// Basic

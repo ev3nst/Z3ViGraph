@@ -51,9 +51,6 @@ namespace ViGraph.Models
 		public DateTime? UpdatedAt { get; set; } = null;
 
 		public DateTime? DeletedAt { get; set; } = null;
-
-		[NotMapped]
-		public virtual string ActionsHTML { get; set; } = null;
 	}
 }
 

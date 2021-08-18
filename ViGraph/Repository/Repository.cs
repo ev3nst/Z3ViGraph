@@ -15,7 +15,7 @@ using ViGraph.Repository.IRepository;
 
 namespace ViGraph.Repository
 {
-	public abstract class Repository<T> : IRepository<T> where T : class
+	public abstract class Repository<T, TDTO> : IRepository<T, TDTO> where T : class
 	{
 		private readonly ApplicationDbContext _db;
 
@@ -131,7 +131,7 @@ namespace ViGraph.Repository
 
 		public async Task<AppUser> GetUserByIdWithRoles(int UserId)
 		{
-			return await _db.AppUser.Include(u => u.UserRoles).ThenInclude(u => u.Role).ThenInclude(r => r.RoleClaims).OrderBy(u => u.Id).AsSplitQuery().AsNoTracking().FirstOrDefaultAsync(u => u.Id == UserId);
+			return await _db.AppUser.Include(u => u.UserRole).ThenInclude(u => u.Role).ThenInclude(r => r.RoleClaims).OrderBy(u => u.Id).AsSplitQuery().AsNoTracking().FirstOrDefaultAsync(u => u.Id == UserId);
 		}
 
 		public async Task<AppUser> GetCurrentUser()
@@ -143,7 +143,7 @@ namespace ViGraph.Repository
 		public async Task<AppUser> GetCurrentUserWithRoleClaims()
 		{
 			var loggedInUserId = _context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-			return await _db.AppUser.Include(u => u.UserRoles).ThenInclude(u => u.Role).ThenInclude(r => r.RoleClaims).OrderBy(u => u.Id).AsSplitQuery().AsNoTracking().FirstOrDefaultAsync(u => u.Id == GetCurrentUserId());
+			return await _db.AppUser.Include(u => u.UserRole).ThenInclude(u => u.Role).ThenInclude(r => r.RoleClaims).OrderBy(u => u.Id).AsSplitQuery().AsNoTracking().FirstOrDefaultAsync(u => u.Id == GetCurrentUserId());
 		}
 		#endregion
 
@@ -195,11 +195,11 @@ namespace ViGraph.Repository
 			";
 		}
 
-		public abstract string ActionsHTML(T Resource);
+		public abstract string ActionsHTML(TDTO Resource);
 
 		public abstract void CheckButtonPermissions();
 
-		public abstract Task<IEnumerable<T>> Paginate(PaginationOptions<T> PaginationOptions);
+		public abstract Task<IEnumerable<TDTO>> Paginate(PaginationOptions PaginationOptions);
 		#endregion
 	}
 }

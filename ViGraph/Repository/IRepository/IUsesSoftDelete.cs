@@ -17,6 +17,6 @@ namespace ViGraph.Repository.IRepository
 
         string CreatePermaDeleteButton(T Resource);
 
-        Task<IEnumerable<T>> paginateDeleted(PaginationOptions<T> PaginationOptions);
+        Task<IEnumerable<T>> paginateDeleted(PaginationOptions PaginationOptions);
     }
 }

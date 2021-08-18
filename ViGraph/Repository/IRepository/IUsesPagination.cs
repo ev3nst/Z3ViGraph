@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ViGraph.Repository.IRepository
 {
-	public interface IUsesPagination<T> where T : class
+	public interface IUsesPagination<T, TDTO> where T : class
 	{
 		bool UseEditButton { get; set; }
 
@@ -17,10 +17,10 @@ namespace ViGraph.Repository.IRepository
 
 		string CreateDeleteButton(int Id, string Title);
 
-		string ActionsHTML(T Resource);
+		string ActionsHTML(TDTO Resource);
 
 		void CheckButtonPermissions();
 
-		Task<IEnumerable<T>> Paginate(PaginationOptions<T> PaginationOptions);
+		Task<IEnumerable<TDTO>> Paginate(PaginationOptions PaginationOptions);
 	}
 }

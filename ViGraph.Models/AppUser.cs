@@ -40,10 +40,7 @@ namespace ViGraph.Models
 
 		public DateTime? DeletedAt { get; set; } = null;
 
-		public virtual ICollection<AppUserRole> UserRoles { get; set; }
-
-		[NotMapped]
-		public virtual string ActionsHTML { get; set; } = null;
+		public virtual AppUserRole UserRole { get; set; }
 
 		#region Ignored Default Fields
 

@@ -40,9 +40,9 @@ namespace ViGraph.Database.Schema
 				.HasIndex(u => u.NormalizedEmail)
 				.IsUnique();
 
-			modelBuilder.Entity<AppUser>().HasMany<AppUserRole>(u => u.UserRoles)
+			modelBuilder.Entity<AppUser>().HasOne<AppUserRole>(x => x.UserRole)
 			.WithOne(ur => ur.User)
-			.HasForeignKey(ur => ur.UserId)
+			.HasForeignKey<AppUserRole>(x => x.UserId)
 			.IsRequired();
 		}
 

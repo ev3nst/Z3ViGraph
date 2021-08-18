@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using ViGraph.Models;
+using ViGraph.Models.DTO;
 using ViGraph.Database;
 using ViGraph.Repository.IRepository;
 using ViGraph.Utility.Config;
@@ -10,11 +11,14 @@ using ViGraph.Utility.Config;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
+using System.Xml;
+using System.Text.Json;
+using System;
 
 namespace ViGraph.Repository
 {
 
-	public class AppUserRepository : Repository<AppUser>, IAppUserRepository
+	public class AppUserRepository : Repository<AppUser, AppUserDTO>, IAppUserRepository
 	{
 		private readonly ApplicationDbContext _db;
 
@@ -39,7 +43,7 @@ namespace ViGraph.Repository
 			return _generator.GetPathByName(Routes.DeleteUser, new { Id = Id });
 		}
 
-		public override string ActionsHTML(AppUser User)
+		public override string ActionsHTML(AppUserDTO User)
 		{
 			var EditHTML = (UseEditButton == true) ? CreateEditButton(User.Id) : "";
 			var DeleteHTML = (UseDeleteButton == true) ? CreateDeleteButton(User.Id, User.FullName) : "";
@@ -61,28 +65,37 @@ namespace ViGraph.Repository
 			UseEditButton = deletePermission.Any();
 		}
 
-		public override async Task<IEnumerable<AppUser>> Paginate(PaginationOptions<AppUser> PaginationOptions)
+		public override async Task<IEnumerable<AppUserDTO>> Paginate(PaginationOptions paginationOptions)
 		{
 			CheckButtonPermissions();
 			var mainQuery = _db.AppUser
-			.Include(u => u.UserRoles)
+			.Include(u => u.UserRole)
 			.ThenInclude(u => u.Role)
+            .Select(u => new AppUserDTO {
+                Id = u.Id,
+                FullName = u.FullName,
+                Email = u.Email,
+                CreatedAt = u.CreatedAt,
+                DeletedAt = u.DeletedAt,
+                RoleName = u.UserRole.Role.Name,
+                RoleSef = u.UserRole.Role.Sef
+            })
 			.Where(
 				u => u.DeletedAt == null && u.Email != AppConfig.RootCredentials.Email
 			);
 
-			if (PaginationOptions.SortOrder == SortOrderTypes.ASC) {
-				mainQuery = mainQuery.OrderBy(u => EF.Property<object>(u, PaginationOptions.SortField));
+			if (paginationOptions.SortOrder == SortOrderTypes.ASC) {
+				mainQuery = mainQuery.OrderBy(u => EF.Property<object>(u, paginationOptions.SortField));
 			} else {
-				mainQuery = mainQuery.OrderByDescending(u => EF.Property<object>(u, PaginationOptions.SortField));
+				mainQuery = mainQuery.OrderByDescending(u => EF.Property<object>(u, paginationOptions.SortField));
 			}
 
 			int TotalCount = await mainQuery.CountAsync();
 			var data = await mainQuery
-			.Skip(PaginationOptions.Offset)
-			.Take(PaginationOptions.PerPage)
+			.Skip(paginationOptions.Offset)
+			.Take(paginationOptions.PerPage)
 			.AsNoTracking()
-			.AsSingleQuery()
+			.AsSplitQuery()
 			.ToListAsync();
 
 			for (int i = 0; i < data.Count; i++) {

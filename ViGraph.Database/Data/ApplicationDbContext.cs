@@ -43,7 +43,7 @@ namespace ViGraph.Database
 			base.OnModelCreating(modelBuilder);
 			UserSchema.Structure(modelBuilder);
 			RoleSchema.Structure(modelBuilder);
-			UserRoleSchema.Structure(modelBuilder);
+			UserRolesSchema.Structure(modelBuilder);
 			RoleClaimSchema.Structure(modelBuilder);
 			modelBuilder.Entity<IdentityUserClaim<int>>().ToTable("UserClaims");
 			modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("UserLogins");
@@ -65,7 +65,7 @@ namespace ViGraph.Database
 			RoleClaimSchema.Seed(modelBuilder);
 			RoleSchema.Seed(modelBuilder);
 			UserSchema.Seed(modelBuilder);
-			UserRoleSchema.Seed(modelBuilder);
+			UserRolesSchema.Seed(modelBuilder);
 
 			YTMetaSchema.Seed(modelBuilder);
 			YTChannelSchema.Seed(modelBuilder);
