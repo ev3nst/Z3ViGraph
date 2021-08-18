@@ -13,5 +13,11 @@ namespace ViGraph
 
 		public const string DeleteUser = nameof(DeleteUser);
 		public const string DeleteUserPath = "/users/{Id}";
+
+		public const string RestoreUser = nameof(RestoreUser);
+		public const string RestoreUserPath = "/users/restore/{Id}";
+
+		public const string PermaDeleteUser = nameof(PermaDeleteUser);
+		public const string PermaDeleteUserPath = "/users/permanently-delete/{Id}";
 	}
 }

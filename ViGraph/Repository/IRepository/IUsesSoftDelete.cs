@@ -5,18 +5,18 @@ namespace ViGraph.Repository.IRepository
 {
     public interface IUsesSoftDelete<T> where T : class
     {
-        bool SetUseRestoreButton(bool Status);
+		bool UseRestoreButton { get; set; }
 
-        bool SetUsePermaDeleteButton(bool Status);
+		bool UsePermaDeleteButton { get; set; }
 
         string RestoreLink(int Id);
 
         string PermaDeleteLink(int Id);
 
-        string CreateRestoreButton(T Resource);
+        string CreateRestoreButton(int Id);
 
-        string CreatePermaDeleteButton(T Resource);
+        string CreatePermaDeleteButton(int Id, string Title);
 
-        Task<IEnumerable<T>> paginateDeleted(PaginationOptions PaginationOptions);
+        Task<IEnumerable<T>> PaginateDeleted(PaginationOptions PaginationOptions);
     }
 }
