@@ -71,14 +71,26 @@ namespace ViGraph.Controllers
 
 		[HttpGet]
 		[Route(Routes.EditUserPath, Name = Routes.EditUser)]
-		public async Task<IActionResult> EditUser()
+		public async Task<IActionResult> EditUser(int Id)
+		{
+			var roleVM = new RoleVM
+			{
+				Role = await _appRoleRepo.Find(Id),
+				Roles = await _appRoleRepo.GetAll()
+			};
+
+			return View(roleVM);
+		}
+
+		[HttpPut]
+		[Route(Routes.UpdateUserPath, Name = Routes.UpdateUser)]
+		public async Task<IActionResult> UpdateUser(int Id)
 		{
 			return Json(new
 			{
 				Ok = 1
 			});
 		}
-
 
 		[HttpDelete]
 		[ValidateAntiForgeryToken]

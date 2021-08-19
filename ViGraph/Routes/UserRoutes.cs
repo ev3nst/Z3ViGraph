@@ -20,6 +20,9 @@ namespace ViGraph
 		public const string EditUser = nameof(EditUser);
 		public const string EditUserPath = "/users/{Id}";
 
+		public const string UpdateUser = nameof(UpdateUser);
+		public const string UpdateUserPath = "/users/{Id}";
+
 		public const string DeleteUser = nameof(DeleteUser);
 		public const string DeleteUserPath = "/users/{Id}";
 
