@@ -11,11 +11,11 @@ function createReportTable(id, apiUrl, initColumns = [], config = {
         });
     }
 
-    if(columnsT.actions !== undefined) {
+    if(columnsT.ActionsHTML !== undefined) {
         columns.push({
-            data: 'actions',
+            data: 'ActionsHTML',
             className: 'actions text-center py-3',
-            name: 'actions',
+            name: 'ActionsHTML',
             autoHide: false,
             overflow: 'visible',
             sortable: false,
@@ -70,19 +70,12 @@ function createReportTable(id, apiUrl, initColumns = [], config = {
 			cache: false,
 			type: 'GET',
 			data: function (data) {
-				data['pagination'] = {};
-				data['pagination']['perpage'] = data['length'];
-				data['pagination']['page'] =
-					Number(data['start'] / data['length']) + 1;
-
-				data['sort'] = {};
-				data['sort']['field'] =
-					data['columns'][data['order'][0]['column']]['data'];
-				data['sort']['order'] = data['order'][0]['dir'];
-				data['query'] = {};
-
-				data['query']['arama'] = $(
-					'#datatable_advanced_search'
+				data['PerPage'] = data['length'];
+				data['Page'] = Number(data['start'] / data['length']) + 1;
+				data['SortField'] = data['columns'][data['order'][0]['column']]['data'];
+				data['SortOrder'] = data['order'][0]['dir'];
+				data['QueryString'] = $(
+					'#advanced_search_form'
 				).serialize();
 
 				delete data.columns;

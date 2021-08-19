@@ -1,4 +1,6 @@
-namespace ViGraph.Utility.Config
+using ViGraph.Utility.Configs;
+
+namespace ViGraph.Utility
 {
 	public sealed class AppConfig
 	{
@@ -7,5 +9,7 @@ namespace ViGraph.Utility.Config
 		public static MySQLSettings MySQLSettings { get; set; } = new MySQLSettings();
 
 		public static RootCredentials RootCredentials { get; set; } = new RootCredentials();
+
+		public static AssetsVersion AssetsVersion { get; set; } = new AssetsVersion();
 	}
 }

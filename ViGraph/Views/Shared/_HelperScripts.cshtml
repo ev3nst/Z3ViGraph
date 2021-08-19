@@ -1,5 +1,9 @@
 @using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Mvc.Localization
+
 @inject IHttpContextAccessor HttpContextAccessor
+@inject IHtmlLocalizer<SharedResources> sharedLocalizer
+
 <script>
     const datatableDict = {
         emptyTable: "{{ __('general.datatable.emptyTable') }}",
@@ -413,52 +417,63 @@
         $('.init-datepicker-custom').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
-            autoUpdateInput: true,
+            autoUpdateInput: false,
             showCustomRangeLabel: false,
-            maxYear: Number("{{ date('Y') + 1 }}"),
+            drops: "up",
+            opens: "center",
+            maxYear: Number("@System.DateTime.Now.Year") + 1,
             locale: {
                 format: 'DD/MM/YYYY',
-                cancelLabel: "{{ __('general.cancel') }}",
-                applyLabel: "{{ __('general.save') }}",
+                cancelLabel: '@sharedLocalizer["cancel"]',
+                applyLabel: '@sharedLocalizer["save"]',
                 daysOfWeek: [
-                    "{{ __('general.days_short.su') }}",
-                    "{{ __('general.days_short.mo') }}",
-                    "{{ __('general.days_short.tu') }}",
-                    "{{ __('general.days_short.we') }}",
-                    "{{ __('general.days_short.th') }}",
-                    "{{ __('general.days_short.fr') }}",
-                    "{{ __('general.days_short.sa') }}",
+                    '@sharedLocalizer["days_su"]',
+                    '@sharedLocalizer["days_mo"]',
+                    '@sharedLocalizer["days_tu"]',
+                    '@sharedLocalizer["days_we"]',
+                    '@sharedLocalizer["days_th"]',
+                    '@sharedLocalizer["days_fr"]',
+                    '@sharedLocalizer["days_sa"]',
                 ],
                 monthNames: [
-                    "{{ __('general.months.january') }}",
-                    "{{ __('general.months.february') }}",
-                    "{{ __('general.months.march') }}",
-                    "{{ __('general.months.april') }}",
-                    "{{ __('general.months.may') }}",
-                    "{{ __('general.months.june') }}",
-                    "{{ __('general.months.july') }}",
-                    "{{ __('general.months.august') }}",
-                    "{{ __('general.months.september') }}",
-                    "{{ __('general.months.october') }}",
-                    "{{ __('general.months.november') }}",
-                    "{{ __('general.months.december') }}",
+                    '@sharedLocalizer["months_january"]',
+                    '@sharedLocalizer["months_february"]',
+                    '@sharedLocalizer["months_march"]',
+                    '@sharedLocalizer["months_april"]',
+                    '@sharedLocalizer["months_may"]',
+                    '@sharedLocalizer["months_june"]',
+                    '@sharedLocalizer["months_july"]',
+                    '@sharedLocalizer["months_august"]',
+                    '@sharedLocalizer["months_september"]',
+                    '@sharedLocalizer["months_october"]',
+                    '@sharedLocalizer["months_november"]',
+                    '@sharedLocalizer["months_december"]',
                 ],
             },
             ranges: {
-                "{{ __('general.dates.today') }}": [moment()],
-                "{{ __('general.dates.yestarday') }}": [moment().subtract(1, 'days')],
-                "{{ __('general.dates.last_7_days') }}": [moment().subtract(7, 'days')],
-                "{{ __('general.dates.last_30_days') }}": [moment().subtract(30, 'days')],
-                "{{ __('general.dates.this_month_start') }}": [moment().subtract(1, 'month').startOf('month')],
-                "{{ __('general.dates.this_month_end') }}": [moment().subtract(1, 'month').endOf('month')]
+                '@sharedLocalizer["dates_today"]': [moment()],
+                '@sharedLocalizer["yesterday"]': [moment().subtract(1, 'days')],
+                '@sharedLocalizer["last_7_days"]': [moment().subtract(7, 'days')],
+                '@sharedLocalizer["last_30_days"]': [moment().subtract(30, 'days')],
+                '@sharedLocalizer["this_month_start"]': [moment().subtract(1, 'month').startOf('month')],
+                '@sharedLocalizer["this_month_end"]': [moment().subtract(1, 'month').endOf('month')]
             },
-        })
+        });
+
+        $('.init-datepicker-custom').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('DD/MM/YYYY'));
+        });
+
+        $('.init-datepicker-custom').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
     });
 </script>
 
 
-@if (HttpContextAccessor.HttpContext.Session.Get("StatusMessage") != null) {
+@if (HttpContextAccessor.HttpContext.Session.Get("StatusMessage") != null)
+{
     <script>
-        toastr.{ { Session:: get('status') } } ("{{ Session::get('message') }}");
-    </script>
+    toastr.{ { Session:: get('status') } } ("{{ Session::get('message') }}");
+</script>
 }

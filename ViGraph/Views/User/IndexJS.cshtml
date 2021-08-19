@@ -1,0 +1,121 @@
+@model ViGraph.ViewModels.UsersVM
+
+@using Microsoft.AspNetCore.Authorization
+
+@inject IAuthorizationService AuthorizationService
+
+@{
+    var canForceDelete = AuthorizationService.AuthorizeAsync(User, "AppUser.ForceDelete").Result.Succeeded;
+}
+
+<script>
+const USERS_API_URL = '@Routes.ListUsersApiPath';
+const USERS_TRASH_URL = '@Routes.ListUsersTrashApiPath';
+
+let initReportColumns;
+initReportColumns = [
+    'Id', 'FullName', 'Email', 'RoleName', 'CreatedAt'
+];
+
+let userReportDatatable = createReportTable(
+    '#kt_datatable_user_report',
+    USERS_API_URL,
+    initReportColumns,
+    { order: [0, 1]},
+);
+
+// İşlem Butonları
+function refreshButtonEvents() {
+    deleteButtonReason(
+        function() {
+            userReportDatatable.ajax.reload();
+            refreshButtonEvents();
+        },
+    );
+}
+
+@if(canForceDelete == true) {
+    <text>
+        let userTrashDatatable = createReportTable(
+            '#kt_datatable_user_trash',
+            USERS_TRASH_URL,
+            [...initReportColumns, 'delete_reason'],
+            { order: [0, 1]},
+        );
+
+        // Çöp İşlem Butonları
+        function refreshTrashButtons() {
+            $('[data-toggle="tooltip"]').tooltip({ boundary: 'window' });
+            permaDeleteButton(
+                'user',
+                function() {
+                    userTrashDatatable.ajax.reload();
+                    refreshButtonEvents();
+                }
+            )
+            restoreButton(
+            'user',
+            function() {
+                userTrashDatatable.ajax.reload();
+                refreshButtonEvents();
+            }
+            )
+        }
+
+        
+    </text>
+}
+
+$('#datatable_advanced_search input, #datatable_advanced_search select').on('change keyup', function () {
+    if($('#user_tabs .nav-link.active').attr('href') == '#user_report_view') {
+        userReportDatatable.search(null).draw();
+    } else {
+        @if(canForceDelete) {
+            <text>
+            userTrashDatatable.search(null).draw();
+            </text>
+        }
+    }
+});
+
+toggleActionsDatatable(userReportDatatable);
+
+// When tabs change
+$('#user_tabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    var target = $(e.target).attr("href") // activated tab
+    
+    switch (target) {
+    case '#user_report_view':
+        userReportDatatable.ajax.reload()
+        break;
+
+    @if(canForceDelete) {
+    <text>
+    case '#user_trash_bin':
+        userTrashDatatable.ajax.reload()
+        break;
+    </text>
+    }
+
+    default:
+        break;
+    }
+});
+
+var runRefresh = true;
+$('body').on('DOMSubtreeModified', '#kt_content', function () {
+    if (!runRefresh) {
+        return;
+    }
+    runRefresh = false;
+    setTimeout(function () {
+        refreshButtonEvents();
+        @if(canForceDelete) {
+        <text>
+        refreshTrashButtons();
+        </text>
+        }
+        runRefresh = true;
+    }, 200);
+});
+</script>

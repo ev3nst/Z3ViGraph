@@ -1,4 +1,4 @@
-namespace ViGraph.Utility.Config
+namespace ViGraph.Utility.Configs
 {
 	public sealed class AppMeta
 	{

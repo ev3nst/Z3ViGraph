@@ -1,5 +1,4 @@
-namespace ViGraph.Repository.IRepository
-{
+namespace ViGraph.Utility {
 	public enum SortOrderTypes
 	{
 		ASC,

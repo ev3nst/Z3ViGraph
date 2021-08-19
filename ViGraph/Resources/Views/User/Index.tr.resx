@@ -24,4 +24,22 @@
     <data name="new_user" xml:space="preserve">
         <value>Yeni Kullanıcı</value>
     </data>
+    <data name="user" xml:space="preserve">
+        <value>Kullanıcı</value>
+    </data>
+    <data name="email" xml:space="preserve">
+        <value>Email Adresi</value>
+    </data>
+    <data name="email_placeholder" xml:space="preserve">
+        <value>example@test.com</value>
+    </data>
+    <data name="fullname" xml:space="preserve">
+        <value>İsim &amp; Soyisim</value>
+    </data>
+    <data name="fullname_placeholder" xml:space="preserve">
+        <value>Kullanıcının İsim ve Soyismi</value>
+    </data>
+    <data name="role" xml:space="preserve">
+        <value>Yetki</value>
+    </data>
 </root>

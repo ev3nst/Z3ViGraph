@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
+
+using ViGraph.Utility;
 
 namespace ViGraph.Repository.IRepository
 {
@@ -21,6 +22,12 @@ namespace ViGraph.Repository.IRepository
 
 		void CheckButtonPermissions();
 
-		Task<IEnumerable<TDTO>> Paginate(PaginationOptions PaginationOptions);
+		Task<DataTableResponse<TDTO>> Paginate(PaginationOptions PaginationOptions);
+
+        DataTableResponse<TDTO> ConfigureDataTableMeta(
+            DataTableResponse<TDTO> dtResponse,
+            PaginationOptions paginationOptions,
+            string APIRoutePrefix
+        );
 	}
 }

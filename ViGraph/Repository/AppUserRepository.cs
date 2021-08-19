@@ -6,7 +6,7 @@ using ViGraph.Models;
 using ViGraph.Models.DTO;
 using ViGraph.Database;
 using ViGraph.Repository.IRepository;
-using ViGraph.Utility.Config;
+using ViGraph.Utility;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -127,9 +127,12 @@ namespace ViGraph.Repository
 			UseEditButton = deletePermission.Any();
 		}
 
-		public override async Task<IEnumerable<AppUserDTO>> Paginate(PaginationOptions paginationOptions)
+		public override async Task<DataTableResponse<AppUserDTO>> Paginate(PaginationOptions paginationOptions)
 		{
 			CheckButtonPermissions();
+            var dtResponse = new DataTableResponse<AppUserDTO>() {
+                length = paginationOptions.PerPage
+            };
 			var mainQuery = _db.AppUser
 			.Include(u => u.UserRole)
 			.ThenInclude(u => u.Role)
@@ -145,13 +148,16 @@ namespace ViGraph.Repository
 			})
 			.Where(u => u.DeletedAt == null && u.Email != AppConfig.RootCredentials.Email);
 
+            dtResponse.recordsTotal = await _db.AppUser.Where(u => u.DeletedAt == null && u.Email != AppConfig.RootCredentials.Email).CountAsync();
+            dtResponse.recordsFiltered = await mainQuery.CountAsync();
+            dtResponse = ConfigureDataTableMeta(dtResponse, paginationOptions, _context.HttpContext.Request.PathBase + Routes.ListUsersApiPath);
+
 			if (paginationOptions.SortOrder == SortOrderTypes.ASC) {
 				mainQuery = mainQuery.OrderBy(u => EF.Property<object>(u, paginationOptions.SortField));
 			} else {
 				mainQuery = mainQuery.OrderByDescending(u => EF.Property<object>(u, paginationOptions.SortField));
 			}
 
-			int TotalCount = await mainQuery.CountAsync();
 			var data = await mainQuery
 			.Skip(paginationOptions.Offset)
 			.Take(paginationOptions.PerPage)
@@ -163,12 +169,16 @@ namespace ViGraph.Repository
 				data[i].ActionsHTML = ActionsHTML(data[i]);
 			}
 
-			return data;
+            dtResponse.data = data;
+			return dtResponse;
 		}
 
-		public async Task<IEnumerable<AppUserDTO>> PaginateDeleted(PaginationOptions paginationOptions)
+		public async Task<DataTableResponse<AppUserDTO>> PaginateDeleted(PaginationOptions paginationOptions)
 		{
 			CheckButtonPermissions();
+            var dtResponse = new DataTableResponse<AppUserDTO> {
+                length = paginationOptions.PerPage
+            };
 			var mainQuery = _db.AppUser
 			.Include(u => u.UserRole)
 			.ThenInclude(u => u.Role)
@@ -202,7 +212,7 @@ namespace ViGraph.Repository
 				data[i].ActionsHTML = ActionsHTML(data[i]);
 			}
 
-			return data;
+			return dtResponse;
 		}
 	}
 }

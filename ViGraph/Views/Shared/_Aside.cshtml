@@ -1,5 +1,8 @@
 @using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Authorization
+
 @inject IHtmlLocalizer<SharedResources> sharedLocalizer
+@inject IAuthorizationService AuthorizationService
 
 <div class="aside aside-left d-flex flex-column" id="kt_aside">
     <div class="aside-brand d-flex flex-column align-items-center flex-column-auto pt-5 pt-lg-18 pb-10">
@@ -12,6 +15,7 @@
     <div class="aside-nav d-flex flex-column align-items-center flex-column-fluid pb-10">
         <ul class="nav flex-column">
 
+            @if ((AuthorizationService.AuthorizeAsync(User, "AppUser.View")).Result.Succeeded) {
             <li class="nav-item mb-2" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="@sharedLocalizer["users"]">
                 <a asp-controller="User" asp-action="Index" class="nav-link btn btn-icon btn-hover-icon-primary btn-lg @(@ViewContext.ActionDescriptor.AttributeRouteInfo.Name == "ListUsers" ? "active" : "")">
                     <span class="svg-icon svg-icon-xxl">
@@ -25,7 +29,9 @@
                     </span>
                 </a>
             </li>
+            }
 
+            @if ((AuthorizationService.AuthorizeAsync(User, "YTChannel.View")).Result.Succeeded) {
             <li class="nav-item mb-2" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="@sharedLocalizer["channels"]">
                 <a asp-controller="Channel" asp-action="Index" class="nav-link btn btn-icon btn-hover-icon-primary btn-lg @(@ViewContext.ActionDescriptor.AttributeRouteInfo.Name == "ListChannels" ? "active" : "")">
                     <span class="svg-icon svg-icon-xxl">
@@ -40,7 +46,9 @@
                     </span>
                 </a>
             </li>
+            }
 
+            @if ((AuthorizationService.AuthorizeAsync(User, "Category.View")).Result.Succeeded) {
             <li class="nav-item mb-2" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="@sharedLocalizer["categories"]">
                 <a asp-controller="Category" asp-action="Index" class="nav-link btn btn-icon btn-hover-icon-primary btn-lg @(@ViewContext.ActionDescriptor.AttributeRouteInfo.Name == "ListCategories" ? "active" : "")">
                     <span class="svg-icon svg-icon-xxl">
@@ -54,7 +62,9 @@
                     </span>
                 </a>
             </li>
+            }
 
+            @if ((AuthorizationService.AuthorizeAsync(User, "Video.View")).Result.Succeeded) {
             <li class="nav-item mb-2" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="@sharedLocalizer["videos"]">
                 <a asp-controller="Video" asp-action="Index" class="nav-link btn btn-icon btn-hover-icon-primary btn-lg @(@ViewContext.ActionDescriptor.AttributeRouteInfo.Name == "ListVideos" ? "active" : "")">
                     <span class="svg-icon svg-icon-xxl">
@@ -68,7 +78,9 @@
                     </span>
                 </a>
             </li>
+            }
 
+            @if ((AuthorizationService.AuthorizeAsync(User, "YTPlaylist.View")).Result.Succeeded) {
             <li class="nav-item mb-2" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="@sharedLocalizer["playlists"]">
                 <a asp-controller="Playlist" asp-action="Index" class="nav-link btn btn-icon btn-hover-icon-primary btn-lg @(@ViewContext.ActionDescriptor.AttributeRouteInfo.Name == "ListPlaylists" ? "active" : "")">
                     <span class="svg-icon svg-icon-xxl">
@@ -82,6 +94,7 @@
                     </span>
                 </a>
             </li>
+            }
         </ul>
     </div>
     <div class="aside-footer d-flex flex-column align-items-center flex-column-auto py-8">
@@ -96,7 +109,7 @@
                 </svg>
             </span>
         </a>
-        <!--
+        @{ /*
         <div class="dropdown" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Languages">
             <a href="#" class="btn btn-icon btn-hover-icon-primary btn-lg" data-toggle="dropdown" data-offset="0px,0px">
                 <img class="w-25px h-25px rounded" src="~/assets/media/svg/flags/006-turkey.svg" alt="@sharedLocalizer["turkish"]" />
@@ -120,7 +133,7 @@
                 </ul>
             </div>
         </div>
-        -->
+        */ }
         <a asp-controller="Auth" asp-action="Logout" class="btn btn-icon btn-hover-icon-primary btn-lg mb-1" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="@sharedLocalizer["logout"]">
             <span class="svg-icon svg-icon-xxl">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

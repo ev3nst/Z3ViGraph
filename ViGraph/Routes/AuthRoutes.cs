@@ -11,6 +11,12 @@ namespace ViGraph
 		public const string ListUsers = nameof(ListUsers);
 		public const string ListUsersPath = "/users";
 
+		public const string ListUsersApi = nameof(ListUsersApi);
+		public const string ListUsersApiPath = "/users/api";
+
+		public const string ListUsersTrashApi = nameof(ListUsersTrashApi);
+		public const string ListUsersTrashApiPath = "/users/trash/api";
+
 		public const string EditUser = nameof(EditUser);
 		public const string EditUserPath = "/users/{Id}";
 

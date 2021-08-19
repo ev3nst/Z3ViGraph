@@ -1,6 +1,6 @@
 function columnOptions(columnName, target) {
 	switch (columnName) {
-		case 'id':
+		case 'Id':
 			return [
 				{ width: '80px', targets: target, className: columnName + ' text-center' },
 				{
@@ -9,7 +9,7 @@ function columnOptions(columnName, target) {
 					}, targets: target
 				},
 			];
-		case 'name':
+		case 'FullName':
 			return [
 				{ width: '250px', targets: target },
 				{
@@ -19,36 +19,26 @@ function columnOptions(columnName, target) {
 					targets: target,
 				},
 			];
-		case 'office_name':
+		case 'RoleName':
 			return [
 				{ width: '100px', targets: target },
 				{
 					render: function (data, type, row) {
-						return row['offices'].map(o => o.name).join(', ');
+						return data;
 					},
 					targets: target,
 				},
 			];
-		case 'role_name':
-			return [
-				{ width: '100px', targets: target },
-				{
-					render: function (data, type, row) {
-						return row['role']['name'];
-					},
-					targets: target,
-				},
-			];
-		case 'email':
+		case 'Email':
 			return [
 				{ width: '270px', targets: target },
 				{
 					render: function (data, type, row) {
-						return `<a href="mailto:${data}" title="Email: ${row.name}">${data}</a>`;
+						return `<a href="mailto:${data}" title="Email: ${row.FullName}">${data}</a>`;
 					}, targets: target
 				},
 			];
-		case 'last_login':
+		case 'LastLogin':
 			return [
 				{ width: '130px', targets: target },
 				{
@@ -57,7 +47,7 @@ function columnOptions(columnName, target) {
 					}, targets: target
 				},
 			];
-		case 'last_logout':
+		case 'LastLogout':
 			return [
 				{ width: '130px', targets: target },
 				{
@@ -66,7 +56,7 @@ function columnOptions(columnName, target) {
 					}, targets: target
 				},
 			];
-		case 'created_at':
+		case 'CreatedAt':
 			return [
 				{ width: '130px', targets: target },
 				{
@@ -75,7 +65,7 @@ function columnOptions(columnName, target) {
 					}, targets: target
 				},
 			];
-		case 'actions':
+		case 'ActionsHTML':
 			return [
 				{
 					width: '130px',

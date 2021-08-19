@@ -12,6 +12,8 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
+
+    <!-- General-->
     <data name="english" xml:space="preserve">
         <value>İngilizce</value>
     </data>
@@ -27,14 +29,128 @@
     <data name="submit" xml:space="preserve">
         <value>Gönder</value>
     </data>
-    <data name="cancel" xml:space="preserve">
-        <value>Vazgeç</value>
-    </data>
     <data name="email" xml:space="preserve">
         <value>Email</value>
     </data>
     <data name="password" xml:space="preserve">
         <value>Şifre</value>
+    </data>
+    <data name="search" xml:space="preserve">
+        <value>Ara...</value>
+    </data>
+    <data name="search_placeholder" xml:space="preserve">
+        <value>Hızlı Arama...</value>
+    </data>
+    <data name="advanced_search" xml:space="preserve">
+        <value>Gelişmiş Arama</value>
+    </data>
+    <data name="id" xml:space="preserve">
+        <value>Kayıt Numarası</value>
+    </data>
+    <data name="id_short" xml:space="preserve">
+        <value>Kayıt</value>
+    </data>
+    <data name="id_placeholder" xml:space="preserve">
+        <value>ID</value>
+    </data>
+    <data name="created_at" xml:space="preserve">
+        <value>Oluşturma Tarihi</value>
+    </data>
+    <data name="created_at_placeholder" xml:space="preserve">
+        <value>DD/MM/YYYY</value>
+    </data>
+    <data name="created_at_short" xml:space="preserve">
+        <value>Tarih</value>
+    </data>
+    <data name="created_at_between" xml:space="preserve">
+        <value>Tarih Aralğı</value>
+    </data>
+    <data name="save" xml:space="preserve">
+        <value>Kaydet</value>
+    </data>
+    <data name="cancel" xml:space="preserve">
+        <value>Vazgeç</value>
+    </data>
+
+    <!-- Days -->
+    <data name="days_su" xml:space="preserve">
+        <value>Paz</value>
+    </data>
+    <data name="days_mo" xml:space="preserve">
+        <value>Pzt</value>
+    </data>
+    <data name="days_tu" xml:space="preserve">
+        <value>Sal</value>
+    </data>
+    <data name="days_we" xml:space="preserve">
+        <value>Çar</value>
+    </data>
+    <data name="days_th" xml:space="preserve">
+        <value>Per</value>
+    </data>
+    <data name="days_fr" xml:space="preserve">
+        <value>Cum</value>
+    </data>
+    <data name="days_sa" xml:space="preserve">
+        <value>Cmt</value>
+    </data>
+
+    <!-- Months-->
+    <data name="months_january" xml:space="preserve">
+        <value>Ocak</value>
+    </data>
+    <data name="months_february" xml:space="preserve">
+        <value>Şubat</value>
+    </data>
+    <data name="months_march" xml:space="preserve">
+        <value>Mart</value>
+    </data>
+    <data name="months_april" xml:space="preserve">
+        <value>Nisan</value>
+    </data>
+    <data name="months_may" xml:space="preserve">
+        <value>Mayıs</value>
+    </data>
+    <data name="months_june" xml:space="preserve">
+        <value>Haziran</value>
+    </data>
+    <data name="months_july" xml:space="preserve">
+        <value>Temmuz</value>
+    </data>
+    <data name="months_august" xml:space="preserve">
+        <value>Ağustos</value>
+    </data>
+    <data name="months_september" xml:space="preserve">
+        <value>Eylül</value>
+    </data>
+    <data name="months_october" xml:space="preserve">
+        <value>Ekim</value>
+    </data>
+    <data name="months_november" xml:space="preserve">
+        <value>Kasım</value>
+    </data>
+    <data name="months_december" xml:space="preserve">
+        <value>Aralık</value>
+    </data>
+
+    <!-- Dates-->
+    <data name="dates_today" xml:space="preserve">
+        <value>Bugün</value>
+    </data>
+    <data name="yesterday" xml:space="preserve">
+        <value>Dün</value>
+    </data>
+    <data name="last_7_days" xml:space="preserve">
+        <value>7 Gün Öncesi</value>
+    </data>
+    <data name="last_30_days" xml:space="preserve">
+        <value>30 Gün Öncesi</value>
+    </data>
+    <data name="this_month_start" xml:space="preserve">
+        <value>Ay Başlangıç</value>
+    </data>
+    <data name="this_month_end" xml:space="preserve">
+        <value>Ay Bitiş</value>
     </data>
 
     <!-- Layout -->
@@ -55,5 +171,34 @@
     </data>
     <data name="activities" xml:space="preserve">
         <value>Aktiviteler</value>
+    </data>
+
+    <!-- DataTable-->
+    <data name="toggle_actions" xml:space="preserve">
+        <value>İşlemleri Kapat/Aç</value>
+    </data>
+    <data name="export" xml:space="preserve">
+        <value>Çıktı Al</value>
+    </data>
+    <data name="select_export_option" xml:space="preserve">
+        <value>Seçenekler</value>
+    </data>
+    <data name="print" xml:space="preserve">
+        <value>Yazdır</value>
+    </data>
+    <data name="limit" xml:space="preserve">
+        <value>Limit</value>
+    </data>
+    <data name="record_limit_options" xml:space="preserve">
+        <value>Limit Ayarı</value>
+    </data>
+    <data name="list_view" xml:space="preserve">
+        <value>Liste</value>
+    </data>
+    <data name="trash_bin" xml:space="preserve">
+        <value>Çöp Kutusu</value>
+    </data>
+    <data name="actions" xml:space="preserve">
+        <value>İşlemler</value>
     </data>
 </root>

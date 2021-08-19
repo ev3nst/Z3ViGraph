@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using ViGraph.Utility;
+
 namespace ViGraph.Repository.IRepository
 {
     public interface IUsesSoftDelete<T> where T : class
@@ -17,6 +19,6 @@ namespace ViGraph.Repository.IRepository
 
         string CreatePermaDeleteButton(int Id, string Title);
 
-        Task<IEnumerable<T>> PaginateDeleted(PaginationOptions PaginationOptions);
+        Task<DataTableResponse<T>> PaginateDeleted(PaginationOptions PaginationOptions);
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using ViGraph.Models;
-using ViGraph.Utility.Config;
+using ViGraph.Utility;
 
 namespace ViGraph.Database.Schema
 {

@@ -25,7 +25,7 @@ using ViGraph.Repository;
 using ViGraph.Repository.IRepository;
 using ViGraph.Middlewares.Permission;
 using ViGraph.Middlewares.ClaimTransformations;
-using ViGraph.Utility.Config;
+using ViGraph.Utility;
 
 namespace ViGraph
 {
@@ -46,7 +46,9 @@ namespace ViGraph
 			Configuration.GetSection("RootCredentials").Bind(AppConfig.RootCredentials);
 
 			services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
-			services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
+			services.AddMvc()
+			.AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+			.AddDataAnnotationsLocalization();
 
 			services.Configure<RequestLocalizationOptions>(
 				opt => {
@@ -60,15 +62,15 @@ namespace ViGraph
 					};
 				}
 			);
-           
-            services.AddScoped<IClaimsTransformation, AddRoleClaims>();
-            services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
-            services.AddScoped<IAuthorizationHandler, PermissionGuard>();
+
+			services.AddScoped<IClaimsTransformation, AddRoleClaims>();
+			services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+			services.AddScoped<IAuthorizationHandler, PermissionGuard>();
 
 			// Repository Classes
 			services.AddScoped<IAppUserRepository, AppUserRepository>();
 
-			services.AddControllersWithViews();
+			services.AddControllersWithViews().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null); ;
 			services.AddResponseCompression(options => {
 				options.Providers.Add<BrotliCompressionProvider>();
 				options.Providers.Add<GzipCompressionProvider>();
@@ -78,7 +80,7 @@ namespace ViGraph
 			});
 			ConfigureEntityFramework(services);
 
-            /*
+			/*
             services.AddLogging(builder =>
                 builder
                     .AddConfiguration(Configuration.GetSection("Logging"))
