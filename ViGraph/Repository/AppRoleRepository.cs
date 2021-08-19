@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ViGraph.Repository
 {
-	public class AppUserRepository : Repository<AppUser, AppUserDTO>, IAppUserRepository
+	public class AppRoleRepository : Repository<AppRole, AppRoleDTO>, IAppRoleRepository
 	{
 		private readonly ApplicationDbContext _db;
 
@@ -26,7 +26,7 @@ namespace ViGraph.Repository
 
 		public bool UsePermaDeleteButton { get; set; }
 
-		public AppUserRepository(ApplicationDbContext db, IHttpContextAccessor context, LinkGenerator generator) : base(db, context, generator)
+		public AppRoleRepository(ApplicationDbContext db, IHttpContextAccessor context, LinkGenerator generator) : base(db, context, generator)
 		{
 			_db = db;
 			_context = context;
@@ -35,22 +35,22 @@ namespace ViGraph.Repository
 
 		public override string EditLink(int Id)
 		{
-			return _generator.GetPathByName(Routes.EditUser, new { Id = Id });
+			return _generator.GetPathByName(Routes.EditRole, new { Id = Id });
 		}
 
 		public override string DeleteLink(int Id)
 		{
-			return _generator.GetPathByName(Routes.DeleteUser, new { Id = Id });
+			return _generator.GetPathByName(Routes.DeleteRole, new { Id = Id });
 		}
 
 		public string RestoreLink(int Id)
 		{
-			return _generator.GetPathByName(Routes.RestoreUser, new { Id = Id });
+			return _generator.GetPathByName(Routes.RestoreRole, new { Id = Id });
 		}
 
 		public string PermaDeleteLink(int Id)
 		{
-			return _generator.GetPathByName(Routes.PermaDeleteUser, new { Id = Id });
+			return _generator.GetPathByName(Routes.PermaDeleteRole, new { Id = Id });
 		}
 
 
@@ -101,12 +101,12 @@ namespace ViGraph.Repository
 			";
 		}
 
-		public override string ActionsHTML(AppUserDTO User)
+		public override string ActionsHTML(AppRoleDTO Role)
 		{
-			var EditHTML = (UseEditButton == true) ? CreateEditButton(User.Id) : "";
-			var DeleteHTML = (UseDeleteButton == true) ? CreateDeleteButton(User.Id, User.FullName) : "";
-			var RestoreHTML = (UseEditButton == true) ? CreateRestoreButton(User.Id) : "";
-			var PermaDeleteHTML = (UseDeleteButton == true) ? CreatePermaDeleteButton(User.Id, User.FullName) : "";
+			var EditHTML = (UseEditButton == true) ? CreateEditButton(Role.Id) : "";
+			var DeleteHTML = (UseDeleteButton == true) ? CreateDeleteButton(Role.Id, Role.Name) : "";
+			var RestoreHTML = (UseEditButton == true) ? CreateRestoreButton(Role.Id) : "";
+			var PermaDeleteHTML = (UseDeleteButton == true) ? CreatePermaDeleteButton(Role.Id, Role.Name) : "";
 
 			return @"
             <span style='overflow: visible; position: relative; width: 130px;'>
@@ -120,50 +120,45 @@ namespace ViGraph.Repository
 
 		public override void CheckButtonPermissions()
 		{
-			var editPermission = _context.HttpContext.User.Claims.Where(c => c.Type == "Permission" && c.Value == "AppUser.Edit");
+			var editPermission = _context.HttpContext.User.Claims.Where(c => c.Type == "Permission" && c.Value == "AppRole.Edit");
 			UseEditButton = editPermission.Any();
 
-			var deletePermission = _context.HttpContext.User.Claims.Where(c => c.Type == "Permission" && c.Value == "AppUser.Delete");
+			var deletePermission = _context.HttpContext.User.Claims.Where(c => c.Type == "Permission" && c.Value == "AppRole.Delete");
 			UseEditButton = deletePermission.Any();
 		}
 
-		public override async Task<DataTableResponse<AppUserDTO>> Paginate(PaginationOptions paginationOptions)
+		public override async Task<DataTableResponse<AppRoleDTO>> Paginate(PaginationOptions paginationOptions)
 		{
 			CheckButtonPermissions();
-			var dtResponse = new DataTableResponse<AppUserDTO>()
+			var dtResponse = new DataTableResponse<AppRoleDTO>()
 			{
 				length = paginationOptions.PerPage
 			};
-			var mainQuery = _db.AppUser
-			.Include(u => u.UserRole)
-			.ThenInclude(u => u.Role)
-			.Select(u => new AppUserDTO
+			var mainQuery = _db.AppRole
+			.Select(r => new AppRoleDTO
 			{
-				Id = u.Id,
-				FullName = u.FullName,
-				Email = u.Email,
-				CreatedAt = u.CreatedAt,
-				DeletedAt = u.DeletedAt,
-				RoleName = u.UserRole.Role.Name,
-				RoleSef = u.UserRole.Role.Sef
+				Id = r.Id,
+				Sef = r.Sef,
+				Name = r.Name,
+				Description = r.Description
 			})
-			.Where(u => u.DeletedAt == null && u.Email != AppConfig.RootCredentials.Email);
+			.Where(r => r.DeletedAt == null);
 
-			dtResponse.recordsTotal = await _db.AppUser.Where(u => u.DeletedAt == null && u.Email != AppConfig.RootCredentials.Email).CountAsync();
+			dtResponse.recordsTotal = await _db.AppRole.Where(r => r.DeletedAt == null).CountAsync();
 			dtResponse.recordsFiltered = await mainQuery.CountAsync();
 			dtResponse = ConfigureDataTableMeta(dtResponse, paginationOptions, _context.HttpContext.Request.PathBase + Routes.ListUsersApiPath);
 
 			if (paginationOptions.SortOrder == SortOrderTypes.ASC) {
-				mainQuery = mainQuery.OrderBy(u => EF.Property<object>(u, paginationOptions.SortField));
+				mainQuery = mainQuery.OrderBy(r => EF.Property<object>(r, paginationOptions.SortField));
 			} else {
-				mainQuery = mainQuery.OrderByDescending(u => EF.Property<object>(u, paginationOptions.SortField));
+				mainQuery = mainQuery.OrderByDescending(r => EF.Property<object>(r, paginationOptions.SortField));
 			}
 
 			var data = await mainQuery
 			.Skip(paginationOptions.Offset)
 			.Take(paginationOptions.PerPage)
 			.AsNoTracking()
-			.AsSplitQuery()
+			.AsSingleQuery()
 			.ToListAsync();
 
 			for (int i = 0; i < data.Count; i++) {
@@ -174,45 +169,13 @@ namespace ViGraph.Repository
 			return dtResponse;
 		}
 
-		public async Task<DataTableResponse<AppUserDTO>> PaginateDeleted(PaginationOptions paginationOptions)
+		public async Task<DataTableResponse<AppRoleDTO>> PaginateDeleted(PaginationOptions paginationOptions)
 		{
 			CheckButtonPermissions();
-			var dtResponse = new DataTableResponse<AppUserDTO>
+			var dtResponse = new DataTableResponse<AppRoleDTO>
 			{
 				length = paginationOptions.PerPage
 			};
-			var mainQuery = _db.AppUser
-			.Include(u => u.UserRole)
-			.ThenInclude(u => u.Role)
-			.Select(u => new AppUserDTO
-			{
-				Id = u.Id,
-				FullName = u.FullName,
-				Email = u.Email,
-				CreatedAt = u.CreatedAt,
-				DeletedAt = u.DeletedAt,
-				RoleName = u.UserRole.Role.Name,
-				RoleSef = u.UserRole.Role.Sef
-			})
-			.Where(u => u.DeletedAt != null);
-
-			if (paginationOptions.SortOrder == SortOrderTypes.ASC) {
-				mainQuery = mainQuery.OrderBy(u => EF.Property<object>(u, paginationOptions.SortField));
-			} else {
-				mainQuery = mainQuery.OrderByDescending(u => EF.Property<object>(u, paginationOptions.SortField));
-			}
-
-			int TotalCount = await mainQuery.CountAsync();
-			var data = await mainQuery
-			.Skip(paginationOptions.Offset)
-			.Take(paginationOptions.PerPage)
-			.AsNoTracking()
-			.AsSplitQuery()
-			.ToListAsync();
-
-			for (int i = 0; i < data.Count; i++) {
-				data[i].ActionsHTML = ActionsHTML(data[i]);
-			}
 
 			return dtResponse;
 		}

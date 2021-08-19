@@ -12,6 +12,10 @@ namespace ViGraph.Models.DTO
 
 		public string Description { get; set; }
 
+		public DateTime CreatedAt { get; set; }
+
+		public DateTime? DeletedAt { get; set; } = null;
+
 		public string ActionsHTML { get; set; }
 	}
 }

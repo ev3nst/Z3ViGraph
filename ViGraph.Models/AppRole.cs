@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -22,5 +23,12 @@ namespace ViGraph.Models
 		public string Description { get; set; } = null;
 
 		public virtual ICollection<AppRoleClaim> RoleClaims { get; set; }
+
+		[Required]
+		public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+		public DateTime? UpdatedAt { get; set; } = null;
+
+		public DateTime? DeletedAt { get; set; } = null;
 	}
 }

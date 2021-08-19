@@ -10,13 +10,13 @@ namespace ViGraph.Models.DTO
 
 		public string Email { get; set; }
 
-		public DateTime CreatedAt { get; set; }
-
-		public DateTime? DeletedAt { get; set; } = null;
-
 		public string RoleName { get; set; }
 
 		public string RoleSef { get; set; }
+
+		public DateTime CreatedAt { get; set; }
+
+		public DateTime? DeletedAt { get; set; } = null;
 
 		public string ActionsHTML { get; set; }
 	}

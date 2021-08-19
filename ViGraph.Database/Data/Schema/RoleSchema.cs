@@ -22,6 +22,10 @@ namespace ViGraph.Database.Schema
 				role.HasIndex(r => r.Sef).IsUnique();
 				role.Property(r => r.ConcurrencyStamp).IsConcurrencyToken();
 
+				role.Property(c => c.CreatedAt).HasColumnName("CreatedAt").HasPrecision(0);
+				role.Property(c => c.UpdatedAt).HasColumnName("UpdatedAt").HasPrecision(0);
+				role.Property(c => c.DeletedAt).HasColumnName("DeletedAt").HasPrecision(0);
+
 				role.HasMany<AppUserRole>()
 					.WithOne(ur => ur.Role)
 					.HasForeignKey(ur => ur.RoleId)
