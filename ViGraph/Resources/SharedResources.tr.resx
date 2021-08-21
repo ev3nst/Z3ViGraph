@@ -201,4 +201,9 @@
     <data name="actions" xml:space="preserve">
         <value>İşlemler</value>
     </data>
+
+    <!-- Inputs-->
+    <data name="general_info" xml:space="preserve">
+        <value>Genel Bilgiler</value>
+    </data>
 </root>

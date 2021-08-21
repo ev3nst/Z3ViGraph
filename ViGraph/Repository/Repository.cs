@@ -112,6 +112,11 @@ namespace ViGraph.Repository
 			}
 			return await query.ToListAsync();
 		}
+
+        public async Task Save()
+        {
+            await _db.SaveChangesAsync();
+        }
 		#endregion
 
 		#region Get Current User

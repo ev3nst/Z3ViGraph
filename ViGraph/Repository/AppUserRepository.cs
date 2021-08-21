@@ -105,8 +105,8 @@ namespace ViGraph.Repository
 		{
 			var EditHTML = (UseEditButton == true) ? CreateEditButton(User.Id) : "";
 			var DeleteHTML = (UseDeleteButton == true) ? CreateDeleteButton(User.Id, User.FullName) : "";
-			var RestoreHTML = (UseEditButton == true) ? CreateRestoreButton(User.Id) : "";
-			var PermaDeleteHTML = (UseDeleteButton == true) ? CreatePermaDeleteButton(User.Id, User.FullName) : "";
+			var RestoreHTML = (UseRestoreButton == true) ? CreateRestoreButton(User.Id) : "";
+			var PermaDeleteHTML = (UsePermaDeleteButton == true) ? CreatePermaDeleteButton(User.Id, User.FullName) : "";
 
 			return @"
             <span style='overflow: visible; position: relative; width: 130px;'>
@@ -130,6 +130,9 @@ namespace ViGraph.Repository
 		public override async Task<DataTableResponse<AppUserDTO>> Paginate(PaginationOptions paginationOptions)
 		{
 			CheckButtonPermissions();
+			UseRestoreButton = false;
+			UsePermaDeleteButton = false;
+
 			var dtResponse = new DataTableResponse<AppUserDTO>()
 			{
 				length = paginationOptions.PerPage

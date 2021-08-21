@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+    <data name="fullname" xml:space="preserve">
+        <value>İsim &amp; Soyisim</value>
+    </data>
+    <data name="email" xml:space="preserve">
+        <value>Email Adresi</value>
+    </data>
+    <data name="email_placeholder" xml:space="preserve">
+        <value>example@test.com</value>
+    </data>
+    <data name="password" xml:space="preserve">
+        <value>Şifre</value>
+    </data>
+    <data name="password_confirm" xml:space="preserve">
+        <value>Şifre Tekrar</value>
+    </data>
+    <data name="permissions" xml:space="preserve">
+        <value>İzinler</value>
+    </data>
+    <data name="role" xml:space="preserve">
+        <value>Rol/Yetki</value>
+    </data>
+</root>

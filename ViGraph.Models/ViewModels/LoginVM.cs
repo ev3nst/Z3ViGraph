@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ViGraph.ViewModels
+namespace ViGraph.Models.ViewModels
 {
     public class LoginVM
     {

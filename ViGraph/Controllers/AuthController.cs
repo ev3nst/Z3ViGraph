@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
 
 using ViGraph.Models;
 using ViGraph.Repository.IRepository;
-using ViGraph.ViewModels;
+using ViGraph.Models.ViewModels;
 
 namespace ViGraph.Controllers
 {
@@ -42,6 +42,10 @@ namespace ViGraph.Controllers
 		[Route(Routes.ShowLoginPath, Name = Routes.ShowLogin)]
 		public IActionResult Login()
 		{
+			if (HttpContext.User.Identity.IsAuthenticated) {
+				return RedirectToAction("Index", "Dashboard");
+			}
+
 			return View();
 		}
 
@@ -53,7 +57,11 @@ namespace ViGraph.Controllers
 			if (ModelState.IsValid) {
 				var result = await _signInManager.PasswordSignInAsync(loginModel.Email, loginModel.Password, loginModel.RememberMe, false);
 				if (result.Succeeded) {
-					return RedirectToAction("Index", "Dashboard");
+					if (string.IsNullOrEmpty(HttpContext.Request.Query["ReturnUrl"]) == false) {
+						return Redirect(HttpContext.Request.Query["ReturnUrl"]);
+					} else {
+						return RedirectToAction("Index", "Dashboard");
+					}
 				}
 				ModelState.AddModelError("", _localizer.GetString("invalid_login_attempt"));
 			}

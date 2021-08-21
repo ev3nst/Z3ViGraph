@@ -33,6 +33,8 @@ namespace ViGraph.Repository.IRepository
 			string includeProperties = null,
 			bool isTracking = true
 		);
+
+        Task Save();
 		#endregion
 
 		#region Get Current User

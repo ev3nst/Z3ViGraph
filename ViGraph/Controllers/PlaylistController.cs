@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Localization;
 
 using ViGraph.Models;
-using ViGraph.ViewModels;
+using ViGraph.Models.ViewModels;
 
 namespace ViGraph.Controllers
 {

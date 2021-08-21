@@ -24,7 +24,7 @@ namespace ViGraph
 		public const string UpdateUserPath = "/users/{Id}";
 
 		public const string DeleteUser = nameof(DeleteUser);
-		public const string DeleteUserPath = "/users/{Id}";
+		public const string DeleteUserPath = "/users/delete/{Id}";
 
 		public const string RestoreUser = nameof(RestoreUser);
 		public const string RestoreUserPath = "/users/restore/{Id}";

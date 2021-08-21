@@ -69,6 +69,14 @@ namespace ViGraph.Database.Schema
 				}
 			}
 
+            idCounter++;
+			roleClaimList.Add(new AppRoleClaim
+			{ // Super Admin
+				Id = idCounter,
+				ClaimType = "Permission",
+				ClaimValue = "Dashboard.View",
+				RoleId = 1
+			});
 			return roleClaimList;
 		}
 	}

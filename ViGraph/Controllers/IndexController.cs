@@ -1,21 +1,44 @@
+using System.Linq;
 using System.Diagnostics;
+using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ViGraph.ViewModels;
+
+using ViGraph.Models.ViewModels;
+using ViGraph.Repository.IRepository;
 
 namespace ViGraph.Controllers
 {
 	public class IndexController : Controller
 	{
-		[Authorize]
-	    [Route("/")]
-		public IActionResult Index()
+		private readonly IAppUserRepository _appUserRepo;
+
+		public IndexController(IAppUserRepository appUserRepo)
 		{
-			return Json(new
-			{
-				status = "Ok",
-				message = "This is index controller"
-			});
+			_appUserRepo = appUserRepo;
+		}
+
+		[Authorize]
+		[Route("/")]
+		public async Task<IActionResult> Index()
+		{
+			var currentUser = await _appUserRepo.GetCurrentUserWithRoleClaims();
+			var permissionClaims = currentUser.UserRole.Role.RoleClaims.Where(c => c.ClaimType == "Permission");
+			var PossibleRedirects = new string[4] {
+				"Dashboard",
+				"Video",
+				"AppFile",
+				"AppUser"
+			};
+
+			for (int i = 0; i < PossibleRedirects.Count(); i++) {
+				if (permissionClaims.Where(c => c.ClaimValue == PossibleRedirects[i] + ".View").Any()) {
+					return RedirectToAction("Index", PossibleRedirects[i]);
+				}
+			}
+
+			return Json(currentUser.UserRole.Role.RoleClaims.Where(c => c.ClaimType == "Permission"));
 		}
 
 		[HttpGet("/error")]

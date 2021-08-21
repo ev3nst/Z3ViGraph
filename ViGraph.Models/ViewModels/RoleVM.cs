@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-using ViGraph.Models;
-
-namespace ViGraph.ViewModels
+namespace ViGraph.Models.ViewModels
 {
 	public class RoleVM
 	{

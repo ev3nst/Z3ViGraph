@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 using ViGraph.Models;
 using ViGraph.Utility;
-using ViGraph.ViewModels;
+using ViGraph.Models.ViewModels;
 using ViGraph.Repository.IRepository;
 
 namespace ViGraph.Controllers
@@ -19,9 +19,12 @@ namespace ViGraph.Controllers
 
 		RoleManager<AppRole> _roleManager;
 
-		IAppUserRepository _appUserRepo;
+		private readonly IAppUserRepository _appUserRepo;
 
-		IAppRoleRepository _appRoleRepo;
+		private readonly IAppRoleRepository _appRoleRepo;
+
+		[BindProperty]
+		public UserVM UserVM { get; set; }
 
 		private readonly IHtmlLocalizer<AuthController> _localizer;
 
@@ -49,7 +52,7 @@ namespace ViGraph.Controllers
 
 		[HttpGet]
 		[Route(Routes.ListUsersApiPath, Name = Routes.ListUsersApi)]
-		public async Task<IActionResult> IndexApi(PaginationOptions paginationOptions)
+		public async Task<IActionResult> IndexApi([FromQuery] PaginationOptions paginationOptions)
 		{
 			var response = await _appUserRepo.Paginate(paginationOptions);
 			response.status = "success";
@@ -60,7 +63,7 @@ namespace ViGraph.Controllers
 
 		[HttpGet]
 		[Route(Routes.ListUsersTrashApiPath, Name = Routes.ListUsersTrashApi)]
-		public async Task<IActionResult> IndexTrashApi(PaginationOptions paginationOptions)
+		public async Task<IActionResult> IndexTrashApi([FromQuery] PaginationOptions paginationOptions)
 		{
 			var response = await _appUserRepo.PaginateDeleted(paginationOptions);
 			response.status = "success";
@@ -71,31 +74,40 @@ namespace ViGraph.Controllers
 
 		[HttpGet]
 		[Route(Routes.EditUserPath, Name = Routes.EditUser)]
-		public async Task<IActionResult> EditUser(int Id)
+		public async Task<IActionResult> Edit(int Id)
 		{
-			var roleVM = new RoleVM
+			var userVM = new UserVM
 			{
-				Role = await _appRoleRepo.Find(Id),
+				AppUser = await _appUserRepo.Find(Id),
 				Roles = await _appRoleRepo.GetAll()
 			};
 
-			return View(roleVM);
+			return View(userVM);
 		}
 
-		[HttpPut]
+		[HttpPost]
+		[ValidateAntiForgeryToken]
 		[Route(Routes.UpdateUserPath, Name = Routes.UpdateUser)]
-		public async Task<IActionResult> UpdateUser(int Id)
+		public async Task<IActionResult> Update()
 		{
-			return Json(new
-			{
-				Ok = 1
-			});
+			if (ModelState.IsValid) {
+				if (string.IsNullOrEmpty(UserVM.Password.Trim()) == false) {
+					if (UserVM.Password.Trim() != UserVM.PasswordConfirm.Trim()) {
+						ModelState.AddModelError("PasswordConfirm", _localizer.GetString("password_confirm_match"));
+						return View("Edit", UserVM);
+					}
+				}
+
+				await _appUserRepo.Update(UserVM.AppUser);
+			}
+
+			return Json(UserVM.AppUser);
 		}
 
-		[HttpDelete]
+		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[Route(Routes.DeleteUserPath, Name = Routes.DeleteUser)]
-		public async Task<IActionResult> DeleteUser()
+		public async Task<IActionResult> Delete()
 		{
 			return Json(new
 			{

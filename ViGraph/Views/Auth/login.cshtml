@@ -2,7 +2,7 @@
 @inject IViewLocalizer localizer
 @inject IHtmlLocalizer<SharedResources> sharedLocalizer
 
-@model ViGraph.ViewModels.LoginVM
+@model ViGraph.Models.ViewModels.LoginVM
 @{
     ViewData["Title"] = "Login Page";
     Layout = "~/Views/Shared/_BasicLayout.cshtml";
@@ -27,7 +27,7 @@
                         <p class="text-muted font-weight-bold">@localizer["signin_form_desc"]</p>
                     </div>
 
-                    <partial name="../Shared/Partials/_ValidationSummary.cshtml" model="ViewData.ModelState" />
+                    <partial name="~/Views/Shared/Partials/_ValidationSummary.cshtml" model="ViewData.ModelState" />
 
                     <form class="form" novalidate="novalidate" id="kt_login_signin_form" asp-controller="Auth"
                         asp-action="LoginPost">

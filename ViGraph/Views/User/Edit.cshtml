@@ -1,0 +1,32 @@
+@model ViGraph.Models.ViewModels.UserVM
+
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Authorization
+
+@inject IViewLocalizer localizer
+@inject IHtmlLocalizer<SharedResources> sharedLocalizer
+@inject IAuthorizationService AuthorizationService
+
+@{
+    ViewData["Title"] = "Edit " + Model.AppUser.FullName;
+}
+
+@section SubHeader {
+<div id="kt_subheader" class="subheader py-2 py-lg-4 subheader-transparent">
+    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-2">
+            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Edit User</h5>
+            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-5 bg-gray-200"></div>
+            <div id="kt_subheader_search" class="d-flex align-items-center">
+                <span id="kt_subheader_total" class="text-dark-50 font-weight-bold">Edit user desc</span>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+<form id="user-form" role="form" method="POST" asp-controller="User" asp-action="Update" asp-route-Id="@Model.AppUser.Id">
+    <partial name="~/Views/User/_Inputs.cshtml" />
+</form>
+
+<partial name="~/Views/User/_InputsJS.cshtml" />

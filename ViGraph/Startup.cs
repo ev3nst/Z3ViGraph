@@ -68,9 +68,16 @@ namespace ViGraph
 			services.AddScoped<IAuthorizationHandler, PermissionGuard>();
 
 			// Repository Classes
+			services.AddScoped<IAppRoleRepository, AppRoleRepository>();
 			services.AddScoped<IAppUserRepository, AppUserRepository>();
 
-			services.AddControllersWithViews().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null); ;
+			services.AddControllersWithViews().AddJsonOptions(
+				opts => {
+					opts.JsonSerializerOptions.PropertyNamingPolicy = null;
+                    opts.JsonSerializerOptions.MaxDepth = 0;
+				}
+			);
+
 			services.AddResponseCompression(options => {
 				options.Providers.Add<BrotliCompressionProvider>();
 				options.Providers.Add<GzipCompressionProvider>();

@@ -1,0 +1,30 @@
+@using Microsoft.AspNetCore.Mvc.ModelBinding
+@model ModelStateDictionary
+
+@if (ViewData.ModelState["ServerError"] != null && ViewData.ModelState["ServerError"].Errors.Any()) {
+    @foreach (var modelError in ViewData.ModelState["ServerError"].Errors) {
+        <div class="alert alert-custom alert-light-danger fade show mb-5" role="alert">
+            <div class="alert-icon"><i class="flaticon-warning"></i></div>
+            <div class="alert-text">@modelError.ErrorMessage</div>
+            <br>
+            <div class="alert-close">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span class="svg-icon svg-icon-danger" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                            height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)"
+                                    fill="#000000">
+                                    <rect x="0" y="7" width="16" height="2" rx="1" />
+                                    <rect opacity="1"
+                                        transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000) "
+                                        x="0" y="7" width="16" height="2" rx="1" />
+                                </g>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+        </div>
+    }
+}

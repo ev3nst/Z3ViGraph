@@ -1,6 +1,4 @@
-using System;
-
-namespace ViGraph.ViewModels
+namespace ViGraph.Models.ViewModels
 {
 	public class ErrorVM
 	{
