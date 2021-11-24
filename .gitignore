@@ -406,3 +406,9 @@ ASALocalRun/
 
 #Metronic template
 /ViGraph/Views/Metronic/node_modules
+
+# EF Generated Migrations
+/ViGraph.Database/Migrations
+
+# Secret .ENV
+/ViGraph/appsettings.json

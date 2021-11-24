@@ -51,6 +51,8 @@ namespace ViGraph.Database.Schema
 					}
 
 					if (
+						module != "Dashboard" &&
+						module != "Report" &&
 						module != "AppUser" &&
 						module != "AppRole" &&
 						module != "Categories" &&
@@ -69,14 +71,6 @@ namespace ViGraph.Database.Schema
 				}
 			}
 
-            idCounter++;
-			roleClaimList.Add(new AppRoleClaim
-			{ // Super Admin
-				Id = idCounter,
-				ClaimType = "Permission",
-				ClaimValue = "Dashboard.View",
-				RoleId = 1
-			});
 			return roleClaimList;
 		}
 	}

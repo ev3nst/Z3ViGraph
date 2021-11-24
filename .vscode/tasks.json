@@ -85,6 +85,22 @@
                 "${workspaceFolder}/ViGraph/ViGraph.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Database Regenerate Migration",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "ef",
+                "migrations",
+                "add",
+                "Migrations",
+                "-s",
+                "${workspaceFolder}/ViGraph/ViGraph.csproj",
+                "--project",
+                "${workspaceFolder}/ViGraph.Database/ViGraph.Database.csproj",
+            ],
+            "problemMatcher": "$msCompile"
         }
     ]
 }
